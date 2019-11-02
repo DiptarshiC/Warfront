@@ -1,5 +1,11 @@
- #include "../headers/vehicles.h"
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#include <GL/glut.h>
+#include <math.h>
 
+#include "../headers/basic_shapes.h"
+#include "../headers/vehicles.h"
 
 
 /**
