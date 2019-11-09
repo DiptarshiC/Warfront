@@ -7,6 +7,27 @@
 #include "../headers/basic_shapes.h"
 #include "../headers/vehicles.h"
 
+
+/**
+*@func:         Vertex
+*
+*@description:  A program that helps us conmpute the vertices using cosine sine functions that inturn helps us render shapes
+*
+*@param:        double theta,double alpha
+*
+*@return:       void
+*
+*/
+
+void Vertex(double theta,double alpha)
+{
+   	glColor3f(cos(PI/180*(theta))*cos(PI/180*(theta)) ,sin(PI/180*(alpha))*sin(PI/180*(alpha)) ,sin(PI/180*(theta))*sin(PI/180*(theta)));
+	glNormal3d(sin(PI/180*(theta))*cos(PI/180*(alpha)) ,sin(PI/180*(alpha)) ,cos(PI/180*(theta))*cos(PI/180*(alpha)));
+   	glVertex3d(sin(PI/180*(theta))*cos(PI/180*(alpha)) , sin(PI/180*(alpha)) , cos(PI/180*(theta))*cos(PI/180*(alpha)));
+}
+
+
+
 /************************** draw_cylinder() **************************
  * This function will draw the cylinder
  *
@@ -281,3 +302,58 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
         glPopMatrix();
 }
 
+/**
+*@func:		drawCone
+*
+*@description:	helps draw a cone
+*
+*@param:	double x, double y, double z, double delta_x, double delta_y, double delta_z
+*
+*@return:	void
+*
+*/
+
+void drawCone(double x, double y, double z, double delta_x, double delta_y, double delta_z,double theta)
+{
+
+
+	//  Save transformation
+        glPushMatrix();
+
+	//  Offset
+        glTranslated(x,y,z);
+        glRotated(theta,1,0,0);
+        glScaled(delta_x,delta_y,delta_z);
+
+
+	glBegin( GL_TRIANGLE_FAN );
+    	glNormal3f(7.0f,7.0f,7.0f);
+
+    	glVertex3f(0.0f,12,0.0f);
+    	for(int i=0; i<=300;i++)
+    	{
+        	glVertex3f(2*cos(-i),6,2*sin(-i));
+    	}
+ 
+    	glEnd();
+
+ 
+	/*side of cylinder, y-values are used for the length of the cylinder
+		x and z values are used for the radius.
+	 	for a cone change y values to integers for the length.*/
+    	for(int j=0;j<=45;j++)
+	{
+        	glBegin(GL_QUAD_STRIP);
+
+		for(int i=0;i<300;i++)
+		{
+                        glNormal3f(cos(i), 0.0f, sin(i));
+
+
+			glVertex3f(0, (j)/7, 0);
+                        glVertex3f(0, (j+1)/7, 0);
+                }
+    	}
+	glEnd();
+	glPopMatrix();
+}
