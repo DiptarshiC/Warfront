@@ -4,8 +4,7 @@
 
 
 
-int drawTank();
-
+void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th);
 int drawPlane();
 
 
