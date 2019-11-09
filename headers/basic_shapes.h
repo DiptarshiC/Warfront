@@ -5,7 +5,7 @@
 
 
 void drawCylinder(GLfloat radius, GLfloat height, char R,char G char B);
-
+void drawDome(double x, double y, double z, double delta_x, double delta_y, double delta_z,double th);
 
 
 #endif /*__BASIC_SHAPES_H__*/
