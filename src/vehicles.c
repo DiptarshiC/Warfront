@@ -13,54 +13,324 @@
 *@func: drawTank
 *
 *@description: Helps me a draw a tank. The trank looks like a Soviet Army tank from the 
-*		1940s. It has the capacity to fire artillery, Has the Red Army logo on it
-*		and can also fire missiles at the designated target. Look forward to work
-*		hard on this one.
+*               1940s. It has the capacity to fire artillery, Has the Red Army logo on it
+*               and can also fire missiles at the designated target. Look forward to work
+*               hard on this one.
 *
-*@params:	double x: Indicates the forward/backward translation units of the vehcile
-*		double y: Indicates the left/right translation unit of the vehicle
-*		double z: Indicates the up/ down translation unit of the vehicle
-*		double th: Indicates the amount by which you want the vehicle to turn
+*@params:       double x: Indicates the forward/backward translation units of the vehcile
+*               double y: Indicates the left/right translation unit of the vehicle
+*               double z: Indicates the up/ down translation unit of the vehicle
+*               double th: Indicates the amount by which you want the vehicle to turn
 *
-*@return:	int for now, later might change it to void
+*@return:       int for now, later might change it to void
 *
 *
-*@todo:		All the features are yet to be added. Just started working on the project
+*@todo:         All the features are yet to be added. Just started working on the project
 */
 
 
 void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
-	float colorblack[] = {0,0,0,1};
+        float colorblack[] = {0,0,0,1};
         float colorwhite[] = {1,1,1,1};
-	glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
+        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
         glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
         glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
-	//  Save transformation
+        //  Save transformation
         glPushMatrix();
         //  Offset
         glTranslated(x,y,z);
         glRotated(th,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
+
+	glColor3ub(255, 0, 0);
+
+
+	/* Gun mouth*/
+	drawCylinder(0.5, 12, 0, 2, 0.5,1, 1,1,-90,0, 200, 0 );
+
+	/*This is for the top surface*/
+
 	//top
-	glBegin(GL_QUADS);
+        glBegin(GL_POLYGON);
+        glVertex3f(+1,+2,0);
+        glVertex3f(+2,+1,0);
+        glVertex3f(+2,-1,0);
+        glVertex3f(+1,-2,0);
+        glVertex3f(-1,-2,0);
+        glVertex3f(-2,-1,0);
+        glVertex3f(-2,+1,0);
 	glVertex3f(-1,+2,0);
-	glVertex3f(+1,+2,0);
-	glVertex3f(+2,+1,0);
-        glVertex3f(-2,+1,0);
-	glVertex3f(-1,-2,0);
- 	glVertex3f(+1,-2,0);
-	glVertex3f(+2,+1,0);
-        glVertex3f(-2,+1,0);
-	glVertex3f(-1,+2,1);
-        glVertex3f(+1,+2,1);
-        glVertex3f(+2,+1,1);
-        glVertex3f(-2,+1,1);
-        glVertex3f(-1,-2,1);
-        glVertex3f(+1,-2,1);
-        glVertex3f(+2,+1,1);
-        glVertex3f(-2,+1,1);
+
 	glEnd();
-	glPopMatrix();
+
+
+	//Bottom
+	glBegin(GL_POLYGON);
+
+	glVertex3f(+1,+2,1);
+        glVertex3f(+2,+1,1);
+        glVertex3f(+2,-1,1);
+        glVertex3f(+1,-2,1);
+        glVertex3f(-1,-2,1);
+        glVertex3f(-2,-1,1);
+        glVertex3f(-2,+1,1);
+ 	glVertex3f(-1,+2,1);
+
+        glEnd();
+
+
+
+	//Sealing the surfaces : Front
+
+	glBegin(GL_QUADS);
+	glVertex3f(+1,+2,1);
+ 	glVertex3f(+1,+2,0);
+	glVertex3f(-1,+2,0);
+	glVertex3f(-1,+2,1);
+	glEnd();
+
+
+	//Sealing the surfaces : Back
+
+        glBegin(GL_QUADS);
+        glVertex3f(+1,-2,1);
+        glVertex3f(+1,-2,0);
+        glVertex3f(-1,-2,0);
+        glVertex3f(-1,-2,1);
+        glEnd();
+
+
+	 //Sealing the surfaces : right
+
+        glBegin(GL_QUADS);
+        glVertex3f(+2,+1,1);
+        glVertex3f(+2,+1,0);
+        glVertex3f(+2,-1,0);
+        glVertex3f(+2,-1,1);
+        glEnd();
+
+
+	//Sealing the surfaces : left
+
+        glBegin(GL_QUADS);
+        glVertex3f(-2,+1,1);
+        glVertex3f(-2,-1,1);
+        glVertex3f(-2,-1,0);
+        glVertex3f(-2,+1,0);
+        glEnd();
+
+
+
+	 glColor3ub(0, 100, 255);
+
+	 //Sealing the surfaces : right top diagonal
+
+        glBegin(GL_QUADS);
+        glVertex3f(+2,+1,0);
+        glVertex3f(+2,+1,1);
+        glVertex3f(+1,+2,1);
+        glVertex3f(+1,+2,0);
+        glEnd();
+
+
+	//sealing the surfaces: right bottom diagonal
+	glBegin(GL_QUADS);
+        glVertex3f(+2,-1,1);
+        glVertex3f(+2,-1,0);
+        glVertex3f(+1,-2,0);
+        glVertex3f(+1,-2,1);
+        glEnd(); 
+
+	//sealing the surfaces: left top diagonal
+        glBegin(GL_QUADS);
+        glVertex3f(-2,+1,1);
+        glVertex3f(-1,+2,1);
+        glVertex3f(-1,+2,0);
+        glVertex3f(-2,+1,0);
+        glEnd(); 
+
+	//sealing the surfaces: left bottom diagonal
+        glBegin(GL_QUADS);
+        glVertex3f(-2,-1,1);
+        glVertex3f(-2,-1,0);
+        glVertex3f(-1,-2,0);
+        glVertex3f(-1,-2,1);
+        glEnd(); 
+
+
+
+	/*This is for the second  layer*/
+
+	 glColor3ub(0, 175, 255);
+        //top
+        glBegin(GL_POLYGON);
+        glVertex3f(+1,+5,0);
+        glVertex3f(+5,+1,0);
+        glVertex3f(+5,-1,0);
+        glVertex3f(+1,-5,0);
+        glVertex3f(-1,-5,0);
+        glVertex3f(-5,-1,0);
+        glVertex3f(-5,+1,0);
+        glVertex3f(-1,+5,0);
+
+        glEnd();
+
+
+        //Bottom
+        glBegin(GL_POLYGON);
+
+        glVertex3f(+1,+5,-3);
+        glVertex3f(+5,+1,-3);
+        glVertex3f(+5,-1,-3);
+        glVertex3f(+1,-5,-3);
+        glVertex3f(-1,-5,-3);
+        glVertex3f(-5,-1,-3);
+        glVertex3f(-5,+1,-3);
+        glVertex3f(-1,+5,-3);
+
+        glEnd();
+
+
+
+	glColor3ub(0, 255, 175);
+        //Sealing the surfaces : Front
+
+        glBegin(GL_QUADS);
+        glVertex3f(+1,+5,-3);
+        glVertex3f(+1,+5,0);
+        glVertex3f(-1,+5,0);
+        glVertex3f(-1,+5,-3);
+        glEnd();
+
+
+        //Sealing the surfaces : Back
+
+        glBegin(GL_QUADS);
+        glVertex3f(+1,-5,-3);
+        glVertex3f(+1,-5,0);
+        glVertex3f(-1,-5,0);
+        glVertex3f(-1,-5,-3);
+        glEnd();
+
+
+         //Sealing the surfaces : right
+
+        glBegin(GL_QUADS);
+        glVertex3f(+5,+1,-3);
+        glVertex3f(+5,+1,0);
+        glVertex3f(+5,-1,0);
+        glVertex3f(+5,-1,-3);
+        glEnd();
+
+
+        //Sealing the surfaces : left
+
+        glBegin(GL_QUADS);
+        glVertex3f(-5,+1,-3);
+        glVertex3f(-5,-1,-3);
+        glVertex3f(-5,-1,0);
+        glVertex3f(-5,+1,0);
+        glEnd();
+
+
+	    //Sealing the surfaces : right top diagonal
+
+        glBegin(GL_QUADS);
+        glVertex3f(+5,+1,0);
+        glVertex3f(+5,+1,-3);
+        glVertex3f(+1,+5,-3);
+        glVertex3f(+1,+5,0);
+        glEnd();
+
+
+        //sealing the surfaces: right bottom diagonal
+        glBegin(GL_QUADS);
+        glVertex3f(+5,-1,-3);
+        glVertex3f(+5,-1,0);
+        glVertex3f(+1,-5,0);
+        glVertex3f(+1,-5,-3);
+        glEnd(); 
+
+        //sealing the surfaces: left top diagonal
+        glBegin(GL_QUADS);
+        glVertex3f(-5,+1,-3);
+        glVertex3f(-1,+5,-3);
+        glVertex3f(-1,+5,0);
+        glVertex3f(-5,+1,0);
+        glEnd(); 
+
+        //sealing the surfaces: left bottom diagonal
+        glBegin(GL_QUADS);
+        glVertex3f(-5,-1,-3);
+        glVertex3f(-5,-1,0);
+        glVertex3f(-1,-5,0);
+        glVertex3f(-1,-5,-3);
+        glEnd(); 
+
+
+
+	/*Now, I shall draw the middle layer*/
+
+
+	/* Top */
+	glColor3ub(200, 100, 175);
+
+        glBegin(GL_QUADS);
+        glVertex3f(+8,+8,-3);
+        glVertex3f(-8,+8,-3);
+        glVertex3f(-8,-8,-3);
+        glVertex3f(+8,-8,-3);
+        glEnd();
+
+	/* Bottom */
+	glColor3ub(40, 40, 40);
+
+	glBegin(GL_QUADS);
+        glVertex3f(+10,+15,-10);
+        glVertex3f(-10,+15,-10);
+        glVertex3f(-10,-15,-10);
+        glVertex3f(+10,-15,-10);
+        glEnd(); 
+
+
+
+	/* Front */
+	glColor3ub(40, 70, 40);
+	glBegin(GL_QUADS);
+        glVertex3f(+8,+8,-3);
+        glVertex3f(+10,+15,-10);
+        glVertex3f(-10,+15,-10);
+        glVertex3f(-8,+8,-3);
+        glEnd();
+
+
+	/* Back */
+        glBegin(GL_QUADS);
+        glVertex3f(-8,-8,-3);
+        glVertex3f(-10,-15,-10);
+        glVertex3f(+10,-15,-10);
+        glVertex3f(+8,-8,-3);
+        glEnd(); 
+
+	/* Right */
+	glBegin(GL_QUADS);
+        glVertex3f(+8,+8,-3);
+        glVertex3f(+8,-8,-3);
+        glVertex3f(+10,-15,-10);
+        glVertex3f(+10,+15,-10);
+        glEnd();
+
+
+
+	/* Left */
+        glBegin(GL_QUADS);
+        glVertex3f(-8,+8,-3);
+        glVertex3f(-10,+15,-10);
+        glVertex3f(-10,-15,-10);
+        glVertex3f(-8,-8,-3);
+        glEnd();
+
+        glPopMatrix();
 }
 
