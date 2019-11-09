@@ -119,4 +119,63 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
         //  Undo transformations
         glPopMatrix();
 }
+/**
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*/
+
+void drawSphere(double x, double y, double z, double delta_x, double delta_y, double delta_z)
+{
+        const int d = 5;
+        int theta, alpha;
+
+        //  Save transformation
+
+        glPushMatrix();
+        //  Offset and scale
+        glTranslated(x, y, z);
+        glScaled(delta_x, delta_y, delta_z);
+
+        //  South pole cap
+        glBegin(GL_TRIANGLE_FAN);
+
+        Vertex(0, -90);
+        for (theta = 0; theta <= 360; theta += d)
+        {
+                Vertex(theta, d - 90);
+        }
+        glEnd();
+
+        //  Latitude bands
+        for (alpha = d - 90; alpha <= 90 - (2*d); alpha += d)
+        {
+                glBegin(GL_QUAD_STRIP);
+                for (theta = 0; theta <= 360; theta += d)
+                {
+                        Vertex(theta, alpha);
+                        Vertex(theta, alpha + d);
+                }
+                glEnd();
+        }
+
+        //  North pole cap
+        glBegin(GL_TRIANGLE_FAN);
+        Vertex(0, 90);
+        for (theta = 0; theta <= 360; theta += d)
+        {
+                Vertex(theta, 90 - d);
+        }
+        glEnd();
+
+        //  Undo transformations
+        glPopMatrix();
+}
+
 
