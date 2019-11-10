@@ -25,10 +25,11 @@ CLEAN=rm -f $(EXE) *.o *.a
 endif
 
 # Dependencies
-basic_shapes.o: src/basic_shapes.c headers/basic_shapes.h
-	gcc -O3 -o $@ $^   $(LIBS)
+
+basic_shapes.o: src/basic_shapes.c headers/basic_shapes.h 
+	gcc -o basic_shapes.o  -c src/basic_shapes.c   $(LIBS)
 vehicles.o: src/vehicles.c headers/vehicles.h src/basic_shapes.c headers/basic_shapes.h
-	gcc -O3 -o $@ $^   $(LIBS)
+	gcc -o vehicles.o -c src/vehicles.c  $(LIBS)
 3D.o: 3D.c CSCIx229.h
 fatal.o: fatal.c CSCIx229.h
 loadtexbmp.o: loadtexbmp.c CSCIx229.h

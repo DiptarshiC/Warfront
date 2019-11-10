@@ -33,7 +33,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 {
         float colorblack[] = {0,0,0,1};
         float colorwhite[] = {1,1,1,1};
-        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
+//        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
         glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
         glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
         //  Save transformation

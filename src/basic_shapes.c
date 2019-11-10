@@ -8,6 +8,9 @@
 #include "../headers/vehicles.h"
 
 
+#define		PI	3.14
+
+
 /**
 *@func:         Vertex
 *
@@ -39,7 +42,9 @@ void Vertex(double theta,double alpha)
  *
  *   @return: Nothing
  */
-void drawCylinder(GLfloat radius, GLfloat height, GLubyte R, GLubyte G, GLubyte B)
+
+void drawCylinder(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G, GLubyte B )
+
 {
 
 	GLfloat x              = 0.0;
@@ -215,7 +220,7 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
 {
         float colorblack[] = {0,0,0,1};
         float colorwhite[] = {1,1,1,1};
-        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
+//        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
         glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
         glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
         //  Save transformation
