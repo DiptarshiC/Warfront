@@ -993,33 +993,6 @@ void drawMyAirplane(double x, double y, double z, double delta_x, double delta_y
 
 
 
-
-/*****************************drawBuilding()********************************
-*@func: drawBuilding()
-*
-*@param:
-*
-*@return:
-**
-*
-*
-*
-*
-*/
-
-void drawBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z)
-{
-
-	glPushMatrix();
-        //  Offset
-        glTranslated(x,y,z);
-        glScaled(delta_x,delta_y,delta_z);
-        drawDome(0,0,7,4,4,4,90);
-	drawCube(0,0,0,9,5,7.3,0);
-	glPopMatrix();
-
-}
-
 /*
 void ErrCheck(const char* where)
 {
@@ -1108,14 +1081,14 @@ void display()
 		glEnable(GL_LIGHTING);
 
 
-        	drawMyShip(0,0,0,1,1,1,0);
-        	drawMyShip(5,0,0,1,2,2,0);
+//        	drawMyShip(0,0,0,1,1,1,0);
+ //       	drawMyShip(5,0,0,1,2,2,0);
 
-        	drawMyAirplane(5,5,8,0.5,0.5,0.5,30);
+//        	drawMyAirplane(5,5,8,0.5,0.5,0.5,30);
         	//drawMyAirplane(-5,-5,4,1,1,1,330);
-        	drawMyAirplane(9,-3,6,2,2,2,0);
+//        	drawMyAirplane(9,-3,6,2,2,2,0);
 
-        	drawMyAirplane(0,-14,6,2,2,2,0);
+//        	drawMyAirplane(0,-14,6,2,2,2,0);
 
  		//  Location of viewer for specular calculations
 //		glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER,locality);
@@ -1161,8 +1134,8 @@ void display()
 */
 
 
-//	drawTank(0,0,0,1,1,1,0);
-	drawBuilding(0, 0, 0, 1, 1,1);
+	drawTank(0,0,0,1,1,1,0);
+//	drawBuilding(0, 0, 0, 1, 1,1);
 //	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();

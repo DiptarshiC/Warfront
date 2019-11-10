@@ -46,6 +46,11 @@ void Vertex(double theta,double alpha)
 void drawCylinder(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G, GLubyte B )
 
 {
+	glPushMatrix();
+	glTranslated(x1,y1,z1);
+        glRotated(th,1,0,0);
+        glScaled(delta_x,delta_y,delta_z);
+
 
 	GLfloat x              = 0.0;
     	GLfloat y              = 0.0;
@@ -81,6 +86,7 @@ void drawCylinder(double radius, double height,double x1, double y1, double z1,d
         }
         	glVertex3f(radius, 0.0, height);
     	glEnd();
+	glPopMatrix();
 }
 
 
