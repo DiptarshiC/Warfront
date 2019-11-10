@@ -25,6 +25,10 @@ CLEAN=rm -f $(EXE) *.o *.a
 endif
 
 # Dependencies
+basic_shapes.o: src/basic_shapes.c headers/basic_shapes.h
+	gcc -O3 -o $@ $^   $(LIBS)
+vehicles.o: src/vehicles.c headers/vehicles.h src/basic_shapes.c headers/basic_shapes.h
+	gcc -O3 -o $@ $^   $(LIBS)
 3D.o: 3D.c CSCIx229.h
 fatal.o: fatal.c CSCIx229.h
 loadtexbmp.o: loadtexbmp.c CSCIx229.h
@@ -34,10 +38,15 @@ object.o: object.c CSCIx229.h
 
 #  Create archive
 CSCIx229.a:fatal.o loadtexbmp.o print.o errcheck.o object.o
-        ar -rcs $@ $^
+	ar -rcs $@ $^
 
 # Compile rules
 .c.o:
-        gcc -c $(CFLG) $<
+	gcc -c $(CFLG) $<
 .cpp.o:
-        g++ -c $(CFLG) $<
+	g++ -c $(CFLG) $<
+# Link
+
+War:3D.o CSCIx229.a basic_shapes.o vehicles.o
+	gcc -O3 -o $@ $^   $(LIBS)
+

@@ -36,7 +36,7 @@
 #include "CSCIx229.h"
 #include "headers/basic_shapes.h"
 #include "headers/buildings.h"
-#include "headers/vehciles.h"
+#include "headers/vehicles.h"
 
 
 
@@ -452,13 +452,6 @@ void char_input(unsigned char key,int x, int y)
 *@return:       void
 *
 */
-
-static void Vertex(double theta,double alpha)
-{
-   	glColor3f(cos(PI/180*(theta))*cos(PI/180*(theta)) ,sin(PI/180*(alpha))*sin(PI/180*(alpha)) ,sin(PI/180*(theta))*sin(PI/180*(theta)));
-	glNormal3d(sin(PI/180*(theta))*cos(PI/180*(alpha)) ,sin(PI/180*(alpha)) ,cos(PI/180*(theta))*cos(PI/180*(alpha)));
-   	glVertex3d(sin(PI/180*(theta))*cos(PI/180*(alpha)) , sin(PI/180*(alpha)) , cos(PI/180*(theta))*cos(PI/180*(alpha)));
-}
 
 /**
 *@func:		drawCone
