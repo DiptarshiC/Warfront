@@ -9,6 +9,19 @@
 #include "../headers/buildings.h"
 
 
+void drawSwastika(double x, double y, double z, double delta_x, double delta_y, double delta_z)
+{
+
+
+
+
+
+
+
+
+
+
+}
 
 /*****************************drawBuilding()********************************
 *@func: drawBuilding()
