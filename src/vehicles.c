@@ -31,6 +31,8 @@
 
 void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
+
+	glPushMatrix();
         float colorblack[] = {0,0,0,1};
         float colorwhite[] = {1,1,1,1};
 //        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
