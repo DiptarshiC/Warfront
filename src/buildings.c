@@ -12,14 +12,18 @@
 void drawSwastika(double x, double y, double z, double delta_x, double delta_y, double delta_z)
 {
 
+	glPushMatrix();
+        //  Offset
+        glTranslated(x,y,z);
+        glScaled(delta_x,delta_y,delta_z);
+	drawCube(0,0,0,1,1,6,0);
+	drawCube(+3,0,+5,3,1,1,0);
+        drawCube(-3,0,-5,3,1,1,0);
+	drawCube(+3,0,0,3,1,1,0);
+        drawCube(-3,0,0,3,1,1,0);
 
 
-
-
-
-
-
-
+	glPopMatrix();
 
 }
 
