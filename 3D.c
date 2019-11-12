@@ -191,12 +191,18 @@ void idle()
 void mouse_button_detect(int button, int state, int x, int y)
 {
 
+	switch(button)
+	{
+		case GLUT_LEFT_BUTTON:
+		switch(state)
+		{
+			case GLUT_DOWN:
+			//check elevation and change turret elevation
+			break;
 
-
-
-
-
-
+		}
+		break;
+	}
 }
 /**
 *@func:         arrow_keys_move
