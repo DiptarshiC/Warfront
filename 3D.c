@@ -1072,7 +1072,7 @@ void display()
         	float coordinates[]  = {distance*cos((PI/180)*azhimuth), distance*sin((PI/180)*azhimuth), light_elevation, 1.0};
         	//  Draw light position as ball (still no lighting here)
         	glColor3f(1,1,1);
-        	drawSun(coordinates[0],coordinates[1],coordinates[2] , 0.2);
+//        	drawSun(coordinates[0],coordinates[1],coordinates[2] , 0.2);
 
 		//  OpenGL should normalize normal vectors
         	glEnable(GL_NORMALIZE);
@@ -1081,18 +1081,6 @@ void display()
 		glEnable(GL_LIGHTING);
 
 
-//        	drawMyShip(0,0,0,1,1,1,0);
- //       	drawMyShip(5,0,0,1,2,2,0);
-
-//        	drawMyAirplane(5,5,8,0.5,0.5,0.5,30);
-        	//drawMyAirplane(-5,-5,4,1,1,1,330);
-//        	drawMyAirplane(9,-3,6,2,2,2,0);
-
-//        	drawMyAirplane(0,-14,6,2,2,2,0);
-
- 		//  Location of viewer for specular calculations
-//		glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER,locality);
-       		//  glColor sets ambient and diffuse color materials
 		glColorMaterial(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE);
         	glEnable(GL_COLOR_MATERIAL);
 
@@ -1111,31 +1099,7 @@ void display()
 	}
 
 
-
-/*	glColor3ub(0,0,255);
-	glBindTexture(GL_TEXTURE_2D,texture[6]);
-	drawCube(0,0,-10, 150,150,10,0);
-	glEnd();
-
-	drawMyShip(0,0,0,1,1,1,0);
-  	drawMyShip(5,0,0,1,2,2,0);
-
-	drawMyAirplane(5,5,8,0.5,0.5,0.5,30);
-  	//drawMyAirplane(-5,-5,4,1,1,1,330);
-	drawMyAirplane(9,-3,6,2,2,2,0);
-
-	drawMyAirplane(0,-14,6,2,2,2,0);
-
-
-
-	glDisable(GL_LIGHTING);
-
-	glDisable(GL_TEXTURE_2D);
-*/
-
-
-	drawTank(0,0,0,1,1,1,0);
-//	drawBuilding(0, 0, 0, 1, 1,1);
+	drawSwastika(0,0,0,1,1,1);
 //	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();

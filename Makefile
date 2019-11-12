@@ -9,7 +9,7 @@ all: $(EXE)
 ifeq "$(OS)" "Windows_NT"
 CFLG=-O3 -Wall
 LIBS=-lglut32cu -lglu32 -lopengl32
-CLEAN=del *.exe *.o *.a
+CLEAN=del *.exe *.o *.a War
 else
 #  OSX
 ifeq "$(shell uname)" "Darwin"
@@ -32,7 +32,8 @@ vehicles.o: src/vehicles.c headers/vehicles.h src/basic_shapes.c headers/basic_s
 	gcc -o vehicles.o -c src/vehicles.c  $(LIBS)
 buildings.o: src/buildings.c headers/buildings.h src/basic_shapes.c headers/basic_shapes.h
 	gcc -o buildings.o -c src/buildings.c  $(LIBS)
-3D.o: 3D.c CSCIx229.h
+War.o: 3D.c CSCIx229.h
+	gcc -o War.o -c 3D.c
 fatal.o: fatal.c CSCIx229.h
 loadtexbmp.o: loadtexbmp.c CSCIx229.h
 print.o: print.c CSCIx229.h
@@ -50,7 +51,7 @@ CSCIx229.a:fatal.o loadtexbmp.o print.o errcheck.o object.o
 	g++ -c $(CFLG) $<
 # Link
 
-War:3D.o CSCIx229.a basic_shapes.o vehicles.o buildings.o
+War:War.o CSCIx229.a basic_shapes.o vehicles.o buildings.o
 	gcc -O3 -o $@ $^   $(LIBS)
 
 #  Clean
