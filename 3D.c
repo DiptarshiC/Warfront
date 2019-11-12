@@ -63,7 +63,7 @@ int theta=0;
 
 int displayMode = 2;
 double widht2height = 1.0;
-int Field_of_View = 55;
+int Field_of_View = 50;
 double dimension = 20.0;   //  Size of world
 
 int smoothness  =	1;  	/* Smooth/Flat shading*/
@@ -1099,7 +1099,10 @@ void display()
 	}
 
 
-	drawSwastika(0,0,0,1,1,1);
+
+//	drawSwastika(0,0,0,1,1,1);
+	drawBuilding(0,0,0,1,1,1);
+	drawTank(-15,-25,0,1,1,1,0);
 //	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();
