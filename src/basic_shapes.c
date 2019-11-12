@@ -114,6 +114,7 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
         glTranslated(x, y, z);
         glScaled(delta_x, delta_y, delta_z);
 	glRotated(th,1,0,0);
+    	glColor3ub(158, 158, 158);
 
 
         //  South pole cap
