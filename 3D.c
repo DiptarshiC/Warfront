@@ -475,7 +475,7 @@ void char_input(unsigned char key,int x, int y)
 *@return:       void
 *
 */
-
+/*
 void DrawSkybox(float x, float y, float z, float width, float height, float length)
 {
 	// Center the Skybox around the given x,y,z position
@@ -539,7 +539,7 @@ void DrawSkybox(float x, float y, float z, float width, float height, float leng
 	glEnd();
 
 }
-
+*/
 
 /**
 *@func:		drawSun
@@ -1123,7 +1123,7 @@ void display()
 
 //	drawSwastika(0,0,0,1,1,1);
 	drawBuilding(0,0,0,1,1,1);
-	drawTank(-15,-25,0,1,1,1,0);
+	drawTank(0,-35,0,1,1,1,-90,0);
 //	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();
