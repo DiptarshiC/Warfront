@@ -32,14 +32,13 @@
 void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
 
-	glPushMatrix();
         float colorblack[] = {0,0,0,1};
         float colorwhite[] = {1,1,1,1};
 //        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
         glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
         glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
         //  Save transformation
-        glPushMatrix();
+	glPushMatrix();
         //  Offset
         glTranslated(x,y,z);
         glRotated(th,0,1,0);
