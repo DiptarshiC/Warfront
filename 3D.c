@@ -174,7 +174,30 @@ void idle()
    glutPostRedisplay();
 }
 
+/**
+*@func:		mouse_button_detect
+*
+*
+*@description:	the function helps change the elevation of the tank
+*		turret
+*@params:
+*
+*@return: void
+*
+*@todo:
+*
+*/
 
+void mouse_button_detect(int button, int state, int x, int y)
+{
+
+
+
+
+
+
+
+}
 /**
 *@func:         arrow_keys_move
 *

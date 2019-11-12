@@ -131,6 +131,7 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
         for (alpha = d ; alpha <= 90 - (2*d); alpha += d)
         {
                 glBegin(GL_QUAD_STRIP);
+		glColor3ub(158, 158, 158);
                 for (theta = 0; theta <= 360; theta += d)
                 {
                         Vertex(theta, alpha);
@@ -142,6 +143,8 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
 
         //  North pole cap
         glBegin(GL_TRIANGLE_FAN);
+	glColor3ub(158, 158, 158);
+
         Vertex(0, 90);
         for (theta = 0; theta <= 360; theta += d)
         {
