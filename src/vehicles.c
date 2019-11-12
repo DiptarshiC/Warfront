@@ -29,7 +29,7 @@
 */
 
 
-void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
+void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double turret_Front_Elevation, double turret_Side_Elevation )
 {
 
         float colorblack[] = {0,0,0,1};
@@ -41,14 +41,14 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 	glPushMatrix();
         //  Offset
         glTranslated(x,y,z);
-        glRotated(th,0,1,0);
+//        glRotated(th,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
 
 	glColor3ub(255, 0, 0);
 
 
 	/* Gun mouth*/
-	drawCylinder(0.5, 12, 0, 2, 0.5,1, 1,1,-90,0, 200, 0 );
+	drawCylinder(0.5, 12, 0, 2, 0.5,1, 1,1,turret_Front_Elevation,0, 200, 0 );
 
 	/*This is for the top surface*/
 
