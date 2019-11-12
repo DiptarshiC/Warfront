@@ -443,7 +443,7 @@ void char_input(unsigned char key,int x, int y)
 }
 
 /**
-*@func:         Vertex
+*@func:         DrawSkyBox
 *
 *@description:  A program that helps us conmpute the vertices using cosine sine functions that inturn helps us render shapes
 *
@@ -453,16 +453,70 @@ void char_input(unsigned char key,int x, int y)
 *
 */
 
-/**
-*@func:		drawCone
-*
-*@description:	helps draw a cone
-*
-*@param:	double x, double y, double z, double delta_x, double delta_y, double delta_z
-*
-*@return:	void
-*
-*/
+void DrawSkybox(float x, float y, float z, float width, float height, float length)
+{
+	// Center the Skybox around the given x,y,z position
+	x = x - width  / 2;
+	y = y - height / 2;
+	z = z - length / 2;
+
+
+	// Draw Front side
+	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYFRONT]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y,z+length);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(x,	y+height,z+length);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width,y+height,z+length);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width,y,z+length);
+	glEnd();
+
+	// Draw Back side
+	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYBACK]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width,y,z);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width,y+height, z);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x,y+height,z);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y,z);
+	glEnd();
+
+	// Draw Left side
+	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYLEFT]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(x,y+height,z);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x,	y+height,z+length);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y,z+length);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y,z);
+	glEnd();
+
+	// Draw Right side
+	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYRIGHT]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width,y,z);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width,y,z+length);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width,y+height,z+length);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width,y+height,z);
+	glEnd();
+
+	// Draw Up side
+	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYUP]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width, y+height, z);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width, y+height, z+length);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(x,y+height,z+length);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x,y+height,z);
+	glEnd();
+
+	// Draw Down side
+	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYDOWN]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0f, 0.0f); glVertex3f(x,y,z);
+	glTexCoord2f(1.0f, 0.0f); glVertex3f(x,	y,z+length);
+	glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width, y,z+length);
+	glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width, y,z);
+	glEnd();
+
+}
+
 
 /**
 *@func:		drawSun
@@ -506,42 +560,6 @@ void drawSun(double x,double y,double z,double r)
    	//  Undo transofrmations
    	glPopMatrix();
 }
-
-
-/************************** drawCylinder() **************************
- * This function will draw the cylinder
- *
- *   @parameter1: radius = The radius of cylinder
- *   @parameter2: height = Height of the cylinder
- *   @parameter3: R = Red value of the cylinder's color
- *   @parameter4: G = Green value of the cylinder's color
- *   @parameter5: B = Blue value of the cylinder's color
- *
- *   @return: Nothing
- */
-
-/**
-*@func: drawTank
-*
-*@description: Helps me a draw a tank. The trank looks like a Soviet Army tank from the 
-*               1940s. It has the capacity to fire artillery, Has the Red Army logo on it
-*               and can also fire missiles at the designated target. Look forward to work
-*               hard on this one.
-*
-*@params:       double x: Indicates the forward/backward translation units of the vehcile
-*               double y: Indicates the left/right translation unit of the vehicle
-*               double z: Indicates the up/ down translation unit of the vehicle
-*               double th: Indicates the amount by which you want the vehicle to turn
-*
-*@return:       int for now, later might change it to void
-*
-*
-*@todo:         All the features are yet to be added. Just started working on the project
-*/
-
-
-
-
 
 
 /**
@@ -977,71 +995,6 @@ void drawMyAirplane(double x, double y, double z, double delta_x, double delta_y
 	glEnd();
 
 	glPopMatrix();
-}
-
-
-void Draw_Skybox(float x, float y, float z, float width, float height, float length)
-{
-	// Center the Skybox around the given x,y,z position
-	x = x - width  / 2;
-	y = y - height / 2;
-	z = z - length / 2;
-
-
-	// Draw Front side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYFRONT]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y,z+length);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x,	y+height,z+length);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width,y+height,z+length);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width,y,z+length);
-	glEnd();
-
-	// Draw Back side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYBACK]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width,y,z);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width,y+height, z);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x,y+height,z);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y,z);
-	glEnd();
-
-	// Draw Left side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYLEFT]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x,y+height,z);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x,	y+height,z+length);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y,z+length);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y,z);
-	glEnd();
-
-	// Draw Right side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYRIGHT]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width,y,z);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width,y,z+length);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width,y+height,z+length);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width,y+height,z);
-	glEnd();
-
-	// Draw Up side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYUP]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width, y+height, z);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width, y+height, z+length);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x,y+height,z+length);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x,y+height,z);
-	glEnd();
-
-	// Draw Down side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYDOWN]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x,y,z);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x,	y,z+length);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width, y,z+length);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width, y,z);
-	glEnd();
-
 }
 
 
