@@ -24,7 +24,7 @@
 
 void Vertex(double theta,double alpha)
 {
-   	glColor3f(cos(PI/180*(theta))*cos(PI/180*(theta)) ,sin(PI/180*(alpha))*sin(PI/180*(alpha)) ,sin(PI/180*(theta))*sin(PI/180*(theta)));
+   	//glColor3f(cos(PI/180*(theta))*cos(PI/180*(theta)) ,sin(PI/180*(alpha))*sin(PI/180*(alpha)) ,sin(PI/180*(theta))*sin(PI/180*(theta)));
 	glNormal3d(sin(PI/180*(theta))*cos(PI/180*(alpha)) ,sin(PI/180*(alpha)) ,cos(PI/180*(theta))*cos(PI/180*(alpha)));
    	glVertex3d(sin(PI/180*(theta))*cos(PI/180*(alpha)) , sin(PI/180*(alpha)) , cos(PI/180*(theta))*cos(PI/180*(alpha)));
 }
@@ -43,7 +43,7 @@ void Vertex(double theta,double alpha)
  *   @return: Nothing
  */
 
-void drawCylinder(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G, GLubyte B )
+void drawCylinder(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G, GLubyte B)
 
 {
 	glPushMatrix();
@@ -228,11 +228,11 @@ void drawSphere(double x, double y, double z, double delta_x, double delta_y, do
 
 void drawCube(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
-        float colorblack[] = {0,0,0,1};
-        float colorwhite[] = {1,1,1,1};
+//        float colorblack[] = {0,0,0,1};
+//        float colorwhite[] = {1,1,1,1};
 //        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
-        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
-        glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
+//        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
+//        glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
         //  Save transformation
         glPushMatrix();
         //  Offset

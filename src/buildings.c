@@ -58,7 +58,7 @@ void drawBuilding(double x, double y, double z, double delta_x, double delta_y, 
 	drawCube(-18,+10,0,9,5,7.3,0);
 	drawCube(+18,-10,0,9,5,7.3,0);
 	drawCube(-18,-10,0,9,5,7.3,0);
-
+	glEnd();
 	glPopMatrix();
 
 }

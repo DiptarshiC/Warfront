@@ -16,8 +16,9 @@
 /*C STL header files for standard I/0 operations that print to the terminal */
 
 
-/*
+
 #include <stdio.h>
+/*
 #include <stdlib.h>
 #include <stdarg.h>
 #include <math.h>
@@ -58,6 +59,11 @@
 
 
 /* These are for orthogonal mode of projection*/
+
+
+
+double turrent_elevation_x;
+double turret_elevation_y;
 int alpha=0;
 int theta=0;
 
@@ -190,20 +196,27 @@ void idle()
 
 void mouse_button_detect(int button, int state, int x, int y)
 {
-
 	switch(button)
 	{
 		case GLUT_LEFT_BUTTON:
 		switch(state)
 		{
 			case GLUT_DOWN:
-			//check elevation and change turret elevation
+			printf("Left mouse button clicked \n");
 			break;
-
 		}
 		break;
+		case GLUT_RIGHT_BUTTON:
+                switch(state)
+                {
+                        case GLUT_DOWN:
+                        printf("Right mouse button clicked.Now lets shoot \n");
+                        break;
+                }
+                break;
 	}
 }
+
 /**
 *@func:         arrow_keys_move
 *
@@ -1266,6 +1279,10 @@ int main(int argc, char *argv[])
 
 	/* Key press function */
 	glutKeyboardFunc(char_input);
+
+
+	/* Mouse button work */
+	glutMouseFunc(mouse_button_detect);
 
         /*Use arrow keys to change the viewing angles*/
         glutSpecialFunc(arrow_keys_move);
