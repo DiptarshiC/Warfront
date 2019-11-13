@@ -304,7 +304,7 @@ void Project()
         glLoadIdentity();
         if(displayMode)
         {
-                gluPerspective(Field_of_View , widht2height , dimension/4, 4*dimension);
+                gluPerspective(Field_of_View , widht2height , dimension/4, 5000*dimension);
         }
         else
         {
@@ -481,71 +481,122 @@ void char_input(unsigned char key,int x, int y)
 *@return:       void
 *
 */
-/*
-void DrawSkybox(float x, float y, float z, float width, float height, float length)
+
+void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
-	// Center the Skybox around the given x,y,z position
-	x = x - width  / 2;
-	y = y - height / 2;
-	z = z - length / 2;
 
 
-	// Draw Front side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYFRONT]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y,z+length);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x,	y+height,z+length);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width,y+height,z+length);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width,y,z+length);
-	glEnd();
+//	gluLookAt(0, 0, 0, Cx, Cy , EZ, 0, 0, 1);
+ 	float colorblack[] = {0,0,0,1};
+        float colorwhite[] = {1,1,1,1};
+//        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
+//        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
+//        glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
+        //  Save transformation
+        glPushMatrix();
+        //  Offset
+        glTranslated(x,y,z);
+        glRotated(th,0,1,0);
+        glScaled(delta_x,delta_y,delta_z);
+        //  Cube
+	   glBindTexture(GL_TEXTURE_2D,texture[2]);
+        glBegin(GL_QUADS);
 
-	// Draw Back side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYBACK]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width,y,z);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width,y+height, z);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x,y+height,z);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y,z);
-	glEnd();
 
-	// Draw Left side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYLEFT]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x,y+height,z);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x,	y+height,z+length);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x, y,z+length);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x, y,z);
-	glEnd();
+	glColor3ub(0,0,159);
+        //  Front
+        glNormal3f(0, 0, +1);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1, 1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,-1, 1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1, 1);
+        glTexCoord2f(0.0, 1.0);  
+        glVertex3f(-1,+1, 1);
+        glEnd();
 
-	// Draw Right side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYRIGHT]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width,y,z);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width,y,z+length);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width,y+height,z+length);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width,y+height,z);
-	glEnd();
+	glColor3ub(0,0,159);
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
+        glBegin(GL_QUADS);
+        //  Back
+        glNormal3f(0, 0, -1);
+        glTexCoord2f(1.0, 0.0); 
+        glVertex3f(+1,-1,-1);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1,-1);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,+1,-1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1,-1);
+        glEnd();
 
-	// Draw Up side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYUP]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x+width, y+height, z);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x+width, y+height, z+length);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x,y+height,z+length);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x,y+height,z);
-	glEnd();
 
-	// Draw Down side
-	glBindTexture(GL_TEXTURE_2D, SkyboxTexture[SKYDOWN]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0.0f, 0.0f); glVertex3f(x,y,z);
-	glTexCoord2f(1.0f, 0.0f); glVertex3f(x,	y,z+length);
-	glTexCoord2f(1.0f, 1.0f); glVertex3f(x+width, y,z+length);
-	glTexCoord2f(0.0f, 1.0f); glVertex3f(x+width, y,z);
-	glEnd();
+	glColor3ub(0,0,159);
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
+        glBegin(GL_QUADS);
+        //  Right
+        glNormal3f(+1, 0, 0);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(+1,-1,+1);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(+1,-1,-1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,+1,-1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1,+1);
+        glEnd();
+
+	glColor3ub(0,0,159);
+	 //  Left
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
+        glBegin(GL_QUADS);
+        glNormal3f(-1, 0, 0);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1,-1);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,-1,+1);
+        glTexCoord2f(1.0, 1.0);  
+        glVertex3f(-1,+1,+1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(-1,+1,-1);
+        glEnd();
+
+	glColor3ub(0,0,159);
+        //  Top
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
+
+        glBegin(GL_QUADS);
+//	glBindTexture(GL_TEXTURE_2D,texture[2]);
+        glNormal3f( 0,+1, 0);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,+1,+1);
+        glTexCoord2f(1.0, 1.0); 
+        glVertex3f(+1,+1,+1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,+1,-1);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,+1,-1);
+        glEnd();
+        //  Bottom
+        glBegin(GL_QUADS);
+        glNormal3f(0, -1, 0);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1,-1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,-1,-1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,-1,+1);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,-1,+1);
+        //  End
+        glEnd();
+        //  Undo transofrmations
+        glPopMatrix();
+
 
 }
-*/
+
 
 /**
 *@func:		drawSun
@@ -1057,6 +1108,18 @@ void display()
 	glEnable(GL_TEXTURE_2D);
    	glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
 
+
+	glPushMatrix();
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
+	gluLookAt(0, 0, 0, Cx, Cy , EZ, 0, 0, 1);
+	drawSkybox(0,0,0,50000,50000,50000,0);
+	glPopMatrix();
+	glDisable(GL_TEXTURE_2D);
+
+
+
+	glEnable(GL_TEXTURE_2D);
+        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
 
 	switch (displayMode)
 	{
