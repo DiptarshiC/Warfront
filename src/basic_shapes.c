@@ -43,12 +43,12 @@ void Vertex(double theta,double alpha)
  *   @return: Nothing
  */
 
-void drawCylinder(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G, GLubyte B)
-
+void drawCylinder(double radius,double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R,GLubyte G,GLubyte B,double alpha)
 {
 	glPushMatrix();
 	glTranslated(x1,y1,z1);
         glRotated(th,1,0,0);
+	glRotated(alpha,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
 
 

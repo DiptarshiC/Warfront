@@ -48,7 +48,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 
 	/* Gun mouth*/
-	drawCylinder(0.5, 12, 0, 2, 0.5,1, 1,1,turret_Front_Elevation,0, 200, 0 );
+	drawCylinder(0.5, 12, 0, 2, 0.5,1, 1,1,turret_Front_Elevation,0, 200, 0,turret_Side_Elevation );
 
 	/*This is for the top surface*/
 
