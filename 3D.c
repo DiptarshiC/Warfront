@@ -185,9 +185,6 @@ void changeTurretElevation( double mouseXCoordinate, double mouseYCoordinate)
 	float relative_x = (mouseXCoordinate) / (glutGet(GLUT_WINDOW_WIDTH));
 	float relative_y = (mouseYCoordinate) /(glutGet(GLUT_WINDOW_HEIGHT));
 
-//	printf("The relative X coordinate of the current pixel is is %f\n",relative_x);
-//        printf("The relative Y co-ordinate  of the current pixel is is %f\n",relative_y);
-
 	turret_elevation_vertical =  (relative_y*(-90));
 	turret_elevation_lateral = -90 + relative_x*180;
 
