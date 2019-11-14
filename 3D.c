@@ -189,7 +189,8 @@ void changeTurretElevation( double mouseXCoordinate, double mouseYCoordinate)
 	turret_elevation_lateral = -90 + relative_x*180;
 
 	 /*Now Display the figure*/
-        glutDisplayFunc(display);
+	glutPostRedisplay();
+
 
 }
 /**
@@ -223,6 +224,7 @@ void mouse_button_detect(int button, int state, int x, int y)
                 {
                         case GLUT_DOWN:
 			changeTurretElevation(x,y);
+
                         break;
                 }
                 break;
