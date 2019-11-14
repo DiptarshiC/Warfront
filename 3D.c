@@ -62,8 +62,8 @@
 
 
 
-double turrent_elevation_x;
-double turret_elevation_y;
+double turret_elevation_vertical = -90;
+double turret_elevation_lateral = 0;
 int alpha=0;
 int theta=0;
 
@@ -181,6 +181,29 @@ void idle()
 }
 
 /**
+*@func:changeTurretElevation
+*
+*@description:
+*
+*@params:
+*
+*@return: void
+*
+*@todo:
+*
+*/
+
+void changeTurretElevation( double mouseXCoordinate, double mouseYCoordinate)
+{
+
+	float relative_x = (mouseXCoordinate) / (glutGet(GLUT_WINDOW_WIDTH));
+	float relative_y = (mouseYCoordinate) /(glutGet(GLUT_WINDOW_HEIGHT));
+
+	printf("The relative X coordinate of the current pixel is is %f\n",relative_x);
+        printf("The relative Y co-ordinate  of the current pixel is is %f\n",relative_y);
+
+}
+/**
 *@func:		mouse_button_detect
 *
 *
@@ -210,7 +233,7 @@ void mouse_button_detect(int button, int state, int x, int y)
                 switch(state)
                 {
                         case GLUT_DOWN:
-                        printf("Right mouse button clicked.Now lets shoot \n");
+			changeTurretElevation(x,y);
                         break;
                 }
                 break;
@@ -512,7 +535,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glRotated(th,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
         //  Cube
-	   glBindTexture(GL_TEXTURE_2D,texture[2]);
+//	   glBindTexture(GL_TEXTURE_2D,texture[2]);
         glBegin(GL_QUADS);
 
 
@@ -530,7 +553,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glEnd();
 
 	glColor3ub(0,0,159);
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
+
         glBegin(GL_QUADS);
         //  Back
         glNormal3f(0, 0, -1);
@@ -546,7 +569,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 
 
 	glColor3ub(0,0,159);
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
+
         glBegin(GL_QUADS);
         //  Right
         glNormal3f(+1, 0, 0);
@@ -562,7 +585,6 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 
 	glColor3ub(0,0,159);
 	 //  Left
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glBegin(GL_QUADS);
         glNormal3f(-1, 0, 0);
         glTexCoord2f(0.0, 0.0);
@@ -577,7 +599,6 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 
 	glColor3ub(0,0,159);
         //  Top
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
 
         glBegin(GL_QUADS);
 //	glBindTexture(GL_TEXTURE_2D,texture[2]);
@@ -591,6 +612,8 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glTexCoord2f(0.0, 0.0);
         glVertex3f(-1,+1,-1);
         glEnd();
+	glDisable(GL_TEXTURE_2D);
+
         //  Bottom
         glBegin(GL_QUADS);
         glNormal3f(0, -1, 0);
@@ -949,7 +972,7 @@ void drawMyAirplane(double x, double y, double z, double delta_x, double delta_y
 
 
 
-	glBindTexture(GL_TEXTURE_2D,texture[9]);
+//	glBindTexture(GL_TEXTURE_2D,texture[9]);
   	/*wings*/
   	glColor3ub(255, 255, 255);
   	drawCube(0, 0.5, 0, 3, 0.2, 0.05, 0);
@@ -1205,7 +1228,7 @@ void display()
 
 //	drawSwastika(0,0,0,1,1,1);
 	drawBuilding(0,0,0,1,1,1);
-	drawTank(0,-35,0,1,1,1,-90,0);
+	drawTank(0,-35,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral);
 //	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();
@@ -1263,7 +1286,7 @@ int main(int argc, char *argv[])
         glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH |  GLUT_DOUBLE);
 
         /*Initializing window position*/
-        glutInitWindowPosition(30,30);
+        glutInitWindowPosition(0,0);
 
         /*Now I am fixing the window size to 720 * 640*/
         glutInitWindowSize(1000,1000);
@@ -1289,7 +1312,7 @@ int main(int argc, char *argv[])
 
 
 	 //  Load textures
-   	texture[0] = LoadTexBMP("textures/brick.bmp");
+/*   	texture[0] = LoadTexBMP("textures/brick.bmp");
    	texture[1] = LoadTexBMP("textures/pattern.bmp");
    	texture[2] = LoadTexBMP("textures/sky.bmp");
    	texture[3] = LoadTexBMP("textures/smoke.bmp");
@@ -1303,7 +1326,7 @@ int main(int argc, char *argv[])
 	texture[11]=LoadTexBMP("textures/galvanized.bmp");
 	texture[12]=LoadTexBMP("textures/plane.bmp");
 	texture[13]=LoadTexBMP("textures/plane_small.bmp");
-
+*/
 
 
 
