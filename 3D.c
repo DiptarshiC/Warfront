@@ -108,7 +108,7 @@ double Delta_y = 0;
 */
 
 // X-coordinate of camera position
-double EX = 5;
+double EX = 0;
 // Y-coordinate of camera position
 double EY = -20;
 // Z-coordinate of camera position
@@ -144,21 +144,7 @@ double Cy;
 *
 */
 
-/*void Print(const char* format , ...)
-{
-   char    buf[LEN];
-   char*   ch = buf;
-   va_list args;
-   //  Turn the parameters into a character string
-   va_start(args, format);
-   vsnprintf(buf, LEN, format, args);
-   va_end(args);
-   //  Display the characters one at a time at the current raster position
-   while (*ch)
-      glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *ch++);
-}
-*/
-
+void display();
 
 /**
 *@func:         idle
@@ -199,8 +185,14 @@ void changeTurretElevation( double mouseXCoordinate, double mouseYCoordinate)
 	float relative_x = (mouseXCoordinate) / (glutGet(GLUT_WINDOW_WIDTH));
 	float relative_y = (mouseYCoordinate) /(glutGet(GLUT_WINDOW_HEIGHT));
 
-	printf("The relative X coordinate of the current pixel is is %f\n",relative_x);
-        printf("The relative Y co-ordinate  of the current pixel is is %f\n",relative_y);
+//	printf("The relative X coordinate of the current pixel is is %f\n",relative_x);
+//        printf("The relative Y co-ordinate  of the current pixel is is %f\n",relative_y);
+
+	turret_elevation_vertical =  (relative_y*(-90));
+	turret_elevation_lateral = -90 + relative_x*180;
+
+	 /*Now Display the figure*/
+        glutDisplayFunc(display);
 
 }
 /**
