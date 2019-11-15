@@ -87,7 +87,7 @@ int distance = 18;		/* Distance of the light source*/
 int unit_step = 1;		/* One unit of increment or deceremnet*/
 int move = 1;       		/*  Move light */
 
-
+int event_flag = 0;
 
 unsigned int texture[14];
 
@@ -1106,6 +1106,14 @@ void drawMyAirplane(double x, double y, double z, double delta_x, double delta_y
 }
 
 
+
+void cannonFire();
+{
+
+	  glutPostRedisplay();
+
+}
+
 /**
 *@func:         display
 *
@@ -1222,6 +1230,12 @@ void display()
 	drawBuilding(0,0,0,1,1,1);
 	drawTank(0,-35,-10,1,1,1,turret_elevation_vertical,turret_elevation_lateral);
 //	ErrCheck("Display");
+	if(event_flag == 1)
+	{
+
+		cannonFire();
+
+	}
 	glFlush();
    	glutSwapBuffers();
 
