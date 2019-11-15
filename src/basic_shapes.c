@@ -240,6 +240,7 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
         glRotated(th,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
         //  Cube
+
         glBegin(GL_QUADS);
         //  Front
         glNormal3f(0, 0, +1);

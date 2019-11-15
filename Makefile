@@ -32,6 +32,7 @@ vehicles.o: src/vehicles.c headers/vehicles.h src/basic_shapes.c headers/basic_s
 	gcc -o vehicles.o -c src/vehicles.c  $(LIBS)
 buildings.o: src/buildings.c headers/buildings.h src/basic_shapes.c headers/basic_shapes.h
 	gcc -o buildings.o -c src/buildings.c  $(LIBS)
+
 War.o: 3D.c CSCIx229.h
 	gcc -o War.o -c 3D.c
 fatal.o: fatal.c CSCIx229.h
@@ -51,7 +52,7 @@ CSCIx229.a:fatal.o loadtexbmp.o print.o errcheck.o object.o
 	g++ -c $(CFLG) $<
 # Link
 
-War:War.o CSCIx229.a basic_shapes.o vehicles.o buildings.o
+War:War.o CSCIx229.a basic_shapes.o vehicles.o buildings.o 
 	gcc -O3 -o $@ $^   $(LIBS)
 
 #  Clean
