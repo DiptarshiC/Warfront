@@ -145,6 +145,7 @@ double Cy;
 */
 
 void display();
+void cannonFire();
 
 /**
 *@func:         idle
@@ -1219,7 +1220,7 @@ void display()
 
 //	drawSwastika(0,0,0,1,1,1);
 	drawBuilding(0,0,0,1,1,1);
-	drawTank(0,-35,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral);
+	drawTank(0,-35,-10,1,1,1,turret_elevation_vertical,turret_elevation_lateral);
 //	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();
