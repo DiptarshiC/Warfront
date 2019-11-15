@@ -373,3 +373,22 @@ void drawCone(double x, double y, double z, double delta_x, double delta_y, doub
 	glEnd();
 	glPopMatrix();
 }
+
+
+/**
+*
+*
+*
+*
+*
+*
+*
+*
+*/
+
+void drawCannon(double x, double y, double z, double delta_x, double delta_y, double delta_z)
+{
+
+	drawSphere(double x, double y, double z, double delta_x, double delta_y, double delta_z);
+
+}
