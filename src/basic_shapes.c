@@ -392,3 +392,20 @@ void drawCannon(double x, double y, double z, double delta_x, double delta_y, do
 	drawSphere(x, y, z, delta_x, delta_y, delta_z);
 
 }
+
+void drawTurret(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha,double FireBallRad)
+{
+
+	glPushMatrix();
+        glTranslated(x1,y1,z1);
+        glRotated(th,1,0,0);
+        glRotated(alpha,0,1,0);
+        glScaled(delta_x,delta_y,delta_z);
+	drawCylinder(radius,height,x1, y1, z1,delta_x,delta_y,delta_z,th,R,G,B,alpha);
+	glColor3ub(100 , 100 , 100);
+	drawSphere(x1, y1, z1 + FireBallRad, FireBallRad, FireBallRad, FireBallRad);
+	glPopMatrix();
+
+
+
+}
