@@ -402,10 +402,8 @@ void drawTurret(double radius, double height,double x1, double y1, double z1,dou
         glRotated(alpha,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
 	drawCylinder(radius,height,0, 0, 0,1,1,1,0,R,G,B,0);
-	glColor3ub(100 , 100 , 100);
+	glColor3ub(255 , 255 ,0);
 	drawSphere(0, 0, height + FireBallRad, FireBallRad, FireBallRad, FireBallRad);
 	glPopMatrix();
-
-
 
 }

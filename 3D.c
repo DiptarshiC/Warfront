@@ -64,9 +64,13 @@
 
 double turret_elevation_vertical = -90;
 double turret_elevation_lateral = 0;
-double FireBallRad = 2;
+double FireBallRad = 0;
 int alpha=0;
 int theta=0;
+
+double tankCoordinateX = 0;
+double tankCoordinateY = -35;
+
 
 int displayMode = 2;
 double widht2height = 1.0;
@@ -146,7 +150,27 @@ double Cy;
 */
 
 void display();
-void cannonFire();
+/**
+*@func:         cannonFire
+*
+*@description: 
+*
+*@params:       void
+*
+*@return:       void
+*
+*
+*/
+
+void cannonFire()
+{
+
+        FireBallRad = 2;
+	glutPostRedisplay();
+
+
+}
+
 
 /**
 *@func:         idle
@@ -162,8 +186,9 @@ void cannonFire();
 void idle()
 {
    //  Elapsed time in seconds
-   double t = glutGet(GLUT_ELAPSED_TIME)/1000.0;
-   azhimuth = fmod(90*t,360.0);
+   	double t = glutGet(GLUT_ELAPSED_TIME)/1000.0;
+   	azhimuth = fmod(90*t,360.0);
+	FireBallRad = 0;
    //  Tell GLUT it is necessary to redisplay the scene
    glutPostRedisplay();
 }
@@ -217,7 +242,8 @@ void mouse_button_detect(int button, int state, int x, int y)
 		switch(state)
 		{
 			case GLUT_DOWN:
-			printf("Left mouse button clicked \n");
+		//	printf("Left mouse button clicked \n");
+			cannonFire();
 			break;
 		}
 		break;
@@ -1108,12 +1134,7 @@ void drawMyAirplane(double x, double y, double z, double delta_x, double delta_y
 
 
 
-void cannonFire()
-{
 
-	  glutPostRedisplay();
-
-}
 
 /**
 *@func:         display
@@ -1229,14 +1250,9 @@ void display()
 
 //	drawSwastika(0,0,0,1,1,1);
 	drawBuilding(0,0,0,1,1,1);
-	drawTank(0,-35,-10,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad);
+	drawTank(tankCoordinateX,tankCoordinateY ,-10,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad);
 //	ErrCheck("Display");
-	if(event_flag == 1)
-	{
 
-		cannonFire();
-
-	}
 	glFlush();
    	glutSwapBuffers();
 
