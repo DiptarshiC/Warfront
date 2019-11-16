@@ -64,7 +64,7 @@
 
 double turret_elevation_vertical = -90;
 double turret_elevation_lateral = 0;
-double FireBallRad = 0;
+double FireBallRad = 2;
 int alpha=0;
 int theta=0;
 
