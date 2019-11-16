@@ -29,7 +29,7 @@
 */
 
 
-void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double turret_Front_Elevation, double turret_Side_Elevation )
+void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double turret_Front_Elevation, double turret_Side_Elevation,double FireBallRad )
 {
 
         float colorblack[] = {0,0,0,1};

@@ -389,6 +389,6 @@ void drawCone(double x, double y, double z, double delta_x, double delta_y, doub
 void drawCannon(double x, double y, double z, double delta_x, double delta_y, double delta_z)
 {
 
-	drawSphere(double x, double y, double z, double delta_x, double delta_y, double delta_z);
+	drawSphere(x, y, z, delta_x, delta_y, delta_z);
 
 }
