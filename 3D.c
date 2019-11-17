@@ -404,10 +404,17 @@ void char_input(unsigned char key,int x, int y)
 
 		else if( displayMode == 2)
                 {
-                        displayMode = 0;                /* If the mode is 2, make it back to 0*/
+                        displayMode = 3;                /* If the mode is 2, make it back to 0*/
                 }
 
-
+		else if(displayMode == 3)
+		{
+		/**
+		*This will add the functionality which will allow us to view the seen from the tanks perspective
+		*
+		*/
+			displayMode == 0;
+		}
 		break;
 
 		case 'l':	case 'L':       /* Option to toggle lighting*/
@@ -553,13 +560,18 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glTranslated(x,y,z);
         glRotated(th,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
+
+	glDisable(GL_TEXTURE_2D);
+        glEnable(GL_TEXTURE_2D);
+
         //  Cube
-//	   glBindTexture(GL_TEXTURE_2D,texture[2]);
+//	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glBegin(GL_QUADS);
 
 
-	glColor3ub(0,0,159);
+	glColor3ub(0,0,90);
         //  Front
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f(0, 0, +1);
         glTexCoord2f(0.0, 0.0);
         glVertex3f(-1,-1, 1);
@@ -569,10 +581,12 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glVertex3f(+1,+1, 1);
         glTexCoord2f(0.0, 1.0);  
         glVertex3f(-1,+1, 1);
+//	glDisable(GL_TEXTURE_2D);
         glEnd();
 
-	glColor3ub(0,0,159);
-
+	glDisable(GL_TEXTURE_2D);
+//	glEnable(GL_TEXTURE_2D);
+	glColor3ub(50,50,50);
         glBegin(GL_QUADS);
         //  Back
         glNormal3f(0, 0, -1);
@@ -586,10 +600,10 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glVertex3f(+1,+1,-1);
         glEnd();
 
-
-	glColor3ub(0,0,159);
-
+	glEnable(GL_TEXTURE_2D);
+	glColor3ub(0,0,90);
         glBegin(GL_QUADS);
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
         //  Right
         glNormal3f(+1, 0, 0);
         glTexCoord2f(0.0, 1.0);
@@ -600,11 +614,13 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glVertex3f(+1,+1,-1);
         glTexCoord2f(1.0, 1.0);
         glVertex3f(+1,+1,+1);
+	glDisable(GL_TEXTURE_2D);
         glEnd();
 
-	glColor3ub(0,0,159);
+	glColor3ub(0,0,90);
 	 //  Left
         glBegin(GL_QUADS);
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f(-1, 0, 0);
         glTexCoord2f(0.0, 0.0);
         glVertex3f(-1,-1,-1);
@@ -614,13 +630,13 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glVertex3f(-1,+1,+1);
         glTexCoord2f(1.0, 0.0);
         glVertex3f(-1,+1,-1);
+	glDisable(GL_TEXTURE_2D);
         glEnd();
 
-	glColor3ub(0,0,159);
+	glColor3ub(0,0,90);
         //  Top
-
         glBegin(GL_QUADS);
-//	glBindTexture(GL_TEXTURE_2D,texture[2]);
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f( 0,+1, 0);
         glTexCoord2f(0.0, 1.0);
         glVertex3f(-1,+1,+1);
@@ -630,11 +646,12 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glVertex3f(+1,+1,-1);
         glTexCoord2f(0.0, 0.0);
         glVertex3f(-1,+1,-1);
+  	glDisable(GL_TEXTURE_2D);
         glEnd();
-	glDisable(GL_TEXTURE_2D);
 
         //  Bottom
         glBegin(GL_QUADS);
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f(0, -1, 0);
         glTexCoord2f(0.0, 0.0);
         glVertex3f(-1,-1,-1);
@@ -645,13 +662,14 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glTexCoord2f(0.0, 1.0);
         glVertex3f(-1,-1,+1);
         //  End
+	glDisable(GL_TEXTURE_2D);
         glEnd();
         //  Undo transofrmations
         glPopMatrix();
+	glDisable(GL_TEXTURE_2D);
 
 
 }
-
 
 /**
 *@func:		drawSun
@@ -1200,10 +1218,23 @@ void display()
 		Cx = +2 * dimension * sin((PI/180)*rot); //Ajust the camera vector based on rot
       		Cy = -2 * dimension * cos((PI/180)*rot);
 
-                //gluLookAt(Focus_x, Focus_y, Focus_z, Delta_x, Delta_y, Focus_z, 0, 0, 1);
+
 		// Orient the scene so it imitates first person movement
     		gluLookAt(EX, EY, EZ, Cx + EX, Cy + EY, EZ, 0, 0, 1);
                 break;
+
+		case 3:
+		Print(" Perspective of the tank ");
+		/**
+		* length of the cylinder is 12
+		* 0.5 is the base of the tank turret
+		* turret_elevation_vertical = -90;
+		* turret_elevation_lateral = 0;
+		*
+		*
+		*/
+		gluLookAt(tankCoordinateX ,tankCoordinateX , 0.5, Cx + EX, Cy + EY, 1, 0, 0, 1);
+		break;
 
 	}
 
@@ -1335,7 +1366,7 @@ int main(int argc, char *argv[])
 
 
 	 //  Load textures
-/*   	texture[0] = LoadTexBMP("textures/brick.bmp");
+   	texture[0] = LoadTexBMP("textures/brick.bmp");
    	texture[1] = LoadTexBMP("textures/pattern.bmp");
    	texture[2] = LoadTexBMP("textures/sky.bmp");
    	texture[3] = LoadTexBMP("textures/smoke.bmp");
@@ -1349,7 +1380,7 @@ int main(int argc, char *argv[])
 	texture[11]=LoadTexBMP("textures/galvanized.bmp");
 	texture[12]=LoadTexBMP("textures/plane.bmp");
 	texture[13]=LoadTexBMP("textures/plane_small.bmp");
-*/
+
 
 
 
