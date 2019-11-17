@@ -1230,6 +1230,14 @@ void display()
 		* 0.5 is the base of the tank turret
 		* turret_elevation_vertical = -90;
 		* turret_elevation_lateral = 0;
+		* xcoordinate at the top of the turret = tankCoordinateX + cos( 
+		*
+		*
+		*
+		*
+		*
+		*
+		*
 		*
 		*
 		*/
