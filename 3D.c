@@ -292,7 +292,8 @@ void arrow_keys_move(int key, int x, int y)
 		EY += Cy*dt;
                 theta %= 360; /*Helps angles be within the margin of 360*/
                 alpha %= 360; /*Helps angles be within the margin of 360*/
-		tankCoordinateY  += 0.4;
+		tankCoordinateY  += 0.2*cos((PI/180)*(tankRotationAngle));
+		tankCoordinateX  -= 0.2*sin((PI/180)*(tankRotationAngle));
                 glutPostRedisplay();
                 break;
 
@@ -302,7 +303,8 @@ void arrow_keys_move(int key, int x, int y)
 		EY -= Cy*dt;
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
-		tankCoordinateY  -= 0.4;
+		tankCoordinateY  -= 0.2*cos((PI/180)*(tankRotationAngle));
+                tankCoordinateX  += 0.2*sin((PI/180)*(tankRotationAngle));
                 glutPostRedisplay();
                 break;
 
