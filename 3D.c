@@ -77,7 +77,7 @@ double YatTopOfTurret = 0;
 double ZatTopOfTurret = 0;
 
 double tankCoordinateX = 0;
-double tankCoordinateY = -35;
+double tankCoordinateY = -450;
 double tankRotationAngle  = 0;
 
 int displayMode = 2;
@@ -123,9 +123,9 @@ double Delta_y = 0;
 // X-coordinate of camera position
 double EX = 0;
 // Y-coordinate of camera position
-double EY = -60;
+double EY = -500;
 // Z-coordinate of camera position
-double EZ = 10;
+double EZ = 20;
 // X-coordinate of where the camera is looking
 double AX = 0;
 // Y-coordinate of where the camera is looking
@@ -292,8 +292,8 @@ void arrow_keys_move(int key, int x, int y)
 		EY += Cy*dt;
                 theta %= 360; /*Helps angles be within the margin of 360*/
                 alpha %= 360; /*Helps angles be within the margin of 360*/
-		tankCoordinateY  += 0.2*cos((PI/180)*(tankRotationAngle));
-		tankCoordinateX  -= 0.2*sin((PI/180)*(tankRotationAngle));
+		tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
+		tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
                 glutPostRedisplay();
                 break;
 
@@ -303,8 +303,8 @@ void arrow_keys_move(int key, int x, int y)
 		EY -= Cy*dt;
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
-		tankCoordinateY  -= 0.2*cos((PI/180)*(tankRotationAngle));
-                tankCoordinateX  += 0.2*sin((PI/180)*(tankRotationAngle));
+		tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
+                tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
                 glutPostRedisplay();
                 break;
 
@@ -670,6 +670,35 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glPopMatrix();
 	glDisable(GL_TEXTURE_2D);
 
+
+}
+
+/**
+*@func:		drawSurface
+*
+*@description:	
+*
+*@params:	double x. double y, double Z, double delta_x, double delta_y, double delta_z)
+*
+*@
+*
+*
+*/
+
+void drawSurface(double x, double y, double z, double delta_x, double delta_y, double delta_z)
+{
+
+	glPushMatrix();
+	glTranslated(x, y, z);
+        glScaled(delta_x, delta_y, delta_z);
+	glBegin(GL_QUADS);
+	glColor3ub(150,150,150);
+	glVertex3f(1,1, 0);
+	glVertex3f(-1,1, 0);
+	glVertex3f(-1,-1, 0);
+        glVertex3f(1,-1, 0);
+	glEnd();
+	glPopMatrix();
 
 }
 
@@ -1219,10 +1248,8 @@ void display()
 
 		case 2: /* This is for the first person mode of projection */
                 Print("First person view ");
-		Cx = +2 * dimension * sin((PI/180)*rot); //Ajust the camera vector based on rot
-      		Cy = -2 * dimension * cos((PI/180)*rot);
-
-
+		Cx = +8 * dimension * sin((PI/180)*rot); //Ajust the camera vector based on rot
+      		Cy = -8 * dimension * cos((PI/180)*rot);
 		// Orient the scene so it imitates first person movement
     		gluLookAt(EX, EY, EZ, Cx + EX, Cy + EY, EZ, 0, 0, 1);
                 break;
@@ -1268,10 +1295,9 @@ void display()
 	}
 
 
-
-//	drawSwastika(0,0,0,1,1,1);
-	drawBuilding(0,0,0,1,1,1);
-	drawTank(tankCoordinateX,tankCoordinateY ,-10,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
+	drawSurface(0,0, 0, 50000, 50000, 50000);
+	drawBuilding(0,0,0,8,8,8);
+	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 //	ErrCheck("Display");
 
 	glFlush();
