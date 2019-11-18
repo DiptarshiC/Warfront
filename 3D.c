@@ -78,7 +78,7 @@ double ZatTopOfTurret = 0;
 
 double tankCoordinateX = 0;
 double tankCoordinateY = -35;
-
+double tankRotationAngle  = 0;
 
 int displayMode = 2;
 double widht2height = 1.0;
@@ -309,7 +309,7 @@ void arrow_keys_move(int key, int x, int y)
 		case GLUT_KEY_LEFT:
                 theta++;
 		rot = rot + 1;
-
+		tankRotationAngle += 1;
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
                 glutPostRedisplay();
@@ -318,7 +318,7 @@ void arrow_keys_move(int key, int x, int y)
                 case GLUT_KEY_RIGHT:
                 theta--;
 		rot = rot - 1;
-
+           	tankRotationAngle -= 1;
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
                 glutPostRedisplay();
@@ -1269,7 +1269,7 @@ void display()
 
 //	drawSwastika(0,0,0,1,1,1);
 	drawBuilding(0,0,0,1,1,1);
-	drawTank(tankCoordinateX,tankCoordinateY ,-10,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,0);
+	drawTank(tankCoordinateX,tankCoordinateY ,-10,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 //	ErrCheck("Display");
 
 	glFlush();
