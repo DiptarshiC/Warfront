@@ -58,6 +58,9 @@
 #define GL_NORMALNXY(x1,y1,z1,x2,y2,z2,x3,y3,z3)   glNormal3d( -(((y2-y1)*(z3-z2))-((z2-z1)*(y3-y2))), -(((z2-z1)*(x3-x2))-((x2-x1)*(z3-z2))),((x2-x1)*(y3-y2))-((y2-y1)*(x3-x2)))
 
 
+#define			SIN(X)		sin((PI/180)*(X))
+#define			COS(X)		cos((PI/180)*(X))
+
 /* These are for orthogonal mode of projection*/
 
 
@@ -65,8 +68,13 @@
 double turret_elevation_vertical = -90;
 double turret_elevation_lateral = 0;
 double FireBallRad = 0;
+
 int alpha=0;
 int theta=0;
+
+double XatTopOfTurret = 0;
+double YatTopOfTurret = 0;
+double ZatTopOfTurret = 0;
 
 double tankCoordinateX = 0;
 double tankCoordinateY = -35;
@@ -115,7 +123,7 @@ double Delta_y = 0;
 // X-coordinate of camera position
 double EX = 0;
 // Y-coordinate of camera position
-double EY = -20;
+double EY = -60;
 // Z-coordinate of camera position
 double EZ = 10;
 // X-coordinate of where the camera is looking
@@ -284,6 +292,7 @@ void arrow_keys_move(int key, int x, int y)
 		EY += Cy*dt;
                 theta %= 360; /*Helps angles be within the margin of 360*/
                 alpha %= 360; /*Helps angles be within the margin of 360*/
+		tankCoordinateY  += 0.4;
                 glutPostRedisplay();
                 break;
 
@@ -293,10 +302,11 @@ void arrow_keys_move(int key, int x, int y)
 		EY -= Cy*dt;
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
+		tankCoordinateY  -= 0.4;
                 glutPostRedisplay();
                 break;
 
-		 case GLUT_KEY_LEFT:
+		case GLUT_KEY_LEFT:
                 theta++;
 		rot = rot + 1;
 
@@ -404,18 +414,8 @@ void char_input(unsigned char key,int x, int y)
 
 		else if( displayMode == 2)
                 {
-                        displayMode = 3;                /* If the mode is 2, make it back to 0*/
+                        displayMode = 0;                /* If the mode is 2, make it back to 0*/
                 }
-
-		else if(displayMode == 3)
-		{
-		/**
-		*This will add the functionality which will allow us to view the seen from the tanks perspective
-		*
-		*/
-			displayMode == 0;
-		}
-		break;
 
 		case 'l':	case 'L':       /* Option to toggle lighting*/
 		light = 1-light;
@@ -1169,6 +1169,8 @@ void display()
 {
 
 
+	double turret_elevation_lateral_abs = (turret_elevation_lateral > 90 )?(180 - turret_elevation_lateral):(turret_elevation_lateral_abs);
+
 	//glEnable(GL_CULL_FACE); 
 
    	/*Erase the window and the depth buffer*/
@@ -1223,29 +1225,7 @@ void display()
     		gluLookAt(EX, EY, EZ, Cx + EX, Cy + EY, EZ, 0, 0, 1);
                 break;
 
-		case 3:
-		Print(" Perspective of the tank ");
-		/**
-		* length of the cylinder is 12
-		* 0.5 is the base of the tank turret
-		* turret_elevation_vertical = -90;
-		* turret_elevation_lateral = 0;
-		* xcoordinate at the top of the turret = tankCoordinateX + cos( 
-		*
-		*
-		*
-		*
-		*
-		*
-		*
-		*
-		*
-		*/
-		gluLookAt(tankCoordinateX ,tankCoordinateX , 0.5, Cx + EX, Cy + EY, 1, 0, 0, 1);
-		break;
-
 	}
-
 
 	glShadeModel(smoothness ? GL_SMOOTH : GL_FLAT);
 
