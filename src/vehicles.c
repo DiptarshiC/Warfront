@@ -29,7 +29,7 @@
 */
 
 
-void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double turret_Front_Elevation, double turret_Side_Elevation,double FireBallRad )
+void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double turret_Front_Elevation, double turret_Side_Elevation,double FireBallRad, double turnAngle )
 {
 
         float colorblack[] = {0,0,0,1};
@@ -43,6 +43,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
         glTranslated(x,y,z);
 //        glRotated(th,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
+	glRotated(turnAngle,0,0,1);
 
 	glColor3ub(255, 0, 0);
 

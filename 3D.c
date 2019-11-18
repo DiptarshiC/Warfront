@@ -1269,7 +1269,7 @@ void display()
 
 //	drawSwastika(0,0,0,1,1,1);
 	drawBuilding(0,0,0,1,1,1);
-	drawTank(tankCoordinateX,tankCoordinateY ,-10,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad);
+	drawTank(tankCoordinateX,tankCoordinateY ,-10,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,0);
 //	ErrCheck("Display");
 
 	glFlush();
