@@ -337,3 +337,17 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
         glPopMatrix();
 }
 
+void Plane(double x, double y, double z, double delta_x, double delta_y, double delta_z, double horizontal_tilt, double vertical_tilt)
+{
+	glPushMatrix();
+	glTranslated(x,y,z);
+        glRotated(vertical_tilt,1,0,0);
+	glRotated(horizontal_tilt,0,1,0);
+        glScaled(delta_x,delta_y,delta_z);
+	glColor3ub(45,155,40);
+	drawCylinder(0.4, 5, 0, 0, 0,1, 1,1,-90,100,100,100,0);
+	glBegin(GL_QUADS);
+	glEnd();
+	glPopMatrix();
+}
+

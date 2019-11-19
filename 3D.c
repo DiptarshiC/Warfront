@@ -1332,11 +1332,10 @@ void display()
 	drawSurface(0,0, 0, 50000, 50000, 50000);
 	drawBuilding(0,0,0,8,8,8);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
+	Plane(tankCoordinateX,tankCoordinateY, 20, 10, 10, 10,0, 0);
 //	ErrCheck("Display");
-
 	glFlush();
    	glutSwapBuffers();
-
 }
 
 
