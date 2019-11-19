@@ -362,8 +362,19 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
 	glVertex3f(-3.9,3.5,0);
         glVertex3f(-5.4,2.5,0);
         glEnd();
+	/*Drawing the front nose*/
 	drawCone(0.8,2,0,5,0,1,1,1,-90,100,100,100,0);
+
+	/*Drawing the front nose*/
 	drawCone(0.8,2,0,0,0,1,1,1,90,100,100,100,0);
+
+	/* Drawing the tail plane*/
+	glBegin(GL_TRIANGLES);
+        glVertex3f(0,0,0.8);
+	glVertex3f(0,-2,2);
+	glVertex3f(0,-2,0);
+        glEnd();
+
 	glPopMatrix();
 }
 
