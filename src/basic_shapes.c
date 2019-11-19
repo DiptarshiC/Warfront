@@ -329,49 +329,56 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
 *
 */
 
-void drawCone(double x, double y, double z, double delta_x, double delta_y, double delta_z,double theta)
+void drawCone(double radius,double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R,GLubyte G,GLubyte B,double alpha)
 {
 
 
-	//  Save transformation
-        glPushMatrix();
-
-	//  Offset
-        glTranslated(x,y,z);
-        glRotated(theta,1,0,0);
+ 	glPushMatrix();
+        glTranslated(x1,y1,z1);
+        glRotated(th,1,0,0);
+        glRotated(alpha,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
 
 
-	glBegin( GL_TRIANGLE_FAN );
-    	glNormal3f(7.0f,7.0f,7.0f);
-
-    	glVertex3f(0.0f,12,0.0f);
-    	for(int i=0; i<=300;i++)
-    	{
-        	glVertex3f(2*cos(-i),6,2*sin(-i));
-    	}
- 
-    	glEnd();
-
- 
-	/*side of cylinder, y-values are used for the length of the cylinder
-		x and z values are used for the radius.
-	 	for a cone change y values to integers for the length.*/
-    	for(int j=0;j<=45;j++)
-	{
-        	glBegin(GL_QUAD_STRIP);
-
-		for(int i=0;i<300;i++)
-		{
-                        glNormal3f(cos(i), 0.0f, sin(i));
+        GLfloat x              = 0.0;
+        GLfloat y              = 0.0;
+        GLfloat angle          = 0.0;
+        GLfloat angle_stepsize = 0.1;
 
 
-			glVertex3f(0, (j)/7, 0);
-                        glVertex3f(0, (j+1)/7, 0);
-                }
-    	}
-	glEnd();
-	glPopMatrix();
+        /** Draw the tube */
+        glColor3ub(R-40,G-40,B-40);
+        glBegin(GL_QUAD_STRIP);
+        angle = 0.0;
+        while( angle < 2*PI ) 
+        {
+                x = radius * cos(angle);
+                y = radius * sin(angle);
+                glVertex3f(0, 0 , height);
+                glVertex3f(x, y , 0.0);
+                angle = angle + angle_stepsize;
+        }
+        glVertex3f(radius, 0.0, height);
+        glVertex3f(radius, 0.0, 0.0);
+        glEnd();
+
+        /** Draw the circle on bottom of cylinder */
+        glColor3ub(R,G,B);
+        glBegin(GL_POLYGON);
+        angle = 0.0;
+        while( angle < 2*PI ) 
+        {
+                x = radius * cos(angle);
+                y = radius * sin(angle);
+                glVertex3f(x, y , height);
+                angle = angle + angle_stepsize;
+        }
+                glVertex3f(radius, 0.0, 0.0);
+        glEnd();
+        glPopMatrix();
+
+
+
 }
 
 

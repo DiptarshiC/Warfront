@@ -1000,7 +1000,7 @@ static void drawMyShip(double x, double y, double z, double delta_x, double delt
 void drawMyMountain()
 {
 
-	glColor3ub(100,54,58);
+/*	glColor3ub(100,54,58);
         drawCone(-20,20,-5,1,1,1,90);
         drawCone(-19,20,-5,1,1,1,90);
         drawCone(-18,20,-5,1,1,1,90);
@@ -1043,7 +1043,7 @@ void drawMyMountain()
         drawCone(-8,2,-5,1,1,1,90);
         drawCone(-8,2,-5,1,1,1,90);
         drawCone(-7,4,-5,1,1,1,90);
-        drawCone(-7,4,-5,1,1,1,90);
+        drawCone(-7,4,-5,1,1,1,90);*/
 }
 
 /**

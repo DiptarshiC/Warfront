@@ -345,9 +345,24 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
 	glRotated(horizontal_tilt,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
 	glColor3ub(45,155,40);
-	drawCylinder(0.4, 5, 0, 0, 0,1, 1,1,-90,100,100,100,0);
+	drawCylinder(0.8, 5, 0, 0, 0,1, 1,1,-90,100,100,100,0);
+
 	glBegin(GL_QUADS);
+	glVertex3f(0.8,3.5,0);
+        glVertex3f(0.8,2.5,0);
+        glVertex3f(5.4,2.5,0);
+        glVertex3f(3.9,3.5,0);
 	glEnd();
+
+
+	glBegin(GL_QUADS);
+        glVertex3f(-0.8,2.5,0);
+        glVertex3f(-0.8,3.5,0);
+	glVertex3f(-3.9,3.5,0);
+        glVertex3f(-5.4,2.5,0);
+        glEnd();
+
+
 	glPopMatrix();
 }
 
