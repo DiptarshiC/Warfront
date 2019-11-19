@@ -571,7 +571,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glBegin(GL_QUADS);
 
 
-	glColor3ub(0,0,90);
+	glColor3ub(255,165,0);
         //  Front
 	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f(0, 0, +1);
@@ -603,7 +603,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glEnd();
 
 	glEnable(GL_TEXTURE_2D);
-	glColor3ub(0,0,90);
+	glColor3ub(255,165,0);
         glBegin(GL_QUADS);
 	glBindTexture(GL_TEXTURE_2D,texture[2]);
         //  Right
@@ -619,7 +619,8 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 	glDisable(GL_TEXTURE_2D);
         glEnd();
 
-	glColor3ub(0,0,90);
+
+	glColor3ub(255,165,0);
 	 //  Left
         glBegin(GL_QUADS);
 	glBindTexture(GL_TEXTURE_2D,texture[2]);
@@ -635,7 +636,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 	glDisable(GL_TEXTURE_2D);
         glEnd();
 
-	glColor3ub(0,0,90);
+	glColor3ub(255,165,0);
         //  Top
         glBegin(GL_QUADS);
 	glBindTexture(GL_TEXTURE_2D,texture[2]);
@@ -652,6 +653,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glEnd();
 
         //  Bottom
+	glColor3ub(255,165,0);
         glBegin(GL_QUADS);
 	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f(0, -1, 0);
@@ -674,23 +676,51 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 }
 
 /**
+*@func: 	drawWall
+*
+*@description:	
+*
+*@param: 	void
+*
+*@return:	void
+*/
+
+void drawWall(double x, double y, double z, double th)
+{
+
+	glPushMatrix();
+	glTranslated(x, y, z);
+	glRotated(th,0,0,1);
+//	glDisable(GL_TEXTURE_2D);
+	glColor3ub(158, 158, 158);
+
+	for(int i = -50; i<50;i++)
+	{
+
+		drawCube(0,i,0.5,1,1,1,0);
+	}
+	glPopMatrix();
+
+
+}
+
+/**
 *@func:		drawSurface
 *
 *@description:	
 *
 *@params:	double x. double y, double Z, double delta_x, double delta_y, double delta_z)
 *
-*@
-*
+*@return:	void
 *
 */
 
 void drawSurface(double x, double y, double z, double delta_x, double delta_y, double delta_z)
 {
-
 	glPushMatrix();
 	glTranslated(x, y, z);
         glScaled(delta_x, delta_y, delta_z);
+	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
 	glColor3ub(150,150,150);
 	glVertex3f(1,1, 0);
@@ -699,7 +729,6 @@ void drawSurface(double x, double y, double z, double delta_x, double delta_y, d
         glVertex3f(1,-1, 0);
 	glEnd();
 	glPopMatrix();
-
 }
 
 /**
@@ -1294,6 +1323,7 @@ void display()
      		glDisable(GL_LIGHTING);
 	}
 
+//	drawWall(-70,0,0,0);
 
 	drawSurface(0,0, 0, 50000, 50000, 50000);
 	drawBuilding(0,0,0,8,8,8);
