@@ -292,8 +292,8 @@ void arrow_keys_move(int key, int x, int y)
 		EY += Cy*dt;
                 theta %= 360; /*Helps angles be within the margin of 360*/
                 alpha %= 360; /*Helps angles be within the margin of 360*/
-		tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
-		tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+		tankCoordinateY  += 1*cos((PI/180)*(tankRotationAngle));
+		tankCoordinateX  -= 1*sin((PI/180)*(tankRotationAngle));
                 glutPostRedisplay();
                 break;
 
@@ -303,8 +303,8 @@ void arrow_keys_move(int key, int x, int y)
 		EY -= Cy*dt;
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
-		tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
-                tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
+ 		tankCoordinateY  -= 1*cos((PI/180)*(tankRotationAngle));
+                tankCoordinateX  += 1*sin((PI/180)*(tankRotationAngle));
                 glutPostRedisplay();
                 break;
 
@@ -685,23 +685,21 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 *@return:	void
 */
 
-void drawWall(double x, double y, double z, double th)
+void drawWall(double x, double y, double z,double delta_x, double delta_y, double delta_z, double th)
 {
 
 	glPushMatrix();
 	glTranslated(x, y, z);
+	glScaled(delta_x, delta_y, delta_z);
 	glRotated(th,0,0,1);
-//	glDisable(GL_TEXTURE_2D);
-	glColor3ub(158, 158, 158);
-
-	for(int i = -50; i<50;i++)
-	{
-
-		drawCube(0,i,0.5,1,1,1,0);
-	}
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D,texture[0]);
+	drawCube(-850,0,15,1,850,30,0);
+	drawCube(850,0,15,1,850,30,0);
+	drawCube(0,-850,15,850,1,30,0);
+        drawCube(0,850,15,850,1,30,0);
 	glPopMatrix();
-
-
+	glDisable(GL_TEXTURE_2D);
 }
 
 /**
@@ -1323,8 +1321,14 @@ void display()
      		glDisable(GL_LIGHTING);
 	}
 
-//	drawWall(-70,0,0,0);
+//	drawWall(-850,0,0,1,1,30,0);
+//	drawWall(850,0,0,1,1,30,0);
+//	drawWall(0,850,0,1,1,30,90);
+//      drawWall(0,-850,0,1,1,30,90);
 
+
+
+	drawWall(0, 0,0,1, 1, 1, 0);
 	drawSurface(0,0, 0, 50000, 50000, 50000);
 	drawBuilding(0,0,0,8,8,8);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
