@@ -363,6 +363,7 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
         glVertex3f(-5.4,2.5,0);
         glEnd();
 	drawCone(0.8,2,0,5,0,1,1,1,-90,100,100,100,0);
+	drawCone(0.8,2,0,0,0,1,1,1,90,100,100,100,0);
 	glPopMatrix();
 }
 
