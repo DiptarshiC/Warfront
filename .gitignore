@@ -1,0 +1,4 @@
+# Donot track these files compiled from sources
+
+*.o
+War
