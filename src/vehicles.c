@@ -347,6 +347,7 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
 	glColor3ub(45,155,40);
 	drawCylinder(0.8, 5, 0, 0, 0,1, 1,1,-90,100,100,100,0);
 
+	/* Wing on the right side */
 	glBegin(GL_QUADS);
 	glVertex3f(0.8,3.5,0);
         glVertex3f(0.8,2.5,0);
@@ -354,15 +355,14 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
         glVertex3f(3.9,3.5,0);
 	glEnd();
 
-
+	/* Wing on the left side */
 	glBegin(GL_QUADS);
         glVertex3f(-0.8,2.5,0);
         glVertex3f(-0.8,3.5,0);
 	glVertex3f(-3.9,3.5,0);
         glVertex3f(-5.4,2.5,0);
         glEnd();
-
-
+	drawCone(0.8,2,0,5,0,1,1,1,-90,100,100,100,0);
 	glPopMatrix();
 }
 

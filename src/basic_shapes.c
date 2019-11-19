@@ -74,7 +74,7 @@ void drawCylinder(double radius,double height,double x1, double y1, double z1,do
     	glEnd();
 
     	/** Draw the circle on top of cylinder */
-    	glColor3ub(R,G,B);
+/*    	glColor3ub(R,G,B);
     	glBegin(GL_POLYGON);
     	angle = 0.0;
         while( angle < 2*PI ) 
@@ -85,7 +85,7 @@ void drawCylinder(double radius,double height,double x1, double y1, double z1,do
         	angle = angle + angle_stepsize;
         }
         	glVertex3f(radius, 0.0, height);
-    	glEnd();
+    	glEnd();*/
 	glPopMatrix();
 }
 
@@ -343,12 +343,12 @@ void drawCone(double radius,double height,double x1, double y1, double z1,double
         GLfloat x              = 0.0;
         GLfloat y              = 0.0;
         GLfloat angle          = 0.0;
-        GLfloat angle_stepsize = 0.1;
+        GLfloat angle_stepsize = 0.005;
 
 
         /** Draw the tube */
         glColor3ub(R-40,G-40,B-40);
-        glBegin(GL_QUAD_STRIP);
+        glBegin(GL_LINES);
         angle = 0.0;
         while( angle < 2*PI ) 
         {
@@ -363,7 +363,7 @@ void drawCone(double radius,double height,double x1, double y1, double z1,double
         glEnd();
 
         /** Draw the circle on bottom of cylinder */
-        glColor3ub(R,G,B);
+/*        glColor3ub(R,G,B);
         glBegin(GL_POLYGON);
         angle = 0.0;
         while( angle < 2*PI ) 
@@ -374,11 +374,8 @@ void drawCone(double radius,double height,double x1, double y1, double z1,double
                 angle = angle + angle_stepsize;
         }
                 glVertex3f(radius, 0.0, 0.0);
-        glEnd();
+        glEnd();*/
         glPopMatrix();
-
-
-
 }
 
 
