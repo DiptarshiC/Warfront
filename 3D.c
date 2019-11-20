@@ -536,6 +536,33 @@ void char_input(unsigned char key,int x, int y)
 }
 
 /**
+*@func:         drawWall
+*
+*@description:  
+*
+*@param:        void
+*
+*@return:       void
+*/
+
+void drawWall(double x, double y, double z,double delta_x, double delta_y, double delta_z, double th)
+{
+
+        glPushMatrix();
+        glTranslated(x, y, z);
+        glScaled(delta_x, delta_y, delta_z);
+        glRotated(th,0,0,1);
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D,texture[0]);
+        drawCube(-850,0,15,1,850,30,0);
+        drawCube(850,0,15,1,850,30,0);
+        drawCube(0,-850,15,850,1,30,0);
+        drawCube(0,850,15,850,1,30,0);
+        glPopMatrix();
+        glDisable(GL_TEXTURE_2D);
+}
+
+/**
 *@func:         DrawSkyBox
 *
 *@description:  A program that helps us conmpute the vertices using cosine sine functions that inturn helps us render shapes
@@ -673,33 +700,6 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 	glDisable(GL_TEXTURE_2D);
 
 
-}
-
-/**
-*@func: 	drawWall
-*
-*@description:	
-*
-*@param: 	void
-*
-*@return:	void
-*/
-
-void drawWall(double x, double y, double z,double delta_x, double delta_y, double delta_z, double th)
-{
-
-	glPushMatrix();
-	glTranslated(x, y, z);
-	glScaled(delta_x, delta_y, delta_z);
-	glRotated(th,0,0,1);
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D,texture[0]);
-	drawCube(-850,0,15,1,850,30,0);
-	drawCube(850,0,15,1,850,30,0);
-	drawCube(0,-850,15,850,1,30,0);
-        drawCube(0,850,15,850,1,30,0);
-	glPopMatrix();
-	glDisable(GL_TEXTURE_2D);
 }
 
 /**

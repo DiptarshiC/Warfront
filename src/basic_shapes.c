@@ -378,9 +378,8 @@ void drawCone(double radius,double height,double x1, double y1, double z1,double
         glPopMatrix();
 }
 
-
 /**
-*
+*@func:		drawCannon
 *
 *
 *
@@ -397,6 +396,18 @@ void drawCannon(double x, double y, double z, double delta_x, double delta_y, do
 
 }
 
+/**
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*/
+
 void drawTurret(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha,double FireBallRad)
 {
 
@@ -411,3 +422,67 @@ void drawTurret(double radius, double height,double x1, double y1, double z1,dou
 	glPopMatrix();
 
 }
+
+/**
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*/
+
+void drawCycloid(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha )
+{
+
+	glPushMatrix();
+        glTranslated(x1,y1,z1);
+        glRotated(th,1,0,0);
+        glRotated(alpha,0,1,0);
+        glScaled(delta_x,delta_y,delta_z);
+
+
+        GLfloat x              = 0.0;
+        GLfloat y              = 0.0;
+        GLfloat angle          = 0.0;
+        GLfloat angle_stepsize = 0.1;
+
+        /** Draw the tube */
+        glColor3ub(R-40,G-40,B-40);
+        glBegin(GL_QUAD_STRIP);
+        angle = 0.0;
+        while( angle < 2*PI ) 
+        {
+                x = radius * cos(angle);
+                y = radius * sin(angle);
+                glVertex3f(x, y , height);
+                glVertex3f(x, y , 0.0);
+                angle = angle + angle_stepsize;
+        }
+        glVertex3f(radius, 0.0, height);
+        glVertex3f(radius, 0.0, 0.0);
+        glEnd();
+
+        /** Draw the circle on top of cylinder */
+/*      glColor3ub(R,G,B);
+        glBegin(GL_POLYGON);
+        angle = 0.0;
+        while( angle < 2*PI ) 
+        {
+                x = radius * cos(angle);
+                y = radius * sin(angle);
+                glVertex3f(x, y , height);
+                angle = angle + angle_stepsize;
+        }
+                glVertex3f(radius, 0.0, height);
+        glEnd();*/
+        glPopMatrix();
+
+
+
+
+}
+

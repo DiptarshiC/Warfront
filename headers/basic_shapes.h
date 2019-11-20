@@ -11,5 +11,7 @@ void drawSphere(double x, double y, double z, double delta_x, double delta_y, do
 void drawCone(double radius,double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R,GLubyte G,GLubyte B,double alpha);
 void drawCannon(double x, double y, double z, double delta_x, double delta_y, double delta_z);
 void drawTurret(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha,double FireBallRad);
+void drawCycloid(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha );
+
 
 #endif /*__BASIC_SHAPES_H__*/
