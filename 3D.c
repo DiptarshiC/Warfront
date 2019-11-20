@@ -1167,6 +1167,12 @@ void display()
 	drawBuilding(0,0,0,8,8,8);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 	Plane(0,-450, 40, 10, 10, 10,0, 0);
+//	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
+	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
+
+
+
+
 //	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();

@@ -155,6 +155,7 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
         //  Undo transformations
         glPopMatrix();
 }
+
 /**
 *
 *
@@ -331,8 +332,6 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
 
 void drawCone(double radius,double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R,GLubyte G,GLubyte B,double alpha)
 {
-
-
  	glPushMatrix();
         glTranslated(x1,y1,z1);
         glRotated(th,1,0,0);
@@ -358,8 +357,8 @@ void drawCone(double radius,double height,double x1, double y1, double z1,double
                 glVertex3f(x, y , 0.0);
                 angle = angle + angle_stepsize;
         }
-        glVertex3f(radius, 0.0, height);
-        glVertex3f(radius, 0.0, 0.0);
+//        glVertex3f(radius, 0.0, height);
+//        glVertex3f(radius, 0.0, 0.0);
         glEnd();
 
         /** Draw the circle on bottom of cylinder */
@@ -435,7 +434,7 @@ void drawTurret(double radius, double height,double x1, double y1, double z1,dou
 *
 */
 
-void drawCycloid(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha )
+void drawCycloid(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha)
 {
 
 	glPushMatrix();
@@ -445,44 +444,32 @@ void drawCycloid(double radius, double height,double x1, double y1, double z1,do
         glScaled(delta_x,delta_y,delta_z);
 
 
-        GLfloat x              = 0.0;
-        GLfloat y              = 0.0;
-        GLfloat angle          = 0.0;
-        GLfloat angle_stepsize = 0.1;
+        GLfloat x              		= 0.0;
+        GLfloat y              		= 0.0;
+        GLfloat angle          		= 0.0;
+        GLfloat angle_stepsize 		= 0.1;
+	GLfloat height_stepsize		= 0.05;
+	GLfloat init_height 		= 0.0;
+	GLfloat init_height_previous 	= 0.0;
 
         /** Draw the tube */
         glColor3ub(R-40,G-40,B-40);
-        glBegin(GL_QUAD_STRIP);
+        glBegin(GL_LINE_STRIP);
         angle = 0.0;
-        while( angle < 2*PI ) 
+	init_height = 0.0 + 0.1;
+
+        while( init_height < height ) 
         {
                 x = radius * cos(angle);
                 y = radius * sin(angle);
-                glVertex3f(x, y , height);
-                glVertex3f(x, y , 0.0);
+                glVertex3f(x, y , init_height);
+                glVertex3f(x, y , init_height_previous);
                 angle = angle + angle_stepsize;
+		init_height_previous = init_height;
+		init_height = init_height + height_stepsize;
         }
-        glVertex3f(radius, 0.0, height);
-        glVertex3f(radius, 0.0, 0.0);
         glEnd();
-
         /** Draw the circle on top of cylinder */
-/*      glColor3ub(R,G,B);
-        glBegin(GL_POLYGON);
-        angle = 0.0;
-        while( angle < 2*PI ) 
-        {
-                x = radius * cos(angle);
-                y = radius * sin(angle);
-                glVertex3f(x, y , height);
-                angle = angle + angle_stepsize;
-        }
-                glVertex3f(radius, 0.0, height);
-        glEnd();*/
         glPopMatrix();
-
-
-
-
 }
 

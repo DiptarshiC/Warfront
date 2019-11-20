@@ -75,3 +75,28 @@ void drawBuilding(double x, double y, double z, double delta_x, double delta_y, 
 	glPopMatrix();
 
 }
+
+/**
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*/
+
+void drawBarbedwire(double radius, double height, double x1, double y1 ,double z1, double delta_x, double delta_y, double delta_z, double th, GLubyte R, GLubyte G,GLubyte B, double alpha )
+{
+
+	glPushMatrix();
+
+	drawCycloid(radius,  height, x1,  y1, z1,delta_x,delta_y,delta_z,th,R,G,B,alpha);
+
+	glPopMatrix();
+
+}
