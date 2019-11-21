@@ -114,7 +114,6 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
         glTranslated(x, y, z);
         glScaled(delta_x, delta_y, delta_z);
 	glRotated(th,1,0,0);
-    	glColor3ub(158, 158, 158);
 
 
         //  South pole cap
@@ -143,7 +142,6 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
 
         //  North pole cap
         glBegin(GL_TRIANGLE_FAN);
-	glColor3ub(158, 158, 158);
 
         Vertex(0, 90);
         for (theta = 0; theta <= 360; theta += d)
@@ -229,8 +227,7 @@ void drawSphere(double x, double y, double z, double delta_x, double delta_y, do
 
 void drawCube(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
-        float colorblack[] = {0,0,0,1};
-        float colorwhite[] = {1,1,1,1};
+
 //      glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
 //      glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
 //      glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
