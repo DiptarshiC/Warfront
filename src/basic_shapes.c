@@ -316,6 +316,112 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
         glPopMatrix();
 }
 
+
+/**
+*@func:         drawCube
+*
+*@description:
+*
+*@param:        double x,double y,double z,double dx,double dy,double dz, double th
+*
+*@return:       void
+*
+*@reference:    http://www.prinmath.com/csci5229/F18/programs/ex9.zip
+*/
+
+void drawCubewithoutTexture(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
+{
+
+//      glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
+//      glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
+//      glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
+        //  Save transformation
+        glPushMatrix();
+        //  Offset
+        glTranslated(x,y,z);
+        glRotated(th,0,1,0);
+        glScaled(delta_x,delta_y,delta_z);
+        //  Cube
+
+        glBegin(GL_QUADS);
+        //  Front
+        glNormal3f(0, 0, +1);
+//        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1, 1);
+//        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,-1, 1);
+//        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1, 1);
+//        glTexCoord2f(0.0, 1.0);  
+        glVertex3f(-1,+1, 1);
+        glEnd();
+        glBegin(GL_QUADS);
+        //  Back
+        glNormal3f(0, 0, -1);
+//        glTexCoord2f(1.0, 0.0); 
+        glVertex3f(+1,-1,-1);
+//        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1,-1);
+//        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,+1,-1);
+//        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1,-1);
+        glEnd();
+        glBegin(GL_QUADS);
+        //  Right
+        glNormal3f(+1, 0, 0);
+//        glTexCoord2f(0.0, 1.0);
+        glVertex3f(+1,-1,+1);
+//        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,-1,-1);
+//        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,+1,-1);
+//        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1,+1);
+ 
+       glEnd();
+        //  Left
+        glBegin(GL_QUADS);
+        glNormal3f(-1, 0, 0);
+//        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1,-1);
+//        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,-1,+1);
+//        glTexCoord2f(1.0, 1.0);  
+        glVertex3f(-1,+1,+1);
+//        glTexCoord2f(1.0, 0.0);
+        glVertex3f(-1,+1,-1);
+        glEnd();
+        //  Top
+        glBegin(GL_QUADS);
+        glNormal3f( 0,+1, 0);
+//        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,+1,+1);
+//        glTexCoord2f(1.0, 1.0); 
+        glVertex3f(+1,+1,+1);
+//        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,+1,-1);
+//        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,+1,-1);
+        glEnd();
+        //  Bottom
+        glBegin(GL_QUADS);
+        glNormal3f(0, -1, 0);
+//        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1,-1);
+//        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,-1,-1);
+//        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,-1,+1);
+//        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,-1,+1);
+        //  End
+        glEnd();
+        //  Undo transofrmations
+        glPopMatrix();
+}
+
+
 /**
 *@func:		drawCone
 *

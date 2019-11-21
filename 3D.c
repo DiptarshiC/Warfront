@@ -404,6 +404,7 @@ void char_input(unsigned char key,int x, int y)
 	{
 
 		case 'm':       case 'M':
+
                 if( displayMode == 0)
 		{
 			displayMode =1;		/* If the mode is 0 , make it 1*/
@@ -498,6 +499,7 @@ void char_input(unsigned char key,int x, int y)
 		break;
 
 		case 'o':	case 'O':
+
 			move = 1 - move;
 		break;
 
@@ -536,6 +538,26 @@ void char_input(unsigned char key,int x, int y)
 }
 
 /**
+*@func:		drawPieceofWall
+*
+*@description:
+*
+*@params:	double x, double y, double z, double delta_x, double delta_y, double delta_z
+*
+*@return:	void
+*
+*/
+
+void drawPieceofWall(double x, double y, double z, double delta_x, double delta_y, double delta_z)
+{
+
+
+
+
+
+}
+
+/**
 *@func:         drawWall
 *
 *@description:  
@@ -552,27 +574,31 @@ void drawWall(double x, double y, double z,double delta_x, double delta_y, doubl
         glTranslated(x, y, z);
         glScaled(delta_x, delta_y, delta_z);
         glRotated(th,0,0,1);
-        glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D,texture[0]);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+
+
 	/* Adding the barbed wire*/
-	drawBarbedwire(4, 850,-850,-450,46,1,1,1,-90,150, 150,150,0);
-        drawCube(-850,0,15,1,850,30,0);
+	drawBarbedwire(4, 1700,-850,-850,65,1,1,1,-90,255, 255,255,0);
+	drawBarbedwire(4, 1700,850,-850,65,1,1,1,-90,255, 255,255,0);
+
+	glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D,texture[0]);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glColor3ub(200,100,0);
+
+        drawCubewithoutTexture(-850,0,20,1,850,40,0);
 
 	/* Adding the barbed wire */
 
-        drawCube(850,0,15,1,850,30,0);
+        drawCubewithoutTexture(850,0,20,1,850,40,0);
 
 	/* Adding the barbed wire */
 
-        drawCube(0,-850,15,850,1,30,0);
+        drawCubewithoutTexture(0,-850,20,850,1,40,0);
 
 	/* Adding the barbed wire */
 
-        drawCube(0,850,15,850,1,30,0);
-
+        drawCubewithoutTexture(0,850,20,850,1,40,0);
         glPopMatrix();
-        glDisable(GL_TEXTURE_2D);
 }
 
 /**
@@ -696,7 +722,7 @@ void drawSurface(double x, double y, double z, double delta_x, double delta_y, d
         glScaled(delta_x, delta_y, delta_z);
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
-	glColor3ub(150,150,150);
+	glColor3ub(0,0,0);
 	glVertex3f(1,1, 0);
 	glVertex3f(-1,1, 0);
 	glVertex3f(-1,-1, 0);
@@ -962,65 +988,7 @@ static void drawMyShip(double x, double y, double z, double delta_x, double delt
   	glPopMatrix();
 }
 
-/**
-*@func:
-*
-*@description:
-*
-*@param:
-*
-*@return:
-*
-*/
 
-void drawMyMountain()
-{
-
-/*	glColor3ub(100,54,58);
-        drawCone(-20,20,-5,1,1,1,90);
-        drawCone(-19,20,-5,1,1,1,90);
-        drawCone(-18,20,-5,1,1,1,90);
-        drawCone(-17,20,-5,1,1,1,90);
-        drawCone(-16,20,-5,1,1,1,90);
-        drawCone(-15,20,-5,1,1,1,90);
-        drawCone(-14,20,-5,1,1,1,90);
-        drawCone(-13,20,-5,1,1,1,90);
-        drawCone(-12,20,-5,1,1,1,90);
-        drawCone(-11,20,-5,1,1,1,90);
-        drawCone(-10,20,-5,1,1,1,90);
-        drawCone(-9,20,-5,1,1,1,90);
-        drawCone(-8,20,-5,1,1,1,90);
-        drawCone(-7,20,-5,1,1,1,90);
-        drawCone(-6,20,-5,1,1,1,90);
-        drawCone(-5,20,-5,1,1,1,90);
-        drawCone(-4,20,-5,1,1,1,90);
-        drawCone(-3,20,-5,1,1,1,90);
-        drawCone(-2,20,-5,1,1,1,90);
-        drawCone(-1,20,-5,1,1,1,90);
-        drawCone(0,20,-5,1,1,1,90);
-        drawCone(1,20,-5,1,1,1,90);
-        drawCone(2,20,-5,1,1,1,90);
-        drawCone(3,20,-5,1,1,1,90);
-        drawCone(5,20,-5,1,1,1,90);
-        drawCone(6,20,-5,1,1,1,90);
-        drawCone(7,20,-5,1,1,1,90);
-        drawCone(8,20,-5,1,1,1,90);
-        drawCone(9,20,-5,1,1,1,90);
-        drawCone(10,20,-5,1,1,1,90);
-        drawCone(11,20,-5,1,1,1,90);
-        drawCone(12,20,-5,1,1,1,90);
-        drawCone(-12,20,-5,1,1,1,90);
-        drawCone(-11,20,-5,1,1,1,90);
-	drawCone(-11,4,-5,1,1,1,90);
-        drawCone(-10,2,-5,1,1,1,90);
-        drawCone(-10,2,-5,1,1,1,90);
-        drawCone(-9,0,-5,1,1,1,90);
-        drawCone(-9,0,-5,1,1,1,90);
-        drawCone(-8,2,-5,1,1,1,90);
-        drawCone(-8,2,-5,1,1,1,90);
-        drawCone(-7,4,-5,1,1,1,90);
-        drawCone(-7,4,-5,1,1,1,90);*/
-}
 
 /**
 *@func:         display
@@ -1046,6 +1014,9 @@ void display()
 
 	/* Enable Z-buffering in OpenGL*/
    	glEnable(GL_DEPTH_TEST);
+
+	/* Smoother polygons */
+	glEnable(GL_POLYGON_SMOOTH);
 
    	/*  Undo previous transformations*/
    	glLoadIdentity();
@@ -1128,17 +1099,15 @@ void display()
 
 	drawWall(0, 0,0,1, 1, 1, 0);
 	drawSurface(0,0, 0, 50000, 50000, 50000);
-	drawBuilding(0,0,0,8,8,8);
+//	drawBuilding(0,0,0,8,8,8);
+	drawNewBuilding(0, 0, 0, 1, 1, 1);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 	Plane(0,-450, 40, 10, 10, 10,0, 0);
-	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
-	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
-
-
-
-
+//	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
+//	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 	ErrCheck("Display");
 	glFlush();
+
    	glutSwapBuffers();
 }
 
