@@ -231,9 +231,9 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
 {
         float colorblack[] = {0,0,0,1};
         float colorwhite[] = {1,1,1,1};
-//        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
-//        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
-//        glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
+//      glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
+//      glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
+//      glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
         //  Save transformation
         glPushMatrix();
         //  Offset
@@ -271,7 +271,7 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
         glNormal3f(+1, 0, 0);
         glTexCoord2f(0.0, 1.0);
         glVertex3f(+1,-1,+1);
-        glTexCoord2f(0.0, 0.0);
+        glTexCoord2f(1.0, 0.0);
         glVertex3f(+1,-1,-1);
         glTexCoord2f(1.0, 0.0);
         glVertex3f(+1,+1,-1);

@@ -554,10 +554,23 @@ void drawWall(double x, double y, double z,double delta_x, double delta_y, doubl
         glRotated(th,0,0,1);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D,texture[0]);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+	/* Adding the barbed wire*/
+	drawBarbedwire(4, 850,-850,-450,46,1,1,1,-90,150, 150,150,0);
         drawCube(-850,0,15,1,850,30,0);
+
+	/* Adding the barbed wire */
+
         drawCube(850,0,15,1,850,30,0);
+
+	/* Adding the barbed wire */
+
         drawCube(0,-850,15,850,1,30,0);
+
+	/* Adding the barbed wire */
+
         drawCube(0,850,15,850,1,30,0);
+
         glPopMatrix();
         glDisable(GL_TEXTURE_2D);
 }
@@ -576,31 +589,18 @@ void drawWall(double x, double y, double z,double delta_x, double delta_y, doubl
 void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
 
-
-//	gluLookAt(0, 0, 0, Cx, Cy , EZ, 0, 0, 1);
- 	float colorblack[] = {0,0,0,1};
-        float colorwhite[] = {1,1,1,1};
-//        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS, Shine);
-//        glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR, colorwhite);
-//        glMaterialfv(GL_FRONT_AND_BACK,GL_EMISSION, colorblack);
-        //  Save transformation
         glPushMatrix();
         //  Offset
         glTranslated(x,y,z);
         glRotated(th,0,1,0);
         glScaled(delta_x,delta_y,delta_z);
-
-	glDisable(GL_TEXTURE_2D);
-        glEnable(GL_TEXTURE_2D);
-
+	glEnable(GL_TEXTURE_2D);
+        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
         //  Cube
-//	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glBegin(GL_QUADS);
-
-
 	glColor3ub(255,165,0);
         //  Front
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f(0, 0, +1);
         glTexCoord2f(0.0, 0.0);
         glVertex3f(-1,-1, 1);
@@ -610,12 +610,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glVertex3f(+1,+1, 1);
         glTexCoord2f(0.0, 1.0);  
         glVertex3f(-1,+1, 1);
-//	glDisable(GL_TEXTURE_2D);
         glEnd();
-
-	glDisable(GL_TEXTURE_2D);
-//	glEnable(GL_TEXTURE_2D);
-	glColor3ub(50,50,50);
         glBegin(GL_QUADS);
         //  Back
         glNormal3f(0, 0, -1);
@@ -628,11 +623,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glTexCoord2f(1.0, 1.0);
         glVertex3f(+1,+1,-1);
         glEnd();
-
-	glEnable(GL_TEXTURE_2D);
-	glColor3ub(255,165,0);
         glBegin(GL_QUADS);
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
         //  Right
         glNormal3f(+1, 0, 0);
         glTexCoord2f(0.0, 1.0);
@@ -643,14 +634,9 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glVertex3f(+1,+1,-1);
         glTexCoord2f(1.0, 1.0);
         glVertex3f(+1,+1,+1);
-	glDisable(GL_TEXTURE_2D);
         glEnd();
-
-
-	glColor3ub(255,165,0);
 	 //  Left
         glBegin(GL_QUADS);
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f(-1, 0, 0);
         glTexCoord2f(0.0, 0.0);
         glVertex3f(-1,-1,-1);
@@ -660,13 +646,9 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glVertex3f(-1,+1,+1);
         glTexCoord2f(1.0, 0.0);
         glVertex3f(-1,+1,-1);
-	glDisable(GL_TEXTURE_2D);
         glEnd();
-
-	glColor3ub(255,165,0);
         //  Top
         glBegin(GL_QUADS);
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f( 0,+1, 0);
         glTexCoord2f(0.0, 1.0);
         glVertex3f(-1,+1,+1);
@@ -676,13 +658,9 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glVertex3f(+1,+1,-1);
         glTexCoord2f(0.0, 0.0);
         glVertex3f(-1,+1,-1);
-  	glDisable(GL_TEXTURE_2D);
         glEnd();
-
         //  Bottom
-	glColor3ub(255,165,0);
         glBegin(GL_QUADS);
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
         glNormal3f(0, -1, 0);
         glTexCoord2f(0.0, 0.0);
         glVertex3f(-1,-1,-1);
@@ -693,13 +671,11 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
         glTexCoord2f(0.0, 1.0);
         glVertex3f(-1,-1,+1);
         //  End
-	glDisable(GL_TEXTURE_2D);
         glEnd();
         //  Undo transofrmations
         glPopMatrix();
 	glDisable(GL_TEXTURE_2D);
-
-
+	ErrCheck("Skybox");
 }
 
 /**
@@ -1075,21 +1051,20 @@ void display()
    	glLoadIdentity();
 
 
-	glEnable(GL_TEXTURE_2D);
-   	glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
+//	glEnable(GL_TEXTURE_2D);
+//   	glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
 
-
+	ErrCheck("Before Skybox");
 	glPushMatrix();
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
+//	glBindTexture(GL_TEXTURE_2D,texture[2]);
 	gluLookAt(0, 0, 0, Cx, Cy , EZ, 0, 0, 1);
 	drawSkybox(0,0,0,50000,50000,50000,0);
 	glPopMatrix();
-	glDisable(GL_TEXTURE_2D);
+	ErrCheck("After Skybox");
+//	glDisable(GL_TEXTURE_2D);
 
 
 
-	glEnable(GL_TEXTURE_2D);
-        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
 
 	switch (displayMode)
 	{
@@ -1155,25 +1130,18 @@ void display()
      		glDisable(GL_LIGHTING);
 	}
 
-//	drawWall(-850,0,0,1,1,30,0);
-//	drawWall(850,0,0,1,1,30,0);
-//	drawWall(0,850,0,1,1,30,90);
-//      drawWall(0,-850,0,1,1,30,90);
-
-
-
 	drawWall(0, 0,0,1, 1, 1, 0);
 	drawSurface(0,0, 0, 50000, 50000, 50000);
-	drawBuilding(0,0,0,8,8,8);
+//	drawBuilding(0,0,0,8,8,8);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 	Plane(0,-450, 40, 10, 10, 10,0, 0);
-//	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
+	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 
 
 
 
-//	ErrCheck("Display");
+	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();
 }
