@@ -102,7 +102,7 @@ int move = 1;       		/*  Move light */
 
 int event_flag = 0;
 
-unsigned int texture[14];
+unsigned int texture[15];
 
 
 /* These are for perspective mode of projection*/
@@ -1206,7 +1206,7 @@ int main(int argc, char *argv[])
 	texture[11]=LoadTexBMP("textures/galvanized.bmp");
 	texture[12]=LoadTexBMP("textures/plane.bmp");
 	texture[13]=LoadTexBMP("textures/plane_small.bmp");
-
+	texture[14]=LoadTexBMP("textures/building_bitmap_image.bmp");
 
 
 

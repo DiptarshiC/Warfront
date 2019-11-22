@@ -103,7 +103,7 @@ void drawBarbedwire(double radius, double height, double x1, double y1 ,double z
 *
 */
 
-void drawNewBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z, int textures[])
+void drawNewBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z, int texture[])
 {
 
 	glPushMatrix();
@@ -114,61 +114,67 @@ void drawNewBuilding(double x, double y, double z, double delta_x, double delta_
         drawDome(0,0,140,120,120,120,90);
         drawSwastika(0,0,290,5,5,5);
 
+
+
+	glEnable(GL_TEXTURE_2D);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE ,GL_MODULATE);
+        glBindTexture(GL_TEXTURE_2D,texture[14]);
 	glColor3ub(255,165,0);
 	/* Drawing the new building*/
 
 	/* 1. Drawing the front face*/
 	glBegin(GL_QUADS);
 	glNormal3f(0, -1, 0);
-	glVertex3f(-150,-200, 150);
-	glVertex3f(-150,-200, 0);
-	glVertex3f(150,-200, 0);
-	glVertex3f(150,-200, 150);
+	glTexCoord2f(-150.0,150.0); glVertex3f(-150,-200, 150);
+	glTexCoord2f(-150.0,148.0); glVertex3f(-150,-200, 0);
+	glTexCoord2f(-148.0,148.0); glVertex3f(150,-200, 0);
+	glTexCoord2f(-148.0,150.0); glVertex3f(150,-200, 150);
 	glEnd();
 
 	/* 2. Drawing the back face*/
         glBegin(GL_QUADS);
 	glNormal3f(0, 1, 0);
-        glVertex3f(150,200, 150);
-        glVertex3f(150,200,0);
-        glVertex3f(-150,200, 0);
-        glVertex3f(-150,200, 150);
+        glTexCoord2f(150.0,150.0); glVertex3f(150,200, 150);
+        glTexCoord2f(150.0,148.0);  glVertex3f(150,200,0);
+        glTexCoord2f(148.0,148.0);  glVertex3f(-150,200, 0);
+        glTexCoord2f(148.0,150.0);  glVertex3f(-150,200, 150);
         glEnd();
 
 	/* 3. Drawing the right face*/
 
         glBegin(GL_QUADS);
-	 glNormal3f(1, 0, 0);
-        glVertex3f(150,-200, 150);
-        glVertex3f(150,-200,0);
-        glVertex3f(150,200, 0);
-        glVertex3f(150,200, 150);
+	glNormal3f(1, 0, 0);
+       /* glTexCoord2f(0.0,0.0);*/ glVertex3f(150,-200, 150);
+       /* glTexCoord2f(0.0,0.0);*/ glVertex3f(150,-200,0);
+       /* glTexCoord2f(0.0,0.0);*/ glVertex3f(150,200, 0);
+       /* glTexCoord2f(0.0,0.0);*/ glVertex3f(150,200, 150);
         glEnd();
 
 	/* 4. Drawing the left face*/
         glBegin(GL_QUADS);
 	glNormal3f(-1, 0, 0);
-        glVertex3f(-150,200, 150);
-	glVertex3f(-150,200, 0);
-	glVertex3f(-150,-200,0);
-	glVertex3f(-150,-200, 150);
+        /*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,200, 150);
+	/*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,200, 0);
+	/*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,-200,0);
+	/*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,-200, 150);
 	glEnd();
 	/* 5. Drawing the top face*/
         glBegin(GL_QUADS);
 	glNormal3f(0,0, 1);
-        glVertex3f(-150,200, 150);
-        glVertex3f(-150,-200, 150);
-        glVertex3f(150,-200,150);
-        glVertex3f(150,200, 150);
+        /*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,200, 150);
+        /*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,-200, 150);
+        /*glTexCoord2f(0.0,0.0);*/ glVertex3f(150,-200,150);
+        /*glTexCoord2f(0.0,0.0);*/ glVertex3f(150,200, 150);
         glEnd();
 
 	/* 6. Drawing the bottom face*/
         glBegin(GL_QUADS);
 	glNormal3f(0,0, -1);
-        glVertex3f(150,200, 0);
-	glVertex3f(150,-200,0);
-	glVertex3f(-150,-200,0);
- 	glVertex3f(-150,200,0);
+        /*glTexCoord2f(0.0,0.0)*/; glVertex3f(150,200, 0);
+	/*glTexCoord2f(0.0,0.0);*/ glVertex3f(150,-200,0);
+	/*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,-200,0);
+ 	/*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,200,0);
 
         glEnd();
         glPopMatrix();
