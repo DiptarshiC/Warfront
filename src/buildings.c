@@ -145,20 +145,21 @@ void drawNewBuilding(double x, double y, double z, double delta_x, double delta_
 
         glBegin(GL_QUADS);
 	glNormal3f(1, 0, 0);
-       /* glTexCoord2f(0.0,0.0);*/ glVertex3f(150,-200, 150);
-       /* glTexCoord2f(0.0,0.0);*/ glVertex3f(150,-200,0);
-       /* glTexCoord2f(0.0,0.0);*/ glVertex3f(150,200, 0);
-       /* glTexCoord2f(0.0,0.0);*/ glVertex3f(150,200, 150);
+        glTexCoord2f(150.0,150.0); glVertex3f(150,-200, 150);
+        glTexCoord2f(150.0,148.0); glVertex3f(150,-200,0);
+        glTexCoord2f(148.0,148.0); glVertex3f(150,200, 0);
+        glTexCoord2f(148.0,150.0); glVertex3f(150,200, 150);
         glEnd();
 
 	/* 4. Drawing the left face*/
         glBegin(GL_QUADS);
 	glNormal3f(-1, 0, 0);
-        /*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,200, 150);
-	/*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,200, 0);
-	/*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,-200,0);
-	/*glTexCoord2f(0.0,0.0);*/ glVertex3f(-150,-200, 150);
+        glTexCoord2f(-150.0,150.0); glVertex3f(-150,200, 150);
+	glTexCoord2f(-150.0,148.0); glVertex3f(-150,200, 0);
+	glTexCoord2f(-148.0,148.0); glVertex3f(-150,-200,0);
+	glTexCoord2f(-148.0,150.0); glVertex3f(-150,-200, 150);
 	glEnd();
+
 	/* 5. Drawing the top face*/
         glBegin(GL_QUADS);
 	glNormal3f(0,0, 1);
