@@ -8,24 +8,6 @@
 #include "../headers/basic_shapes.h"
 #include "../headers/buildings.h"
 
-	unsigned int texture[14];
-/*	texture[0] = LoadTexBMP("../textures/brick.bmp");
-	texture[1] = LoadTexBMP("../textures/pattern.bmp");
-        texture[2] = LoadTexBMP("../textures/sky.bmp");
-        texture[3] = LoadTexBMP("../textures/smoke.bmp");
-        texture[4] = LoadTexBMP("../textures/squares.bmp");
-        texture[5] = LoadTexBMP("../textures/stars.bmp");
-        texture[6] = LoadTexBMP("../textures/water.bmp");
-        texture[7] = LoadTexBMP("../textures/wood.bmp");
-        texture[8] = LoadTexBMP("../textures/copper.bmp");
-        texture[9] = LoadTexBMP("../textures/rusted.bmp");
-        texture[10]=LoadTexBMP("../textures/ship.bmp");
-        texture[11]=LoadTexBMP("../textures/galvanized.bmp");
-        texture[12]=LoadTexBMP("../textures/plane.bmp");
-        texture[13]=LoadTexBMP("../textures/plane_small.bmp");
-
-*/
-
 /**************************drawSwastika()****************************************************
 *@func:		drawSwastika
 *
@@ -69,7 +51,7 @@ void drawSwastika(double x, double y, double z, double delta_x, double delta_y, 
 *
 */
 
-void drawBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z)
+void drawBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z, int textures[])
 {
 	glPushMatrix();
         //  Offset
@@ -121,7 +103,7 @@ void drawBarbedwire(double radius, double height, double x1, double y1 ,double z
 *
 */
 
-void drawNewBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z)
+void drawNewBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z, int textures[])
 {
 
 	glPushMatrix();
@@ -129,58 +111,64 @@ void drawNewBuilding(double x, double y, double z, double delta_x, double delta_
         glTranslated(x,y,z);
         glScaled(delta_x,delta_y,delta_z);
         glColor3ub(158, 158, 158);
-        drawDome(0,0,30,4,4,4,90);
-        drawSwastika(0,0,12.4,0.20,0.20,0.20);
+        drawDome(0,0,140,120,120,120,90);
+        drawSwastika(0,0,290,5,5,5);
 
-
+	glColor3ub(255,165,0);
 	/* Drawing the new building*/
 
 	/* 1. Drawing the front face*/
 	glBegin(GL_QUADS);
-	glVertex3f(-36,-20, 30);
-	glVertex3f(-36,-20, 0);
-	glVertex3f(36,-20, 0);
-	glVertex3f(36,-20, 30);
+	glNormal3f(0, -1, 0);
+	glVertex3f(-150,-200, 150);
+	glVertex3f(-150,-200, 0);
+	glVertex3f(150,-200, 0);
+	glVertex3f(150,-200, 150);
 	glEnd();
 
 	/* 2. Drawing the back face*/
         glBegin(GL_QUADS);
-        glVertex3f(36,20, 30);
-        glVertex3f(-36,20,30);
-        glVertex3f(-36,20, 0);
-        glVertex3f(36,20, 30);
+	glNormal3f(0, 1, 0);
+        glVertex3f(150,200, 150);
+        glVertex3f(150,200,0);
+        glVertex3f(-150,200, 0);
+        glVertex3f(-150,200, 150);
         glEnd();
 
 	/* 3. Drawing the right face*/
 
         glBegin(GL_QUADS);
-        glVertex3f(36,-20, 30);
-        glVertex3f(36,-20,0);
-        glVertex3f(36,20, 0);
-        glVertex3f(36,20, 30);
+	 glNormal3f(1, 0, 0);
+        glVertex3f(150,-200, 150);
+        glVertex3f(150,-200,0);
+        glVertex3f(150,200, 0);
+        glVertex3f(150,200, 150);
         glEnd();
 
 	/* 4. Drawing the left face*/
         glBegin(GL_QUADS);
-        glVertex3f(-36,20, 30);
-	glVertex3f(-36,20, 0);
-	glVertex3f(-36,-20,0);
-	glVertex3f(-36,-20, 30);
+	glNormal3f(-1, 0, 0);
+        glVertex3f(-150,200, 150);
+	glVertex3f(-150,200, 0);
+	glVertex3f(-150,-200,0);
+	glVertex3f(-150,-200, 150);
 	glEnd();
 	/* 5. Drawing the top face*/
         glBegin(GL_QUADS);
-        glVertex3f(-36,20, 30);
-        glVertex3f(-36,-20, 30);
-        glVertex3f(36,-20,30);
-        glVertex3f(36,20, 30);
+	glNormal3f(0,0, 1);
+        glVertex3f(-150,200, 150);
+        glVertex3f(-150,-200, 150);
+        glVertex3f(150,-200,150);
+        glVertex3f(150,200, 150);
         glEnd();
 
 	/* 6. Drawing the bottom face*/
         glBegin(GL_QUADS);
-        glVertex3f(36,20, 0);
-	glVertex3f(36,-20,0);
-	glVertex3f(-36,-20,0);
- 	glVertex3f(-36,20,0);
+	glNormal3f(0,0, -1);
+        glVertex3f(150,200, 0);
+	glVertex3f(150,-200,0);
+	glVertex3f(-150,-200,0);
+ 	glVertex3f(-150,200,0);
 
         glEnd();
         glPopMatrix();

@@ -625,7 +625,7 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 	glBindTexture(GL_TEXTURE_2D,texture[2]);
         //  Cube
         glBegin(GL_QUADS);
-	glColor3ub(255,165,0);
+	glColor3ub(150,150,255);
         //  Front
         glNormal3f(0, 0, +1);
         glTexCoord2f(0.0, 0.0);
@@ -1018,6 +1018,8 @@ void display()
 	/* Smoother polygons */
 	glEnable(GL_POLYGON_SMOOTH);
 
+	
+
    	/*  Undo previous transformations*/
    	glLoadIdentity();
 
@@ -1026,7 +1028,9 @@ void display()
 	ErrCheck("Before Skybox");
 	glPushMatrix();
 
-	gluLookAt(0, 0, 0, Cx, Cy , EZ, 0, 0, 1);
+//	gluLookAt(0, 0, 0, Cx, Cy , EZ, 0, 0, 1);
+	gluLookAt(0, 0, 0, 1, 1 , 1, 1, 0, 0);
+
 	drawSkybox(0,0,0,50000,50000,50000,0);
 	glPopMatrix();
 	ErrCheck("After Skybox");
@@ -1100,7 +1104,7 @@ void display()
 	drawWall(0, 0,0,1, 1, 1, 0);
 	drawSurface(0,0, 0, 50000, 50000, 50000);
 //	drawBuilding(0,0,0,8,8,8);
-	drawNewBuilding(0, 0, 0, 1, 1, 1);
+	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 	Plane(0,-450, 40, 10, 10, 10,0, 0);
 //	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
