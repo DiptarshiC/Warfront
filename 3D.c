@@ -723,6 +723,7 @@ void drawSurface(double x, double y, double z, double delta_x, double delta_y, d
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
 	glColor3ub(0,0,0);
+	glNormal3f(0, 0, 1);
 	glVertex3f(1,1, 0);
 	glVertex3f(-1,1, 0);
 	glVertex3f(-1,-1, 0);
