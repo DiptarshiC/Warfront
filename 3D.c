@@ -103,7 +103,7 @@ int move = 1;       		/*  Move light */
 int event_flag = 0;
 
 unsigned int texture[15];
-
+int obj;			/* Variable to point to an object file*/
 
 /* These are for perspective mode of projection*/
 double EYE_x = 0;
@@ -1102,6 +1102,7 @@ void display()
      		glDisable(GL_LIGHTING);
 	}
 
+
 	drawWall(0, 0,0,1, 1, 1, 0);
 	drawSurface(0,0, 0, 50000, 50000, 50000);
 //	drawBuilding(0,0,0,8,8,8);
@@ -1190,6 +1191,8 @@ int main(int argc, char *argv[])
 
         /*Use arrow keys to change the viewing angles*/
         glutSpecialFunc(arrow_keys_move);
+
+//	obj = LoadOBJ("objects/Soldier.obj");
 
 
 	 //  Load textures
