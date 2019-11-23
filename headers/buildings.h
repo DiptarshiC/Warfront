@@ -11,5 +11,6 @@ void drawNewBuilding(double x, double y, double z, double delta_x, double delta_
 
 void drawSwastika(double x, double y, double z, double delta_x, double delta_y, double delta_z);
 
+void drawNewWall(int texture[]);
 
 #endif /*__BUILDINGS__H*/

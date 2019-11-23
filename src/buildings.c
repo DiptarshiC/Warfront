@@ -180,3 +180,150 @@ void drawNewBuilding(double x, double y, double z, double delta_x, double delta_
         glEnd();
         glPopMatrix();
 }
+
+/**
+*@func:		drawNewWall
+*
+*@description
+*
+*@params:
+*
+*@return:
+*
+*
+*/
+
+void drawNewWall(int texture[])
+{
+	glPushMatrix();
+
+	glEnable(GL_TEXTURE_2D);
+//        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+//        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE ,GL_MODULATE);
+        glBindTexture(GL_TEXTURE_2D,texture[0]);
+        glColor3ub(255,165,0);
+
+	/* Drawing the left inner wall */
+	glBegin(GL_QUADS);
+	glNormal3f(1, 0, 0);
+	glTexCoord2f(0,1);glVertex3f(-1000,-1000,40);
+        glTexCoord2f(0,0);glVertex3f(-1000,-1000,0);
+        glTexCoord2f(0,0); glVertex3f(-1000,1000,0);
+	glTexCoord2f(0,1); glVertex3f(-1000,1000,40);
+	glEnd();
+
+	/* Drawing the right inner wall */
+	glBegin(GL_QUADS);
+	glNormal3f(-1, 0, 0);
+        glVertex3f(1000,1000,40);
+        glVertex3f(1000,1000,0);
+        glVertex3f(1000,-1000,0);
+        glVertex3f(1000,-1000,40);
+	glEnd();
+
+
+	/* Drawing the front inner wall */
+	glBegin(GL_QUADS);
+	glNormal3f(0, -1, 0);
+        glVertex3f(-1000,1000,40);
+        glVertex3f(-1000,1000,0);
+        glVertex3f(1000,1000,0);
+        glVertex3f(1000,1000,40);
+	glEnd();
+
+
+	/* Drawing the inner wall at the back */
+	glBegin(GL_QUADS);
+	glNormal3f(0, 1, 0);
+        glVertex3f(1000,-1000,40);
+        glVertex3f(1000,-1000,0);
+        glVertex3f(-1000,-1000,0);
+        glVertex3f(-1000,-1000,40);
+	glEnd();
+
+
+	 glColor3ub(0,255,0);
+	/* Drawing the left outer wall */
+	glBegin(GL_QUADS);
+	glNormal3f(-1, 0, 0);
+        glVertex3f(-1010,1010,40);
+	glVertex3f(-1010,1010,0);
+	glVertex3f(-1010,-1010,0);
+	glVertex3f(-1010,-1010,40);
+	glEnd();
+
+
+
+        /* Drawing the right outer wall */
+	glBegin(GL_QUADS);
+	glNormal3f(1, 0, 0);
+        glVertex3f(1010,-1010,40);
+	glVertex3f(1010,-1010,0);
+	glVertex3f(1010,1010,0);
+	glVertex3f(1010,1010,40);
+	glEnd();
+
+        /* Drawing the front outer wall */
+	glBegin(GL_QUADS);
+	glNormal3f(0, 1, 0);
+        glVertex3f(1010,1010,0);
+        glVertex3f(1010,1010,40);
+	glVertex3f(-1010,1010,0);
+	glVertex3f(-1010,1010,40);
+
+	glEnd();
+
+        /* Drawing the outer wall at the back */
+	glBegin(GL_QUADS);
+	glNormal3f(0, -1, 0);
+        glVertex3f(1010,-1010,40);
+        glVertex3f(1010,-1010,0);
+        glVertex3f(-1010,-1010,0);
+        glVertex3f(-1010,-1010,40);
+	glEnd();
+
+	glColor3ub(0,0,255);
+
+
+	 /* Drawing the top surface of the wall left */
+        glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+        glVertex3f(-1000,1000,40);
+        glVertex3f(-1010,1010,40);
+        glVertex3f(-1010,-1010,40);
+        glVertex3f(-1000,-1000,40);
+        glEnd();
+
+	/* Drawing the top surface of the wall right */
+        glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+	glVertex3f(1000,1000,40);
+        glVertex3f(1010,1010,40);
+        glVertex3f(1010,-1010,40);
+        glVertex3f(1000,-1000,40);
+
+        glEnd();
+
+	/* Drawing the top surface of the wall front */
+        glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+        glVertex3f(-1010,1010,40);
+        glVertex3f(-1000,1000,40);
+        glVertex3f(1000,1000,40);
+        glVertex3f(1010,1010,40);
+        glEnd();
+
+	/* Drawing the top surface of the wall back */
+        glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+        glVertex3f(-1000,-1000,40);
+        glVertex3f(-1010,-1010,40);
+        glVertex3f(1010,-1010,40);
+        glVertex3f(1000,-1000,40);
+        glEnd();
+
+	glPopMatrix();
+
+
+}
+

@@ -1103,7 +1103,9 @@ void display()
 	}
 
 
-	drawWall(0, 0,0,1, 1, 1, 0);
+//	drawWall(0, 0,0,1, 1, 1, 0);
+	drawNewWall(texture);
+
 	drawSurface(0,0, 0, 50000, 50000, 50000);
 //	drawBuilding(0,0,0,8,8,8);
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
