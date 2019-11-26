@@ -144,18 +144,31 @@ double AZ = 0;
 
 
 
-// X-coordinate of camera position when on tank
+// X-coordinate of camera position when on plane
 double EplaneX = 0;
-// Y-coordinate of camera position when on tank
+// Y-coordinate of camera position when on plane
 double EplaneY = -500;
-// Z-coordinate of camera position when on tank 
+// Z-coordinate of camera position when on plane 
 double EplaneZ = 20;
-// X-coordinate of where the camera is looking when on tank
+// X-coordinate of where the camera is looking when on plane
 double AplaneX = 0;
-// Y-coordinate of where the camera is looking when on tank
+// Y-coordinate of where the camera is looking when on plane
 double AplaneY = 0;
-// Z-coordinate of where the camera is looking when on tank
+// Z-coordinate of where the camera is looking when on plane
 double AplaneZ = 0;
+//UP vectors when on the plane
+double Ux = 1;
+double Uy = 0;
+double Uz = 0;
+//Look at vectors for the plane
+double Ox = 1;
+double Oy = 0;
+double Oz = 0;
+//Eye postion for the plane
+double Ex = 1;
+double Ey = 1; 
+double Ez = 1; 
+
 
 int flight_mode = 0;
 int tank_mode = 1;
@@ -239,8 +252,14 @@ void idle()
    //  Elapsed time in seconds
    	double t = glutGet(GLUT_ELAPSED_TIME)/1000.0;
    	azhimuth = fmod(90*t,360.0);
-	FireBallRad = 0;
-	blast_rad = 0;
+	if(tank_mode)
+	{
+		FireBallRad = 0;
+	}
+	if(flight_mode)
+	{
+		blast_rad = 0;
+	}
    //  Tell GLUT it is necessary to redisplay the scene
    glutPostRedisplay();
 }
