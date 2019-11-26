@@ -582,13 +582,20 @@ void char_input(unsigned char key,int x, int y)
 				distance = 18;
                 break;
 
-		case '+':       	       /* Option to change circumference of light source path */
-                        EZ = EZ + 1;
+		case '+':
+			if(tank_mode)       	       /* Option to change circumference of light source path */
+                        	EZ = EZ + 1;
+			if(flight_mode)
+				EplaneZ += 1;
 
 		break;
 
-		 case '-':                      /* Option to change circumference of light source path */
-                        EZ = EZ - 1;
+		 case '-':
+			if(tank_mode)                      /* Option to change circumference of light source path */
+                        	EZ = EZ - 1;
+			if(flight_mode)
+				EplaneZ -= 1;
+
                 break;
 
 		case '2':
