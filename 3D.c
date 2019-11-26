@@ -275,8 +275,11 @@ void mouse_button_detect(int button, int state, int x, int y)
 		switch(state)
 		{
 			case GLUT_DOWN:
-		//	printf("Left mouse button clicked \n");
-			cannonFire();
+			if(tank_mode)
+			{
+			//	printf("Left mouse button clicked \n");
+				cannonFire();
+			}
 			break;
 		}
 		break;
@@ -284,7 +287,10 @@ void mouse_button_detect(int button, int state, int x, int y)
                 switch(state)
                 {
                         case GLUT_DOWN:
-			changeTurretElevation(x,y);
+			if(tank_mode)
+			{
+				changeTurretElevation(x,y);
+			}
 
                         break;
                 }
