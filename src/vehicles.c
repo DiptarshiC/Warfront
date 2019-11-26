@@ -337,7 +337,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
         glPopMatrix();
 }
 
-void Plane(double x, double y, double z, double delta_x, double delta_y, double delta_z, double yaw, double roll, double pitch)
+void Plane(double x, double y, double z, double delta_x, double delta_y, double delta_z, double yaw, double roll, double pitch, double blast_rad)
 {
 	glPushMatrix();
 	glTranslated(x,y,z);
@@ -348,6 +348,9 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
         glScaled(delta_x,delta_y,delta_z);
 	glColor3ub(45,155,40);
 	drawCylinder(0.8, 5, 0, 0, 0,1, 1,1,-90,100,100,100,0);
+	/* Now drawing missile cannons */
+	drawCylinder(0.1, 1,-2, 2.4, 0.1,1, 1,1,-90,100,100,100,0); /* Missile cannon on the left wing*/
+	drawCylinder(0.1, 1, 2, 2.4, 0.1,1, 1,1,-90,100,100,100,0); /* Missile cannon on the right wing*/
 
 	/* Wing on the right side */
 	glBegin(GL_QUADS);
