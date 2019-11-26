@@ -346,14 +346,19 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
 	glRotated(pitch,0,0,1);
 
         glScaled(delta_x,delta_y,delta_z);
+
+	glColor3ub(255,255,0);
+	drawSphere(-2, 3.5 + blast_rad, 0.1, blast_rad , blast_rad , blast_rad ); /* Fireball out of the left turret*/
+        drawSphere( 2, 3.5 + blast_rad, 0.1, blast_rad , blast_rad , blast_rad ); /* Fireball out of the right turret*/
+
 	glColor3ub(45,155,40);
 	drawCylinder(0.8, 5, 0, 0, 0,1, 1,1,-90,100,100,100,0);
 	/* Now drawing missile cannons */
 	drawCylinder(0.1, 1,-2, 2.4, 0.1,1, 1,1,-90,100,100,100,0); /* Missile cannon on the left wing*/
 	drawCylinder(0.1, 1, 2, 2.4, 0.1,1, 1,1,-90,100,100,100,0); /* Missile cannon on the right wing*/
-
 	/* Wing on the right side */
 	glBegin(GL_QUADS);
+	glColor3ub(100,100,100);
 	glVertex3f(0.8,3.5,0);
         glVertex3f(0.8,2.5,0);
         glVertex3f(5.4,2.5,0);
@@ -362,6 +367,7 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
 
 	/* Wing on the left side */
 	glBegin(GL_QUADS);
+	glColor3ub(100,100,100);
         glVertex3f(-0.8,2.5,0);
         glVertex3f(-0.8,3.5,0);
 	glVertex3f(-3.9,3.5,0);

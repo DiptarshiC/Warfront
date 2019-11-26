@@ -68,6 +68,7 @@
 double turret_elevation_vertical = -90;
 double turret_elevation_lateral = 0;
 double FireBallRad = 0;
+double blast_rad = 0;
 
 int alpha=0;
 int theta=0;
@@ -204,6 +205,23 @@ void cannonFire()
 
 }
 
+/**
+*@func:		missileFire
+*
+*@description:	
+*
+*@params:	
+*
+*@return:	
+*
+*/
+
+void missileFire()
+{
+	blast_rad = 0.5;
+        glutPostRedisplay();
+
+}
 
 /**
 *@func:         idle
@@ -222,6 +240,7 @@ void idle()
    	double t = glutGet(GLUT_ELAPSED_TIME)/1000.0;
    	azhimuth = fmod(90*t,360.0);
 	FireBallRad = 0;
+	blast_rad = 0;
    //  Tell GLUT it is necessary to redisplay the scene
    glutPostRedisplay();
 }
@@ -279,6 +298,10 @@ void mouse_button_detect(int button, int state, int x, int y)
 			{
 			//	printf("Left mouse button clicked \n");
 				cannonFire();
+			}
+			if(flight_mode)
+			{
+				missileFire();
 			}
 			break;
 		}
@@ -1202,7 +1225,7 @@ void display()
 //	drawBuilding(0,0,0,8,8,8);
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
-	Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch,0);
+	Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad );
 //	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 	ErrCheck("Display");
