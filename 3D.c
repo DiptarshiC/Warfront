@@ -156,7 +156,8 @@ double AplaneY = 0;
 // Z-coordinate of where the camera is looking when on tank
 double AplaneZ = 0;
 
-
+int flight_mode = 0;
+int tank_mode = 1;
 
 double rot = -180.0;
 
@@ -316,8 +317,11 @@ void arrow_keys_move(int key, int x, int y)
 		EY += Cy*dt;
                 theta %= 360; /*Helps angles be within the margin of 360*/
                 alpha %= 360; /*Helps angles be within the margin of 360*/
-		tankCoordinateY  += 1*cos((PI/180)*(tankRotationAngle));
-		tankCoordinateX  -= 1*sin((PI/180)*(tankRotationAngle));
+		if(tank_mode)
+		{
+			tankCoordinateY  += 1*cos((PI/180)*(tankRotationAngle));
+			tankCoordinateX  -= 1*sin((PI/180)*(tankRotationAngle));
+		}
                 glutPostRedisplay();
                 break;
 
@@ -327,15 +331,21 @@ void arrow_keys_move(int key, int x, int y)
 		EY -= Cy*dt;
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
- 		tankCoordinateY  -= 1*cos((PI/180)*(tankRotationAngle));
-                tankCoordinateX  += 1*sin((PI/180)*(tankRotationAngle));
+		if(tank_mode)
+		{
+ 			tankCoordinateY  -= 1*cos((PI/180)*(tankRotationAngle));
+                	tankCoordinateX  += 1*sin((PI/180)*(tankRotationAngle));
+		}
                 glutPostRedisplay();
                 break;
 
 		case GLUT_KEY_LEFT:
                 theta++;
 		rot = rot + 1;
-		tankRotationAngle += 1;
+		if(tank_mode)
+		{
+			tankRotationAngle += 1;
+		}
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
                 glutPostRedisplay();
@@ -344,7 +354,10 @@ void arrow_keys_move(int key, int x, int y)
                 case GLUT_KEY_RIGHT:
                 theta--;
 		rot = rot - 1;
-           	tankRotationAngle -= 1;
+		if(tank_mode)
+		{
+           		tankRotationAngle -= 1;
+		}
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
                 glutPostRedisplay();
@@ -550,27 +563,33 @@ void char_input(unsigned char key,int x, int y)
                 break;
 
 		case '2':
-			roll -= 10;
+			if(flight_mode)
+				roll -= 1;
 		break;
 
 		case '8':
-                        roll += 10;
+			if(flight_mode)
+                        	roll += 1;
                 break;
 
 		case '6':
-                        pitch -= 1;
+			if(flight_mode)
+                        	pitch -= 1;
                 break;
 
                 case '4':
-                        pitch += 1;
+			if(flight_mode)
+                        	pitch += 1;
                 break;
 
 		case '1':
-                        yaw -= 1;
+			if(flight_mode)
+                        	yaw -= 1;
                 break;
 
                 case '3':
-                        yaw += 1;
+			if(flight_mode)
+                        	yaw += 1;
                 break;
 
 	}
@@ -1109,6 +1128,8 @@ void display()
         	break;
 
 		case 2: /* This is for the first person mode of projection */
+		flight_mode = 0;
+		tank_mode = 1;
                 Print("First person view ");
 		Cx = +8 * dimension * sin((PI/180)*rot); //Ajust the camera vector based on rot
       		Cy = -8 * dimension * cos((PI/180)*rot);
@@ -1117,6 +1138,8 @@ void display()
                 break;
 
 		case 3: /* This is for the plane projection */
+		flight_mode = 1;
+		tank_mode = 0;
 		Print(" Airplane view ");
 		Cx = +8 * dimension * sin((PI/180)*rot); //Ajust the camera vector based on rot
                 Cy = -8 * dimension * cos((PI/180)*rot);
