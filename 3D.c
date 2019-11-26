@@ -80,6 +80,14 @@ double tankCoordinateX = 0;
 double tankCoordinateY = -450;
 double tankRotationAngle  = 0;
 
+double planeCoordinateX = 0;
+double planeCoordinateY = -450;
+double planeCoordinateZ = 40;
+
+double yaw = 0;
+double roll = 0;
+double pitch = 0;
+
 int displayMode = 2;
 double widht2height = 1.0;
 int Field_of_View = 50;
@@ -120,18 +128,34 @@ double Delta_x = 0;
 double Delta_y = 0;
 */
 
-// X-coordinate of camera position
+// X-coordinate of camera position when on tank
 double EX = 0;
-// Y-coordinate of camera position
+// Y-coordinate of camera position when on tank
 double EY = -500;
-// Z-coordinate of camera position
+// Z-coordinate of camera position when on tank 
 double EZ = 20;
-// X-coordinate of where the camera is looking
+// X-coordinate of where the camera is looking when on tank
 double AX = 0;
-// Y-coordinate of where the camera is looking
+// Y-coordinate of where the camera is looking when on tank
 double AY = 0;
-// Z-coordinate of where the camera is looking
+// Z-coordinate of where the camera is looking when on tank
 double AZ = 0;
+
+
+
+// X-coordinate of camera position when on tank
+double EplaneX = 0;
+// Y-coordinate of camera position when on tank
+double EplaneY = -500;
+// Z-coordinate of camera position when on tank 
+double EplaneZ = 20;
+// X-coordinate of where the camera is looking when on tank
+double AplaneX = 0;
+// Y-coordinate of where the camera is looking when on tank
+double AplaneY = 0;
+// Z-coordinate of where the camera is looking when on tank
+double AplaneZ = 0;
+
 
 
 double rot = -180.0;
@@ -417,8 +441,14 @@ void char_input(unsigned char key,int x, int y)
 
 		else if( displayMode == 2)
                 {
+                        displayMode = 3;                /* If the mode is 2, make it back to 0*/
+                }
+
+		else if( displayMode == 3)
+                {
                         displayMode = 0;                /* If the mode is 2, make it back to 0*/
                 }
+
 
 		case 'l':	case 'L':       /* Option to toggle lighting*/
 		light = 1-light;
@@ -517,6 +547,30 @@ void char_input(unsigned char key,int x, int y)
 
 		 case '-':                      /* Option to change circumference of light source path */
                         EZ = EZ - 1;
+                break;
+
+		case '2':
+			roll -= 10;
+		break;
+
+		case '8':
+                        roll += 10;
+                break;
+
+		case '6':
+                        pitch -= 1;
+                break;
+
+                case '4':
+                        pitch += 1;
+                break;
+
+		case '1':
+                        yaw -= 1;
+                break;
+
+                case '3':
+                        yaw += 1;
                 break;
 
 	}
@@ -1062,6 +1116,15 @@ void display()
     		gluLookAt(EX, EY, EZ, Cx + EX, Cy + EY, EZ, 0, 0, 1);
                 break;
 
+		case 3: /* This is for the plane projection */
+		Print(" Airplane view ");
+		Cx = +8 * dimension * sin((PI/180)*rot); //Ajust the camera vector based on rot
+                Cy = -8 * dimension * cos((PI/180)*rot);
+                // Orient the scene so it imitates first person movement
+                gluLookAt(EplaneX, EplaneY, EplaneZ, Cx + EplaneX, Cy + EplaneY, EplaneZ, 0, 0, 1);
+                break;
+
+
 	}
 
 	glShadeModel(smoothness ? GL_SMOOTH : GL_FLAT);
@@ -1110,7 +1173,7 @@ void display()
 //	drawBuilding(0,0,0,8,8,8);
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
-	Plane(0,-450, 40, 10, 10, 10,0, 0);
+	Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch);
 //	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 	ErrCheck("Display");
