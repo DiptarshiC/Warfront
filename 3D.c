@@ -134,13 +134,27 @@ double EX = 0;
 // Y-coordinate of camera position when on tank
 double EY = -500;
 // Z-coordinate of camera position when on tank 
-double EZ = 20;
+double EZ = 30;
 // X-coordinate of where the camera is looking when on tank
 double AX = 0;
 // Y-coordinate of where the camera is looking when on tank
 double AY = 0;
 // Z-coordinate of where the camera is looking when on tank
 double AZ = 0;
+
+
+// X-coordinate of camera position when on tank
+double EtankX = 0;
+// Y-coordinate of camera position when on tank
+double EtankY = -500;
+// Z-coordinate of camera position when on tank 
+double EtankZ = 20;
+double CtankX;
+double CtankY;
+
+
+
+
 
 
 
@@ -161,7 +175,7 @@ double Ux = 1;
 double Uy = 0;
 double Uz = 0;
 //Look at vectors for the plane
-double Ox = 1;
+double Ox = 0;
 double Oy = 0;
 double Oz = 0;
 //Eye postion for the plane
@@ -367,9 +381,29 @@ void arrow_keys_move(int key, int x, int y)
                 alpha %= 360; /*Helps angles be within the margin of 360*/
 		if(tank_mode)
 		{
-			tankCoordinateY  += 1*cos((PI/180)*(tankRotationAngle));
-			tankCoordinateX  -= 1*sin((PI/180)*(tankRotationAngle));
+			if( (tankCoordinateX < - 155 || tankCoordinateX >  155)/* ||  (tankCoordinateX > - 155 && tankCoordinateX < 155)   && (tankCoordinateY < -212)*/  )
+			{
+				tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
+				tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+			/*	EtankY  += CtankY*dt;
+                                EtankX  += CtankX*dt;*/ 
+
+			}
+
+			else if(tankCoordinateX > - 155 && tankCoordinateX < 155)
+			{
+
+				if(tankCoordinateY < -215 || tankCoordinateY > 215)
+				{
+					tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
+                                	tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+/*					EtankY  += CtankY*dt;
+                                	EtankX  += CtankX*dt; */
+
+				}
+			}
 		}
+
                 glutPostRedisplay();
                 break;
 
@@ -381,8 +415,11 @@ void arrow_keys_move(int key, int x, int y)
                 alpha %= 360;/*Helps angles be within the margin of 360*/
 		if(tank_mode)
 		{
- 			tankCoordinateY  -= 1*cos((PI/180)*(tankRotationAngle));
-                	tankCoordinateX  += 1*sin((PI/180)*(tankRotationAngle));
+ 			tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
+                	tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
+/*			EtankY  -= CtankY*dt;
+                        EtankX  -= CtankX*dt;*/
+
 		}
                 glutPostRedisplay();
                 break;
@@ -507,8 +544,14 @@ void char_input(unsigned char key,int x, int y)
 
 		else if( displayMode == 3)
                 {
+                        displayMode = 4;                /* If the mode is 2, make it back to 0*/
+                }
+
+		else if( displayMode == 4)
+                {
                         displayMode = 0;                /* If the mode is 2, make it back to 0*/
                 }
+
 
 
 		case 'l':	case 'L':       /* Option to toggle lighting*/
@@ -602,16 +645,16 @@ void char_input(unsigned char key,int x, int y)
                 break;
 
 		case '+':
-			if(tank_mode)       	       /* Option to change circumference of light source path */
-                        	EZ = EZ + 1;
+			       	       /* Option to change circumference of light source path */
+                       	EZ = EZ + 1;
 			if(flight_mode)
 				EplaneZ += 1;
 
 		break;
 
 		 case '-':
-			if(tank_mode)                      /* Option to change circumference of light source path */
-                        	EZ = EZ - 1;
+		                      /* Option to change circumference of light source path */
+                        EZ = EZ - 1;
 			if(flight_mode)
 				EplaneZ -= 1;
 
@@ -1185,11 +1228,13 @@ void display()
 		case 2: /* This is for the first person mode of projection */
 		flight_mode = 0;
 		tank_mode = 1;
-                Print("First person view ");
-		Cx = +8 * dimension * sin((PI/180)*rot); //Ajust the camera vector based on rot
-      		Cy = -8 * dimension * cos((PI/180)*rot);
+                Print("tank view ");
+		EtankY = tankCoordinateY /* - 50 * cos((PI/180)*tankRotationAngle)*/ ;
+		EtankX = tankCoordinateX /* - 50 * sin((PI/180)*tankRotationAngle) */ ;
+		CtankX = -8 * dimension * sin((PI/180)*tankRotationAngle); //Ajust the camera vector based on rot
+      		CtankY = +8 * dimension * cos((PI/180)*tankRotationAngle);
 		// Orient the scene so it imitates first person movement
-    		gluLookAt(EX, EY, EZ, Cx + EX, Cy + EY, EZ, 0, 0, 1);
+    		gluLookAt(EtankX + 50 * sin((PI/180)*tankRotationAngle)  ,EtankY - 50 * cos((PI/180)*tankRotationAngle), EtankZ,/* CtankX +*/ EtankX ,/*CtankY +*/ EtankY , EtankZ, 0, 0, 1);
                 break;
 
 		case 3: /* This is for the plane projection */
@@ -1202,6 +1247,16 @@ void display()
                 gluLookAt(EplaneX, EplaneY, EplaneZ, Cx + EplaneX, Cy + EplaneY, EplaneZ, 0, 0, 1);
                 break;
 
+
+		case 4: /* This is for the first person mode of projection */
+                flight_mode = 0;
+                tank_mode = 0;
+                Print("First person view ");
+                Cx = +8 * dimension * sin((PI/180)*rot); //Ajust the camera vector based on rot
+                Cy = -8 * dimension * cos((PI/180)*rot);
+                // Orient the scene so it imitates first person movement
+                gluLookAt(EX, EY, EZ, Cx + EX, Cy + EY, EZ, 0, 0, 1);
+                break;
 
 	}
 
