@@ -1301,6 +1301,7 @@ void display()
 	Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad );
 //	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
+	drawCrack( -100, -200,40,20,20,20,0,texture);
 	ErrCheck("Display");
 	glFlush();
 

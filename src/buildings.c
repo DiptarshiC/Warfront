@@ -345,28 +345,29 @@ void drawNewWall(int texture[])
 *
 */
 
-void drawCrack(double x, double y, double z,,int th, int texture[]);
+void drawCrack(double x, double y, double z,double delta_x, double delta_y, double delta_z,int th, int texture[])
 {
 
-	int alpha = 100;// Transaprency
+	int alpha = 40;// Transaprency
 
 	glPushMatrix();
 	glTranslated(x,y,z);
+	glScaled(delta_x, delta_y,delta_z);
 	glRotated(th,0,0,1);
 
 	glEnable(GL_TEXTURE_2D);
-        glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,mode?GL_REPLACE:GL_MODULATE);
+        glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,modf?GL_REPLACE:GL_MODULATE);
 	glColor4f(1,1,1,0.01*alpha);
 	glBindTexture(GL_TEXTURE_2D,texture[15]);
 	glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA,GL_ONE);
 
 	glBegin(GL_QUADS);
-	glNormal(0,-1,0);
-	glTexCoord2f(0,1);glVertex(-1,0,1);
-	glTexCoord2f(0,0);glVertex(-1,0,0);
-	glTexCoord2f(0,1);glVertex(1,0,0);
-	glTexCoord2f(1,1);glVertex(1,0,1);
+	glNormal3f(0,-1,0);
+	glTexCoord2f(0,1);glVertex3f(-1,0,1);
+	glTexCoord2f(0,0);glVertex3f(-1,0,0);
+	glTexCoord2f(0,1);glVertex3f(1,0,0);
+	glTexCoord2f(1,1);glVertex3f(1,0,1);
 	glEnd();
 	glPopMatrix();
 	glDisable(GL_BLEND);
