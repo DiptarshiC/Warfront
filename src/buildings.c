@@ -118,7 +118,7 @@ void drawNewBuilding(double x, double y, double z, double delta_x, double delta_
 
 	glEnable(GL_TEXTURE_2D);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE ,GL_MODULATE);
+//        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE ,GL_MODULATE);
         glBindTexture(GL_TEXTURE_2D,texture[14]);
 	glColor3ub(255,165,0);
 	/* Drawing the new building*/
@@ -333,3 +333,42 @@ void drawNewWall(int texture[])
 
 }
 
+/**
+*@func: drawCrack
+*
+*@description
+*
+*@params: double x, double y, double z, int texture[]
+*
+*@return:
+*
+*
+*/
+
+void drawCrack(double x, double y, double z,,int th, int texture[]);
+{
+
+	int alpha = 100;// Transaprency
+
+	glPushMatrix();
+	glTranslated(x,y,z);
+	glRotated(th,0,0,1);
+
+	glEnable(GL_TEXTURE_2D);
+        glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,mode?GL_REPLACE:GL_MODULATE);
+	glColor4f(1,1,1,0.01*alpha);
+	glBindTexture(GL_TEXTURE_2D,texture[15]);
+	glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA,GL_ONE);
+
+	glBegin(GL_QUADS);
+	glNormal(0,-1,0);
+	glTexCoord2f(0,1);glVertex(-1,0,1);
+	glTexCoord2f(0,0);glVertex(-1,0,0);
+	glTexCoord2f(0,1);glVertex(1,0,0);
+	glTexCoord2f(1,1);glVertex(1,0,1);
+	glEnd();
+	glPopMatrix();
+	glDisable(GL_BLEND);
+
+}

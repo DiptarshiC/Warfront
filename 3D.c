@@ -79,7 +79,7 @@ double ZatTopOfTurret = 0;
 
 double tankCoordinateX = 0;
 double tankCoordinateY = -450;
-double tankRotationAngle  = 0;
+double tankRotationAngle  =0;
 
 double planeCoordinateX = 0;
 double planeCoordinateY = -450;
@@ -111,7 +111,7 @@ int move = 1;       		/*  Move light */
 
 int event_flag = 0;
 
-unsigned int texture[15];
+unsigned int texture[16];
 int obj;			/* Variable to point to an object file*/
 
 /* These are for perspective mode of projection*/
@@ -385,21 +385,13 @@ void arrow_keys_move(int key, int x, int y)
 			{
 				tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
 				tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
-			/*	EtankY  += CtankY*dt;
-                                EtankX  += CtankX*dt;*/ 
-
 			}
-
 			else if(tankCoordinateX > - 155 && tankCoordinateX < 155)
 			{
-
 				if(tankCoordinateY < -215 || tankCoordinateY > 215)
 				{
 					tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
                                 	tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
-/*					EtankY  += CtankY*dt;
-                                	EtankX  += CtankX*dt; */
-
 				}
 			}
 		}
@@ -1409,6 +1401,7 @@ int main(int argc, char *argv[])
 	texture[12]=LoadTexBMP("textures/plane.bmp");
 	texture[13]=LoadTexBMP("textures/plane_small.bmp");
 	texture[14]=LoadTexBMP("textures/building_bitmap_image.bmp");
+	texture[15]=LoadTexBMP("textures/BrokenGlass.bmp");
 
 
 

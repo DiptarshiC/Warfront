@@ -13,4 +13,6 @@ void drawSwastika(double x, double y, double z, double delta_x, double delta_y, 
 
 void drawNewWall(int texture[]);
 
+void drawCrack(double x, double y, double z, int texture[]);
+
 #endif /*__BUILDINGS__H*/
