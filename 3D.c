@@ -380,13 +380,13 @@ void arrow_keys_move(int key, int x, int y)
 		{
 			if( (tankCoordinateX <= - 158 || tankCoordinateX  >=  158 ) )
 			{
-			 if( ( 154 <= tankCoordinateX <= 158) && ((-180  < tankRotationAngle < 0)||( 180 < tankRotationAngle < 360)) )
+			 if( ( 157 <= tankCoordinateX <= 158) && ((-180  < tankRotationAngle < 0)||( 180 < tankRotationAngle < 360)) )
 			 {
 				tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
 				tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
 			 }
 
-			 if( -158 <= tankCoordinateX <= -154)
+			 if( -158 <= tankCoordinateX <= -157)
                          {
                                tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
                                tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
@@ -406,7 +406,7 @@ void arrow_keys_move(int key, int x, int y)
 					tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
                                 	tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
 				}
-				else if(( -218 <= tankCoordinateY &&  tankCoordinateY <= -217) && (90<tankRotationAngle && tankRotationAngle < 270))
+				else if(( -218 <= tankCoordinateY &&  tankCoordinateY <= -217) && ( 90 < tankRotationAngle && tankRotationAngle < 270))
                                 {
                                         tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
                                         tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
@@ -423,13 +423,14 @@ void arrow_keys_move(int key, int x, int y)
 		EY -= Cy*dt;
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
+
 		if(tank_mode)
 		{
-			if( (tankCoordinateX <= - 158 || tankCoordinateX >=  158))
+			if( (tankCoordinateX <= - 154 || tankCoordinateX >=  154))
 			{
- 				tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
-                		tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
 
+                              		tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
+                                	tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
 			}
 			else if(tankCoordinateX >= - 158 && tankCoordinateX <= 158)
                         {
@@ -438,16 +439,16 @@ void arrow_keys_move(int key, int x, int y)
                                         tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
                                         tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
                                 }
-				else if(( -218 <= tankCoordinateY &&  tankCoordinateY <= -217) && (-90 < tankRotationAngle && tankRotationAngle < 90))
+				else if(( -218 <= tankCoordinateY &&  tankCoordinateY <= -216) && (-90 < tankRotationAngle && tankRotationAngle < 90))
                                 {
-                                        tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
-                                        tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+                                        tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
+                                        tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
                                 }
 
-			else if(( 218 >= tankCoordinateY&&tankCoordinateY >= 217)&&((90<tankRotationAngle&&tankRotationAngle<270)||(-90 > tankRotationAngle && tankRotationAngle > -270)))
+			else if(( 218 >= tankCoordinateY&&tankCoordinateY >= 216)&&((90<tankRotationAngle&&tankRotationAngle<270)||(-90 > tankRotationAngle && tankRotationAngle > -270)))
                                 {
-                                        tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
-                                        tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+                                        tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
+                                        tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
                                 }
 
                         }
