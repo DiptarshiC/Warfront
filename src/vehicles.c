@@ -353,7 +353,7 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
 */
 
 	glRotated(roll,COS(pitch) ,SIN(pitch),0);
-        glRotated(yaw,SIN(pitch),COS(pitch),0);
+//        glRotated(yaw,SIN(pitch),COS(pitch),0);
         glRotated(pitch,0,0,1);
 
 
