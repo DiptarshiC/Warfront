@@ -79,7 +79,7 @@ double ZatTopOfTurret = 0;
 
 double tankCoordinateX = 0;
 double tankCoordinateY = -450;
-double tankRotationAngle  =0;
+int tankRotationAngle  =0;
 
 double planeCoordinateX = 0;
 double planeCoordinateY = -450;
@@ -378,21 +378,42 @@ void arrow_keys_move(int key, int x, int y)
                 alpha %= 360; /*Helps angles be within the margin of 360*/
 		if(tank_mode)
 		{
-			if( (tankCoordinateX < - 155 || tankCoordinateX >  155)/* ||  (tankCoordinateX > - 155 && tankCoordinateX < 155)   && (tankCoordinateY < -212)*/  )
+			if( (tankCoordinateX <= - 158 || tankCoordinateX  >=  158 ) )
 			{
+			 if( ( 154 <= tankCoordinateX <= 158) && ((-180  < tankRotationAngle < 0)||( 180 < tankRotationAngle < 360)) )
+			 {
 				tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
 				tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
-			}
-			else if(tankCoordinateX > - 155 && tankCoordinateX < 155)
+			 }
+
+			 if( -158 <= tankCoordinateX <= -154)
+                         {
+                               tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
+                               tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+                         }
+
+			 if(tankCoordinateX <  -158 || tankCoordinateX > 158)
+                         {
+                                        tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
+                                        tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+                         }
+
+			 }
+			else if( -158 <  tankCoordinateX && tankCoordinateX  < 158)
 			{
-				if(tankCoordinateY < -215 || tankCoordinateY > 215)
+				if( (tankCoordinateY <= -218 ) || ( tankCoordinateY >= 217 ) )
 				{
 					tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
                                 	tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
 				}
+				else if(( -218 <= tankCoordinateY &&  tankCoordinateY <= -217) && (90<tankRotationAngle && tankRotationAngle < 270))
+                                {
+                                        tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
+                                        tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+                                }
 			}
 		}
-
+		printf("X:%f \t Y:%f\n ", tankCoordinateX, tankCoordinateY );
                 glutPostRedisplay();
                 break;
 
@@ -404,11 +425,34 @@ void arrow_keys_move(int key, int x, int y)
                 alpha %= 360;/*Helps angles be within the margin of 360*/
 		if(tank_mode)
 		{
- 			tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
-                	tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
-/*			EtankY  -= CtankY*dt;
-                        EtankX  -= CtankX*dt;*/
+			if( (tankCoordinateX <= - 158 || tankCoordinateX >=  158))
+			{
+ 				tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
+                		tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
 
+			}
+			else if(tankCoordinateX >= - 158 && tankCoordinateX <= 158)
+                        {
+                                if(tankCoordinateY <= -218 || tankCoordinateY >= 218)
+                                {
+                                        tankCoordinateY  -= 0.8*cos((PI/180)*(tankRotationAngle));
+                                        tankCoordinateX  += 0.8*sin((PI/180)*(tankRotationAngle));
+                                }
+				else if(( -218 <= tankCoordinateY &&  tankCoordinateY <= -217) && (-90 < tankRotationAngle && tankRotationAngle < 90))
+                                {
+                                        tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
+                                        tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+                                }
+
+			else if(( 218 >= tankCoordinateY&&tankCoordinateY >= 217)&&((90<tankRotationAngle&&tankRotationAngle<270)||(-90 > tankRotationAngle && tankRotationAngle > -270)))
+                                {
+                                        tankCoordinateY  += 0.8*cos((PI/180)*(tankRotationAngle));
+                                        tankCoordinateX  -= 0.8*sin((PI/180)*(tankRotationAngle));
+                                }
+
+                        }
+
+			printf("X:%f \t Y:%f\n ",tankCoordinateX,tankCoordinateY );
 		}
                 glutPostRedisplay();
                 break;
@@ -419,9 +463,11 @@ void arrow_keys_move(int key, int x, int y)
 		if(tank_mode)
 		{
 			tankRotationAngle += 1;
+			printf(" Tank Rotation Angle :%d\n",tankRotationAngle);
 		}
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
+		tankRotationAngle %= 360;
                 glutPostRedisplay();
                 break;
 
@@ -431,9 +477,12 @@ void arrow_keys_move(int key, int x, int y)
 		if(tank_mode)
 		{
            		tankRotationAngle -= 1;
+			printf(" Tank Rotation Angle :%d\n",tankRotationAngle);
 		}
+
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
+		tankRotationAngle %= 360;
                 glutPostRedisplay();
                 break;
 
@@ -1299,6 +1348,7 @@ void display()
 //	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawCrack( -100, -200,40,20,20,20,0,texture);
+
 	ErrCheck("Display");
 	glFlush();
 
