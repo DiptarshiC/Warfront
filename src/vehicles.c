@@ -29,6 +29,12 @@
 */
 
 
+#define         	PI              3.1415926
+#define                 SIN(X)          sin((PI/180)*(X))
+#define                 COS(X)          cos((PI/180)*(X))
+
+
+
 void drawTank(double x,double y,double z,double delta_x,double delta_y,double delta_z, double turret_Front_Elevation, double turret_Side_Elevation,double FireBallRad, int turnAngle )
 {
 
@@ -341,9 +347,15 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
 {
 	glPushMatrix();
 	glTranslated(x,y,z);
-        glRotated(roll,1,0,0);
+/*      glRotated(roll,1,0,0);
 	glRotated(yaw,0,1,0);
 	glRotated(pitch,0,0,1);
+*/
+
+	glRotated(roll,COS(pitch) ,SIN(pitch),0);
+        glRotated(yaw,SIN(pitch),COS(pitch),0);
+        glRotated(pitch,0,0,1);
+
 
         glScaled(delta_x,delta_y,delta_z);
 

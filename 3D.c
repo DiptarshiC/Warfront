@@ -270,8 +270,8 @@ void idle()
 	{
 		blast_rad = 0;
 	}
-	planeCoordinateY  += 0.8*cos((PI/180)*(pitch));
-	planeCoordinateX  -= 0.8*sin((PI/180)*(pitch));
+//	planeCoordinateY  += 0.8*cos((PI/180)*(pitch));
+//	planeCoordinateX  -= 0.8*sin((PI/180)*(pitch));
 
    //  Tell GLUT it is necessary to redisplay the scene
    glutPostRedisplay();
