@@ -83,7 +83,7 @@ int tankRotationAngle  =0;
 
 double planeCoordinateX = 0;
 double planeCoordinateY = -450;
-double planeCoordinateZ = 40;
+double planeCoordinateZ = 90;
 
 double yaw = 0;
 double roll = 0;
@@ -163,7 +163,7 @@ double EplaneX = 0;
 // Y-coordinate of camera position when on plane
 double EplaneY = -500;
 // Z-coordinate of camera position when on plane 
-double EplaneZ = 20;
+double EplaneZ = 90;
 // X-coordinate of where the camera is looking when on plane
 double AplaneX = 0;
 // Y-coordinate of where the camera is looking when on plane
@@ -270,6 +270,9 @@ void idle()
 	{
 		blast_rad = 0;
 	}
+	planeCoordinateY  += 0.8*cos((PI/180)*(pitch));
+	planeCoordinateX  -= 0.8*sin((PI/180)*(pitch));
+
    //  Tell GLUT it is necessary to redisplay the scene
    glutPostRedisplay();
 }
@@ -1280,10 +1283,11 @@ void display()
 		flight_mode = 1;
 		tank_mode = 0;
 		Print(" Airplane view ");
-		Cx = +8 * dimension * sin((PI/180)*rot); //Ajust the camera vector based on rot
-                Cy = -8 * dimension * cos((PI/180)*rot);
+		EplaneX = planeCoordinateX;
+		EplaneY = planeCoordinateY;
+		EplaneZ = planeCoordinateZ + 30 ;
                 // Orient the scene so it imitates first person movement
-                gluLookAt(EplaneX, EplaneY, EplaneZ, Cx + EplaneX, Cy + EplaneY, EplaneZ, 0, 0, 1);
+                gluLookAt(EplaneX + 50 * sin((PI/180)*pitch), EplaneY  - 50 * cos((PI/180)*pitch) , EplaneZ, EplaneX, EplaneY, EplaneZ, 0, 0, 1);
                 break;
 
 
