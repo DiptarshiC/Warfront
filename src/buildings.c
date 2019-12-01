@@ -330,6 +330,7 @@ void drawNewWall(int texture[])
 
 	glPopMatrix();
 
+	glDisable(GL_TEXTURE_2D);
 
 }
 
@@ -373,3 +374,5 @@ void drawCrack(double x, double y, double z,double delta_x, double delta_y, doub
 	glDisable(GL_BLEND);
 
 }
+
+

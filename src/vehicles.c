@@ -343,7 +343,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
         glPopMatrix();
 }
 
-void Plane(double x, double y, double z, double delta_x, double delta_y, double delta_z, double yaw, double roll, double pitch, double blast_rad)
+void Plane(double x, double y, double z, double delta_x, double delta_y, double delta_z, double yaw, double roll, double pitch, double blast_rad, int textures[])
 {
 	glPushMatrix();
 	glTranslated(x,y,z);
@@ -368,23 +368,30 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
 	/* Now drawing missile cannons */
 	drawCylinder(0.1, 1,-2, 2.4, 0.1,1, 1,1,-90,100,100,100,0); /* Missile cannon on the left wing*/
 	drawCylinder(0.1, 1, 2, 2.4, 0.1,1, 1,1,-90,100,100,100,0); /* Missile cannon on the right wing*/
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D,textures[16]);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
 	/* Wing on the right side */
 	glBegin(GL_QUADS);
+	glNormal3f(0, 0, +1);
 	glColor3ub(100,100,100);
-	glVertex3f(0.8,3.5,0);
-        glVertex3f(0.8,2.5,0);
-        glVertex3f(5.4,2.5,0);
-        glVertex3f(3.9,3.5,0);
+	glTexCoord2f(0,1);glVertex3f(0.8,3.5,0);
+        glTexCoord2f(0,0);glVertex3f(0.8,2.5,0);
+        glTexCoord2f(1,0);glVertex3f(5.4,2.5,0);
+        glTexCoord2f(1,1); glVertex3f(3.9,3.5,0);
 	glEnd();
 
 	/* Wing on the left side */
 	glBegin(GL_QUADS);
+	glNormal3f(0, 0, +1);
 	glColor3ub(100,100,100);
-        glVertex3f(-0.8,2.5,0);
-        glVertex3f(-0.8,3.5,0);
-	glVertex3f(-3.9,3.5,0);
-        glVertex3f(-5.4,2.5,0);
+        glTexCoord2f(1,0);glVertex3f(-0.8,2.5,0);
+        glTexCoord2f(1,1);glVertex3f(-0.8,3.5,0);
+        glTexCoord2f(0,1);glVertex3f(-3.9,3.5,0);
+        glTexCoord2f(0,0); glVertex3f(-5.4,2.5,0);
         glEnd();
+
+	glDisable(GL_TEXTURE_2D);
 	/*Drawing the front nose*/
 	drawCone(0.8,2,0,5,0,1,1,1,-90,100,100,100,0);
 

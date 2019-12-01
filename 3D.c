@@ -111,7 +111,7 @@ int move = 1;       		/*  Move light */
 
 int event_flag = 0;
 
-unsigned int texture[16];
+unsigned int texture[17];
 int obj;			/* Variable to point to an object file*/
 
 /* These are for perspective mode of projection*/
@@ -270,8 +270,10 @@ void idle()
 	{
 		blast_rad = 0;
 	}
-//	planeCoordinateY  += 0.8*cos((PI/180)*(pitch));
-//	planeCoordinateX  -= 0.8*sin((PI/180)*(pitch));
+	planeCoordinateZ  += 0.8*sin((PI/180)*(roll));
+	planeCoordinateY  += 0.8*cos((PI/180)*(pitch));
+	planeCoordinateX  -= 0.8*sin((PI/180)*(pitch));
+
 
    //  Tell GLUT it is necessary to redisplay the scene
    glutPostRedisplay();
@@ -1349,7 +1351,7 @@ void display()
 //	drawBuilding(0,0,0,8,8,8);
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
-	Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad );
+	Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad,texture );
 //	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawCrack( -100, -200,40,20,20,20,0,texture);
@@ -1455,9 +1457,7 @@ int main(int argc, char *argv[])
 	texture[13]=LoadTexBMP("textures/plane_small.bmp");
 	texture[14]=LoadTexBMP("textures/building_bitmap_image.bmp");
 	texture[15]=LoadTexBMP("textures/BrokenGlass.bmp");
-
-
-
+	texture[16]=LoadTexBMP("textures/ussr_flag.bmp");;
 
         /*glutMainLoop enters the GLUT event processing loop*/
         glutMainLoop();
