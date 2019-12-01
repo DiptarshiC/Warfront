@@ -19,7 +19,7 @@
 *
 *
 */
-
+/*********************************************************************************************/
 void drawSwastika(double x, double y, double z, double delta_x, double delta_y, double delta_z)
 {
 
@@ -50,7 +50,7 @@ void drawSwastika(double x, double y, double z, double delta_x, double delta_y, 
 *
 *
 */
-
+/************************************************************************************************************/
 void drawBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z, int textures[])
 {
 	glPushMatrix();
@@ -71,14 +71,16 @@ void drawBuilding(double x, double y, double z, double delta_x, double delta_y, 
 
 }
 
-/**
+/***********************************drawBarbedwire()************************************
+*@func:		drawBarbedwire
 *
+*@description:	Draws a barbded wire on the wall
 *
+*@params:	double radius, double height, double x1, double y1 ,double z1, double delta_x, double delta_y, double delta_z, double th, GLubyte R, GLubyte G,GLubyte B, double alpha
 *
+*return:	void
 *
-*
-*
-*/
+***************************************************************************************/
 
 void drawBarbedwire(double radius, double height, double x1, double y1 ,double z1, double delta_x, double delta_y, double delta_z, double th, GLubyte R, GLubyte G,GLubyte B, double alpha )
 {
@@ -94,7 +96,7 @@ void drawBarbedwire(double radius, double height, double x1, double y1 ,double z
 /**
 *@func:		drawNewBuilding
 *
-*@definition:	
+*@definition:	draws a building in the centre of the scene. The building has a Swastika on top
 *
 *@params:	double x, double y, double z, double delta_x, double delta_y, double delta_z
 *
@@ -181,17 +183,15 @@ void drawNewBuilding(double x, double y, double z, double delta_x, double delta_
         glPopMatrix();
 }
 
-/**
+/**************************************drawNewWall()***********************************************
 *@func:		drawNewWall
 *
-*@description
+*@description:	Draws a wall around the periphery of the building
 *
-*@params:
+*@params:	int texture[]
 *
-*@return:
-*
-*
-*/
+*@return:	void
+*****************************************************************************************************/
 
 void drawNewWall(int texture[])
 {
@@ -334,17 +334,16 @@ void drawNewWall(int texture[])
 
 }
 
-/**
-*@func: drawCrack
+/******************************************drawCrack()************************************************
+*@func: 	drawCrack
 *
-*@description
+*@description:	The function draws the crack in the building
 *
-*@params: double x, double y, double z, int texture[]
+*@params: 	double x, double y, double z, int texture[]
 *
-*@return:
+*@return:	void
 *
-*
-*/
+******************************************************************************************************/
 
 void drawCrack(double x, double y, double z,double delta_x, double delta_y, double delta_z,int th, int texture[])
 {
@@ -376,3 +375,36 @@ void drawCrack(double x, double y, double z,double delta_x, double delta_y, doub
 }
 
 
+/**********************************************drawFlag()***************************************************
+*@func:		drawFlag
+*
+*@description:	A function that draws the flag. Can be used for the Nazi flag as well as the USSR one
+*
+*@prams:	double delta_x, double delta_y, double delta_z, int textures[]
+*
+*@return:	void
+*************************************************************************************************************/
+
+
+void drawFlag(double x, double y, double z, double delta_x, double delta_y, double delta_z,int th, int textures[])
+{
+
+	glPushMatrix();
+	glTranslated(x, y,z);
+	glScaled(delta_x, delta_y,delta_z);
+	glRotated(th,0,0,1);
+	glEnable(GL_TEXTURE_2D);
+	float borderColor[] = { 1.0f, 0.0f, 0.0f, 0.0f };
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);  
+	glBindTexture(GL_TEXTURE_2D,textures[17]);
+	glBegin(GL_QUADS);
+	glColor3ub(255,0,0);
+	glTexCoord2f(0,0);glVertex3f(0,0,0);
+	glTexCoord2f(1,0);glVertex3f(3,0,0);
+	glTexCoord2f(0,1);glVertex3f(0,0,2);
+	glTexCoord2f(1,1);glVertex3f(3,0,2);
+	glEnd();
+	glPopMatrix();
+
+}

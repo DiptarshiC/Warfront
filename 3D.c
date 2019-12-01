@@ -23,7 +23,7 @@
 #include <stdarg.h>
 #include <math.h>
 
-#define GL_GLEXT_PROTOTYPES
+//#define GL_GLEXT_PROTOTYPES
 
 #ifdef __APPLE__
 #include <GLUT/glut.h>
@@ -115,7 +115,7 @@ int move = 1;       		/*  Move light */
 
 int event_flag = 0;
 
-unsigned int texture[17];
+unsigned int texture[18];
 int obj;			/* Variable to point to an object file*/
 
 /* These are for perspective mode of projection*/
@@ -203,6 +203,17 @@ double Cy;
 
 #define LEN 8192  //  Maximum length of text string
 
+/**
+*@func:		displayCrack()
+*
+*@description:
+*
+*@param:
+*
+*@return:
+*
+*
+*/
 
 void displayCrack()
 {
@@ -1087,7 +1098,7 @@ void display()
         	float Specularity[]  = {0.01*specular_intensity,0.01*specular_intensity,0.01*specular_intensity,1.0};
         	//  Light position
 //        	float coordinates[]  = {distance*cos((PI/180)*azhimuth), distance*sin((PI/180)*azhimuth), light_elevation, 1.0};
-		float coordinates[]  = { 2000 * cos((PI/180)*angleSun)  , 0  , 2000 * sin((PI/180)*angleSun)  , 1.0};
+		float coordinates[]  = { 5000 * cos((PI/180)*angleSun)  , 0  ,5000 * sin((PI/180)*angleSun)  , 1.0};
         	//  Draw light position as ball (still no lighting here)
         	glColor3f(1,1,1);
         	drawSun(coordinates[0],coordinates[1],coordinates[2] , 0.2);
@@ -1130,10 +1141,9 @@ void display()
 //	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawCrack( -100, -200,40,20,20,20,0,texture);
-
+	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
 	ErrCheck("Display");
 	glFlush();
-
    	glutSwapBuffers();
 }
 
@@ -1232,7 +1242,8 @@ int main(int argc, char *argv[])
 	texture[13]=LoadTexBMP("textures/plane_small.bmp");
 	texture[14]=LoadTexBMP("textures/building_bitmap_image.bmp");
 	texture[15]=LoadTexBMP("textures/BrokenGlass.bmp");
-	texture[16]=LoadTexBMP("textures/ussr_flag.bmp");;
+	texture[16]=LoadTexBMP("textures/ussr_flag.bmp");
+	texture[17]=LoadTexBMP("textures/nazi_flag.bmp");
 
         /*glutMainLoop enters the GLUT event processing loop*/
         glutMainLoop();
