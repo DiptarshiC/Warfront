@@ -1317,7 +1317,7 @@ void display()
         	float coordinates[]  = {distance*cos((PI/180)*azhimuth), distance*sin((PI/180)*azhimuth), light_elevation, 1.0};
         	//  Draw light position as ball (still no lighting here)
         	glColor3f(1,1,1);
-//        	drawSun(coordinates[0],coordinates[1],coordinates[2] , 0.2);
+        	drawSun(coordinates[0],coordinates[1],coordinates[2] , 0.2);
 
 		//  OpenGL should normalize normal vectors
         	glEnable(GL_NORMALIZE);
