@@ -94,6 +94,10 @@ double widht2height = 1.0;
 int Field_of_View = 50;
 double dimension = 20.0;   //  Size of world
 
+int angleSun = 0;
+
+
+
 int smoothness  =	1;  	/* Smooth/Flat shading*/
 int locality	=	0; 	/*Locality*/
 int emission	=	0; 	/*Intensity of Emission*/
@@ -273,6 +277,9 @@ void idle()
 	planeCoordinateZ  += 0.8*sin((PI/180)*(roll));
 	planeCoordinateY  += 0.8*cos((PI/180)*(pitch));
 	planeCoordinateX  -= 0.8*sin((PI/180)*(pitch));
+
+	angleSun += 1;
+	angleSun = angleSun % 360;
 
 
    //  Tell GLUT it is necessary to redisplay the scene
@@ -753,26 +760,6 @@ void char_input(unsigned char key,int x, int y)
 }
 
 /**
-*@func:		drawPieceofWall
-*
-*@description:
-*
-*@params:	double x, double y, double z, double delta_x, double delta_y, double delta_z
-*
-*@return:	void
-*
-*/
-
-void drawPieceofWall(double x, double y, double z, double delta_x, double delta_y, double delta_z)
-{
-
-
-
-
-
-}
-
-/**
 *@func:         drawWall
 *
 *@description:  
@@ -1006,9 +993,9 @@ void display()
 {
 
 
-	double turret_elevation_lateral_abs = (turret_elevation_lateral > 90 )?(180 - turret_elevation_lateral):(turret_elevation_lateral_abs);
+//	double turret_elevation_lateral_abs = (turret_elevation_lateral > 90 )?(180 - turret_elevation_lateral):(turret_elevation_lateral_abs);
 
-	//glEnable(GL_CULL_FACE); 
+//	glEnable(GL_CULL_FACE); 
 
    	/*Erase the window and the depth buffer*/
    	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
@@ -1099,10 +1086,13 @@ void display()
         	float Diffusion[]   = {0.01*diffuse_intensity ,0.01*diffuse_intensity ,0.01*diffuse_intensity ,1.0};
         	float Specularity[]  = {0.01*specular_intensity,0.01*specular_intensity,0.01*specular_intensity,1.0};
         	//  Light position
-        	float coordinates[]  = {distance*cos((PI/180)*azhimuth), distance*sin((PI/180)*azhimuth), light_elevation, 1.0};
+//        	float coordinates[]  = {distance*cos((PI/180)*azhimuth), distance*sin((PI/180)*azhimuth), light_elevation, 1.0};
+		float coordinates[]  = { 2000 * cos((PI/180)*angleSun)  , 0  , 2000 * sin((PI/180)*angleSun)  , 1.0};
         	//  Draw light position as ball (still no lighting here)
         	glColor3f(1,1,1);
         	drawSun(coordinates[0],coordinates[1],coordinates[2] , 0.2);
+//		drawSun(2000 * cos((PI/180)*angleSun),0,2000 * sin((PI/180)*angleSun), 0.2);
+
 
 		//  OpenGL should normalize normal vectors
         	glEnable(GL_NORMALIZE);
