@@ -15,7 +15,7 @@ that shall allow you to navigate the scene.
 
 ## How to use the Mouse
 
-Hit the left mouse button to fire a missile while in plane or tank. Note, try not to hit the building while you are flying the 
+Click the left mouse button to fire a missile while in plane or tank. Note, try not to hit the building while you are flying the 
 plane.To align the direction of the tank turret, right click on the screen while aligning your mouse pointer accordingly.This
 shall help you aim.
 
