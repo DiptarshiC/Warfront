@@ -95,6 +95,7 @@ int Field_of_View = 50;
 double dimension = 20.0;   //  Size of world
 
 int angleSun = 0;
+double fogAngle = 0;
 
 int smoothness  =	1;  	/* Smooth/Flat shading*/
 int locality	=	0; 	/*Locality*/
@@ -288,6 +289,7 @@ void idle()
 
 	angleSun += 1;
 	angleSun = angleSun % 360;
+//	fogAngle += 1;
 
 
    //  Tell GLUT it is necessary to redisplay the scene
@@ -825,7 +827,125 @@ void drawWall(double x, double y, double z,double delta_x, double delta_y, doubl
         glPopMatrix();
 }
 
-/**
+/***********************************************drawFog()********************************************
+*@func:		drawFog
+*
+*@description:	
+*
+*@params:	double x,double y,double z,double delta_x,double delta_y,double delta_z, double fogAngle
+*
+*@return:	void
+*
+******************************************************************************************************/
+
+void drawFog(double x,double y,double z,double delta_x,double delta_y,double delta_z, double fogAngle)
+{
+
+	GLfloat density = 0.3;						/* set the density to 0.3  			*/
+	GLfloat fogColor[4] = {0.5, 0.5, 0.5, 1.0};			/* set the for color to grey  			*/
+        glPushMatrix();
+        //  Offset
+        glTranslated(x,y,z);
+	glRotated(fogAngle,1,0,0);
+        glRotated(fogAngle,0,1,0);
+	glRotated(fogAngle,0,0,1);
+
+        glScaled(delta_x,delta_y,delta_z);
+	glEnable (GL_DEPTH_TEST); 					/* enable the depth testing 			*/
+	glEnable (GL_FOG); 						/* enable the fog 				*/
+	glFogi (GL_FOG_MODE, GL_EXP2); 					/* set the fog mode to GL_EXP2 			*/
+	glFogfv (GL_FOG_COLOR, fogColor); 				/* set the fog color toour color chosen above	*/
+	glFogf (GL_FOG_DENSITY, density);				/* set the density to the value above           */
+	glHint (GL_FOG_HINT, GL_NICEST);				/* set the fog to look the nicest               */
+
+
+        //  Cube
+        glBegin(GL_QUADS);
+	glColor3ub(150,150,255);
+        //  Front
+        glNormal3f(0, 0, +1);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1, 1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,-1, 1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1, 1);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,+1, 1);
+        glEnd();
+        glBegin(GL_QUADS);
+        //  Back
+        glNormal3f(0, 0, -1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,-1,-1);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1,-1);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,+1,-1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1,-1);
+        glEnd();
+        glBegin(GL_QUADS);
+        //  Right
+        glNormal3f(+1, 0, 0);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(+1,-1,+1);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(+1,-1,-1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,+1,-1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1,+1);
+        glEnd();
+	 //  Left
+        glBegin(GL_QUADS);
+        glNormal3f(-1, 0, 0);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1,-1);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,-1,+1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(-1,+1,+1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(-1,+1,-1);
+        glEnd();
+        //  Top
+        glBegin(GL_QUADS);
+        glNormal3f( 0,+1, 0);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,+1,+1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,+1,+1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,+1,-1);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,+1,-1);
+        glEnd();
+        //  Bottom
+        glBegin(GL_QUADS);
+        glNormal3f(0, -1, 0);
+        glTexCoord2f(0.0, 0.0);
+        glVertex3f(-1,-1,-1);
+        glTexCoord2f(1.0, 0.0);
+        glVertex3f(+1,-1,-1);
+        glTexCoord2f(1.0, 1.0);
+        glVertex3f(+1,-1,+1);
+        glTexCoord2f(0.0, 1.0);
+        glVertex3f(-1,-1,+1);
+        //  End
+        glEnd();
+        //  Undo transofrmations
+        glPopMatrix();
+	glDisable(GL_TEXTURE_2D);
+	ErrCheck("drawFog");
+//	glDisable (GL_DEPTH_TEST);                                       /* enable the depth testing                     */
+        glDisable (GL_FOG);      					/* Disabling fog feature 			*/
+}
+
+
+
+
+/******************************************drawSkyBox()*********************************************************************
 *@func:         DrawSkyBox
 *
 *@description:  A program that helps us conmpute the vertices using cosine sine functions that inturn helps us render shapes
@@ -834,7 +954,7 @@ void drawWall(double x, double y, double z,double delta_x, double delta_y, doubl
 *
 *@return:       void
 *
-*/
+*******************************************************************************************************************************/
 
 void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
@@ -928,16 +1048,16 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 	ErrCheck("Skybox");
 }
 
-/**
+/************************************************drawSurface()***************************************
 *@func:		drawSurface
 *
-*@description:	
+*@description:
 *
 *@params:	double x. double y, double Z, double delta_x, double delta_y, double delta_z)
 *
 *@return:	void
 *
-*/
+******************************************************************************************************/
 
 void drawSurface(double x, double y, double z, double delta_x, double delta_y, double delta_z)
 {
@@ -956,7 +1076,7 @@ void drawSurface(double x, double y, double z, double delta_x, double delta_y, d
 	glPopMatrix();
 }
 
-/**
+/**********************************************drawSun()***************************************************
 *@func:		drawSun
 *
 *@description:	draws a sun
@@ -965,7 +1085,7 @@ void drawSurface(double x, double y, double z, double delta_x, double delta_y, d
 *
 *@return:	void
 *
-*/
+************************************************************************************************************/
 
 void drawSun(double x,double y,double z,double r)
 {
@@ -1042,6 +1162,7 @@ void display()
 	gluLookAt(0, 0, 0, 1, 1 , 1, 1, 0, 0);
 
 	drawSkybox(0,0,0,50000,50000,50000,0);
+	drawFog(0,0,0,50000,50000,50000,fogAngle);
 	glPopMatrix();
 	ErrCheck("After Skybox");
 
