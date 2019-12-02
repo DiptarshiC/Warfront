@@ -32,6 +32,6 @@ from anxiety disorder. Wish me luck friends
 
 ## References
 
-Many to come. I have just started.
+All the basic shapes have been made by Professor. 
 
 
