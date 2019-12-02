@@ -8,6 +8,14 @@ the Nazi Building. You can fire missiles while you are riding the tank and fire 
 the plane. If you are flying the plane and hit the building, you lose the game. While flying the plane, try 
 firing directly at the building. Avoid head on collision as it will kill the player.
 
+## How to play
+
+The game begins in the flight mode. You can change from flight mode into plane mode. I have added a first person mode
+that shall allow you tio navigate the scene.
+
+Hit the mouse button to fire a missile while in plane or tank. Note, try not to hit the building while you are flying the 
+plane.
+
 
 
 
@@ -47,12 +55,6 @@ firing directly at the building. Avoid head on collision as it will kill the pla
 | J | Decrease the shine |
 | L | Toggle for Light Mode on or off |
 | O | Stop or move the light source |
-| K | Increase the elevation of the light source |
-| N | Decrease the elevation of the light source |
-| Y | Increase the azhimuth |
-| U | Decrease the azhimuth |
-
-
 
 ## Directory Structure
 
