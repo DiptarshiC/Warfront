@@ -89,6 +89,7 @@ Press 'L' on the keyboard and start. The default mode is the plane.
 **The steps to build this project are as follows**
 
 1. run "make"
+2. run "./War"
 
 **Command to clean the executable**
 make clean
