@@ -3,15 +3,15 @@
 
 ## Objective
 
-I am creating a scene in which you can switch between a Airplane and a Tank. Your objective is to destroy
-the Nazi Building. You can fire missiles while you are riding the tank and fire missiles as your are flying
+I am creating a scene in which you can switch between an Airplane and a Tank. Your objective is to destroy
+the Nazi building. You can fire missiles while you are riding the tank and fire missiles as your are flying
 the plane. If you are flying the plane and hit the building, you lose the game. While flying the plane, try 
-firing directly at the building. Avoid head on collision as it will kill the player.
+firing directly at the building. Avoid head-on collision as it will kill the player.
 
 ## How to play
 
 The game begins in the flight mode. You can change from flight mode into plane mode. I have added a first person mode
-that shall allow you tio navigate the scene.
+that shall allow you to navigate the scene.
 
 ## How to usw the Mouse
 
@@ -19,8 +19,8 @@ Hit the left mouse button to fire a missile while in plane or tank. Note, try no
 plane.To align the direction of the tank turret, right click on the screen while aligning your mouse pointer accordingly.This
 shall help you aim.
 
-In the flight mode, use the numpad. '8' and '2' shall increase and decrease the roll of the flight
-'4' and '6' shall turn the flight left or right
+In the flight mode, use the numpad. '8' and '2' shall increase and decrease the roll of the flight respectively.
+'4' and '6' shall turn the flight left or right respectively.
 
 ## Steps to begin the game
 
@@ -35,7 +35,7 @@ Press 'L' on the keyboard and start. The default mode is the plane.
 | tank | Completed |
 | Plane | Completed |
 | Wall | Completed |
-| Barbwire | Compeleted  |
+| Barbedwire | Compeleted  |
 | Firing | Completed |
 | Lighting | Completed |
 | Textures | Remaining to be done on the building top surface, tank and Walls  |
