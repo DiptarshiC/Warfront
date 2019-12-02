@@ -89,7 +89,7 @@ double yaw = 0;
 double roll = 0;
 double pitch = 0;
 
-int displayMode = 2;
+int displayMode = 3;
 double widht2height = 1.0;
 int Field_of_View = 50;
 double dimension = 20.0;   //  Size of world
@@ -108,7 +108,7 @@ int shine = 0;			/* Value of shine in power*/
 float Shine = 1;		/* Value of shine*/
 int azhimuth = 90;		/* azhimuth of light*/
 float light_elevation = 0.0;	/* Elevation of light*/
-int light = 1;			/* Light option kept on by default*/
+int light = 0;			/* Light option kept on by default*/
 int distance = 18;		/* Distance of the light source*/
 int unit_step = 1;		/* One unit of increment or deceremnet*/
 int move = 1;       		/*  Move light */
@@ -208,9 +208,9 @@ double Cy;
 *
 *@description:
 *
-*@param:
+*@param:	void
 *
-*@return:
+*@return:	void
 *
 *
 */
@@ -248,9 +248,9 @@ void cannonFire()
 *
 *@description:	
 *
-*@params:	
+*@params:	void
 *
-*@return:	
+*@return:	void
 *
 */
 
@@ -298,11 +298,11 @@ void idle()
 }
 
 /**
-*@func:changeTurretElevation
+*@func:		changeTurretElevation
 *
 *@description:
 *
-*@params:
+*@params:	double mouseXCoordinate, double mouseYCoordinate
 *
 *@return: void
 *
@@ -589,29 +589,38 @@ void char_input(unsigned char key,int x, int y)
 
 		case 'm':       case 'M':
 
+
                 if( displayMode == 0)
 		{
 			displayMode =1;		/* If the mode is 0 , make it 1*/
+			light = 1;
 		}
 
 		else if( displayMode == 1)
 		{
 		      	displayMode = 2;	/* If the mode is 1, make it 0*/
+			light = 1;
 		}
 
 		else if( displayMode == 2)
                 {
+
                         displayMode = 3;                /* If the mode is 2, make it back to 0*/
+			light = 1;
                 }
 
 		else if( displayMode == 3)
                 {
+
                         displayMode = 4;                /* If the mode is 2, make it back to 0*/
+			light = 1;
                 }
 
 		else if( displayMode == 4)
                 {
+
                         displayMode = 0;                /* If the mode is 2, make it back to 0*/
+			light = 1;
                 }
 
 

@@ -20,6 +20,9 @@ shall help you aim.
 In the flight mode, use the numpad. '8' and '2' shall increase and decrease the roll of the flight
 '4' and '6' shall turn the flight left or right
 
+## Steps to begin the game
+
+Press 'L' on the keyboard and start. The default mode is the plane.
 
 
 ## Features and their status
