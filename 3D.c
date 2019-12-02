@@ -96,12 +96,10 @@ double dimension = 20.0;   //  Size of world
 
 int angleSun = 0;
 
-
-
 int smoothness  =	1;  	/* Smooth/Flat shading*/
 int locality	=	0; 	/*Locality*/
 int emission	=	0; 	/*Intensity of Emission*/
-int ambient_intensity = 10; 	/* Ambient intensity*/
+int ambient_intensity = 25; 	/* Ambient intensity*/
 int diffuse_intensity = 100;	/*Diffusion intensity*/
 int specular_intensity= 0;	/*Specular intensity*/
 int shine = 0;			/* Value of shine in power*/
@@ -112,7 +110,6 @@ int light = 0;			/* Light option kept on by default*/
 int distance = 18;		/* Distance of the light source*/
 int unit_step = 1;		/* One unit of increment or deceremnet*/
 int move = 1;       		/*  Move light */
-
 int event_flag = 0;
 
 unsigned int texture[18];
@@ -324,6 +321,7 @@ void changeTurretElevation( double mouseXCoordinate, double mouseYCoordinate)
 
 
 }
+
 /**
 *@func:		mouse_button_detect
 *
@@ -593,34 +591,38 @@ void char_input(unsigned char key,int x, int y)
                 if( displayMode == 0)
 		{
 			displayMode =1;		/* If the mode is 0 , make it 1*/
-			light = 1;
+//			light = 1;
 		}
 
 		else if( displayMode == 1)
 		{
 		      	displayMode = 2;	/* If the mode is 1, make it 0*/
-			light = 1;
+
 		}
 
 		else if( displayMode == 2)
                 {
 
                         displayMode = 3;                /* If the mode is 2, make it back to 0*/
-			light = 1;
+			printf(" You switched to flight mode \n");
                 }
 
 		else if( displayMode == 3)
                 {
 
                         displayMode = 4;                /* If the mode is 2, make it back to 0*/
-			light = 1;
+			printf(" You switched to first person view mode \n");
+
+
                 }
 
 		else if( displayMode == 4)
                 {
 
-                        displayMode = 0;                /* If the mode is 2, make it back to 0*/
-			light = 1;
+                        displayMode = 2;                /* If the mode is 2, make it back to 0*/
+			printf(" You switched to tank mode \n");
+
+
                 }
 
 
