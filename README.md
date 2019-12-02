@@ -16,7 +16,8 @@ that shall allow you tio navigate the scene.
 Hit the mouse button to fire a missile while in plane or tank. Note, try not to hit the building while you are flying the 
 plane.
 
-
+In the flight mode, use the numpad. '8' and '2' shall increase and decrease the roll of the flight
+'4' and '6' shall turn the flight left or right
 
 
 ## Goals
@@ -38,10 +39,14 @@ plane.
 
 | Key | Effect |
 | ---- |---- |
-| &uarr; | Move in forward in flight/tank mode. Alternatively, move forward in first person mode |
-| &darr; | Move in backwardin flight/tank mode. Alternatively, move backward in first person mode |
+| &uarr; | Move in forward in tank mode. Alternatively, move forward in first person mode |
+| &darr; | Move in backwardin tank mode. Alternatively, move backward in first person mode |
 | &larr; | Turn in left in flight/tank/first person mode |
 | &rarr; | Turn in right in flight/tank/first person mode  |
+| 8 | To increase roll in flight mode |
+| 2 | To decrease roll in flight mode |
+| 4 | To turn left in flight mode  |
+| 6 | To turn right in flight mode |
 | M | Toggle Mode between different views |
 | A | Increase the Ambient intensity |
 | Z | Decrease the Ambient intensity |
