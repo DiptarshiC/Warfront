@@ -24,7 +24,7 @@ In the flight mode, use the numpad. '8' and '2' shall increase and decrease the 
 
 ## Features and their status
 
-| Key | Effect |
+| Feature | Status of Completion |
 | ---- |---- |
 | tank | Completed |
 | Plane | Completed |
@@ -32,21 +32,9 @@ In the flight mode, use the numpad. '8' and '2' shall increase and decrease the 
 | Barbwire | Compeleted  |
 | Firing | Completed |
 | Lighting | Completed |
-| 4 | To turn left in flight mode  |
-| 6 | To turn right in flight mode |
-| M | Toggle Mode between different views |
-| A | Increase the Ambient intensity |
-| Z | Decrease the Ambient intensity |
-| S | Increase the specular intensity |
-| X | Decrease in specular intensity |
-| D | Increase the diffusion intensity |
-| C | Decrease the diffusion intensity |
-| E | Increase the emission |
-| R | Decrease the emission |
-| H | Increase the shine |
-| J | Decrease the shine |
-| L | Toggle for Light Mode on or off |
-| O | Stop or move the light source |
+| Textures | Remaining to be done on the building top surface, tank and Walls  |
+| Collision Detection | Done betweeen the tank and the building. Remaining between the flight and the buildings and the walls |
+| Damage effect on the building | Remaining |
 
 ## Key Bindings
 
@@ -54,8 +42,8 @@ In the flight mode, use the numpad. '8' and '2' shall increase and decrease the 
 | ---- |---- |
 | &uarr; | Move in forward in tank mode. Alternatively, move forward in first person mode |
 | &darr; | Move in backwardin tank mode. Alternatively, move backward in first person mode |
-| &larr; | Turn in left in flight/tank/first person mode |
-| &rarr; | Turn in right in flight/tank/first person mode  |
+| &larr; | Turn in left in tank/first person mode |
+| &rarr; | Turn in right in tank/first person mode  |
 | 8 | To increase roll in flight mode |
 | 2 | To decrease roll in flight mode |
 | 4 | To turn left in flight mode  |
