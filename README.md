@@ -61,6 +61,31 @@ In the flight mode, use the numpad. '8' and '2' shall increase and decrease the 
 | L | Toggle for Light Mode on or off |
 | O | Stop or move the light source |
 
+## Platform information
+
+#### Operating system           : Linux (Ubuntu)
+#### Processor Architecture     : Intel X86/64
+
+## Software Requirements
+
+#### 1. GNU (Make), Compiler toolchain
+#### 2. OpenGL graphics library
+
+## Steps to install OpenGL and build this project
+
+**The steps to install OpenGL on linux (ubuntu) are as follows**
+
+1. run "sudo apt install freeglut3-dev"
+2. run "sudo apt install binutils-gold g++ cmakelibglew-dev g++ mesa-common-dev build-essential libglew1.5-dev libglm-dev"
+3. run "sudo apt install mesa-utils"
+
+**The steps to build this project are as follows**
+
+1. run "make"
+
+**Command to clean the executable**
+make clean
+
 ## Directory Structure
 
 Here is the directory structure of my project folder
