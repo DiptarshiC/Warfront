@@ -106,6 +106,6 @@ Here is the directory structure of my project folder
 
 ## References
 
-All the basic shapes have been made by Professor. 
+All the basic_shapes.c have been borrowed from  Professor's code. 
 
 
