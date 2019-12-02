@@ -377,9 +377,11 @@ void Plane(double x, double y, double z, double delta_x, double delta_y, double 
 	glRotated(roll,COS(pitch) ,SIN(pitch),0);
 //        glRotated(yaw,SIN(pitch),COS(pitch),0);
         glRotated(pitch,0,0,1);
-
-
         glScaled(delta_x,delta_y,delta_z);
+
+	/* Now draswing the cockpit*/
+	glColor3ub(175,175,175);
+	drawSphere(0, 0, 0.2, 0.7, 0.7,0.7);
 
 	glColor3ub(255,255,0);
 	drawSphere(-2, 3.5 + blast_rad, 0.1, blast_rad , blast_rad , blast_rad ); /* Fireball out of the left turret*/
