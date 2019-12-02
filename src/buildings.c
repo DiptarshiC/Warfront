@@ -389,21 +389,25 @@ void drawCrack(double x, double y, double z,double delta_x, double delta_y, doub
 void drawFlag(double x, double y, double z, double delta_x, double delta_y, double delta_z,int th, int textures[])
 {
 
+	int mode = 1;
 	glPushMatrix();
 	glTranslated(x, y,z);
 	glScaled(delta_x, delta_y,delta_z);
 	glRotated(th,0,0,1);
 	glEnable(GL_TEXTURE_2D);
 	float borderColor[] = { 1.0f, 0.0f, 0.0f, 0.0f };
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);  
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);  
+	glTexEnvi(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,mode?GL_REPLACE:GL_MODULATE);
 	glBindTexture(GL_TEXTURE_2D,textures[17]);
 	glBegin(GL_QUADS);
 	glColor3ub(255,0,0);
-	glTexCoord2f(0,0);glVertex3f(0,0,0);
-	glTexCoord2f(1,0);glVertex3f(3,0,0);
-	glTexCoord2f(0,1);glVertex3f(0,0,2);
-	glTexCoord2f(1,1);glVertex3f(3,0,2);
+	glTexCoord2f(0,0);glVertex3f(+1.0,0,-1.0);
+	glTexCoord2f(1,0);glVertex3f(-1.0,0,-1.0);
+	glTexCoord2f(1,1);glVertex3f(-1.0,0,+1.0);
+	glTexCoord2f(0,1);glVertex3f(+1.0,0,+1.0);
 	glEnd();
 	glPopMatrix();
 
