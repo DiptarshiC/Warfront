@@ -83,7 +83,7 @@ int tankRotationAngle  =0;
 
 double planeCoordinateX = 0;
 double planeCoordinateY = -450;
-double planeCoordinateZ = 90;
+double planeCoordinateZ = 120;
 
 double yaw = 0;
 double roll = 0;
