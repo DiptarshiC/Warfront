@@ -13,7 +13,7 @@ firing directly at the building. Avoid head-on collision as it will kill the pla
 The game begins in the flight mode. You can change from flight mode into plane mode. I have added a first person mode
 that shall allow you to navigate the scene.
 
-## How to usw the Mouse
+## How to use the Mouse
 
 Hit the left mouse button to fire a missile while in plane or tank. Note, try not to hit the building while you are flying the 
 plane.To align the direction of the tank turret, right click on the screen while aligning your mouse pointer accordingly.This
