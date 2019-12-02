@@ -13,31 +13,44 @@ firing directly at the building. Avoid head on collision as it will kill the pla
 The game begins in the flight mode. You can change from flight mode into plane mode. I have added a first person mode
 that shall allow you tio navigate the scene.
 
-Hit the mouse button to fire a missile while in plane or tank. Note, try not to hit the building while you are flying the 
-plane.
+Hit the left mouse button to fire a missile while in plane or tank. Note, try not to hit the building while you are flying the 
+plane.To align the direction of the tank turret, right click on the screen while aligning your mouse pointer accordingly.This
+shall help you aim.
 
 In the flight mode, use the numpad. '8' and '2' shall increase and decrease the roll of the flight
 '4' and '6' shall turn the flight left or right
 
 
-## Goals
 
-1. To make stuff look as authentic as possible
+## Features and their status
 
-2. To add as much as detail as possible
-
-3. To make things look real
-
-4. To add some music if possible
-
-5. To make it bright and colorful and to add to make the user feel
-
-## Stretch Goals
-
+| Key | Effect |
+| ---- |---- |
+| tank | Completed |
+| Plane | Completed |
+| Wall | Completed |
+| Barbwire | Compeleted  |
+| Firing | Completed |
+| Lighting | Completed |
+| 4 | To turn left in flight mode  |
+| 6 | To turn right in flight mode |
+| M | Toggle Mode between different views |
+| A | Increase the Ambient intensity |
+| Z | Decrease the Ambient intensity |
+| S | Increase the specular intensity |
+| X | Decrease in specular intensity |
+| D | Increase the diffusion intensity |
+| C | Decrease the diffusion intensity |
+| E | Increase the emission |
+| R | Decrease the emission |
+| H | Increase the shine |
+| J | Decrease the shine |
+| L | Toggle for Light Mode on or off |
+| O | Stop or move the light source |
 
 ## Key Bindings
 
-| Key | Effect |
+| Features| Status |
 | ---- |---- |
 | &uarr; | Move in forward in tank mode. Alternatively, move forward in first person mode |
 | &darr; | Move in backwardin tank mode. Alternatively, move backward in first person mode |
