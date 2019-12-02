@@ -82,8 +82,8 @@ double tankCoordinateY = -450;
 int tankRotationAngle  =0;
 
 double planeCoordinateX = 0;
-double planeCoordinateY = -450;
-double planeCoordinateZ = 120;
+double planeCoordinateY = -700;
+double planeCoordinateZ = 335;
 
 double yaw = 0;
 double roll = 0;
@@ -289,6 +289,7 @@ void idle()
 
 	angleSun += 1;
 	angleSun = angleSun % 360;
+	printf("Altitude of the plane %f\n ",planeCoordinateZ);
 //	fogAngle += 1;
 
 
