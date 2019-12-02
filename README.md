@@ -26,68 +26,37 @@ firing directly at the building. Avoid head on collision as it will kill the pla
 ## Stretch Goals
 
 
+## Key Bindings
+
+| Key | Effect |
+| ---- |---- |
+| &uarr; | Move in forward in flight/tank mode. Alternatively, move forward in first person mode |
+| &darr; | Move in backwardin flight/tank mode. Alternatively, move backward in first person mode |
+| &larr; | Turn in left in flight/tank/first person mode |
+| &rarr; | Turn in right in flight/tank/first person mode  |
+| M | Toggle Mode between different views |
+| A | Increase the Ambient intensity |
+| Z | Decrease the Ambient intensity |
+| S | Increase the specular intensity |
+| X | Decrease in specular intensity |
+| D | Increase the diffusion intensity |
+| C | Decrease the diffusion intensity |
+| E | Increase the emission |
+| R | Decrease the emission |
+| H | Increase the shine |
+| J | Decrease the shine |
+| L | Toggle for Light Mode on or off |
+| O | Stop or move the light source |
+| K | Increase the elevation of the light source |
+| N | Decrease the elevation of the light source |
+| Y | Increase the azhimuth |
+| U | Decrease the azhimuth |
+
+
 
 ## Directory Structure
 
 Here is the directory structure of my project folder
-
-Warfront/
-.
-├── 3D.c
-├── CSCIx229.a
-├── CSCIx229.h
-├── Makefile
-├── README.md
-├── War
-├── War.o
-├── basic_shapes.o
-├── buildings.o
-├── errcheck.c
-├── errcheck.o
-├── fatal.c
-├── fatal.o
-├── headers
-│   ├── README.md
-│   ├── basic_shapes.h
-│   ├── buildings.h
-│   └── vehicles.h
-├── loadtexbmp.c
-├── loadtexbmp.o
-├── main.c
-├── object.c
-├── object.o
-├── objects
-│   ├── Blank image.jpg
-│   ├── Blank.mtl
-│   └── Soldier.obj
-├── print.c
-├── print.o
-├── src
-│   ├── README.md
-│   ├── basic_shapes.c
-│   ├── buildings.c
-│   └── vehicles.c
-├── textures
-│   ├── BrokenGlass.bmp
-│   ├── brick.bmp
-│   ├── building_bitmap_image.bmp
-│   ├── copper.bmp
-│   ├── galvanized.bmp
-│   ├── grassy_tile.bmp
-│   ├── nazi_flag.bmp
-│   ├── pattern.bmp
-│   ├── plane.bmp
-│   ├── plane_small.bmp
-│   ├── rusted.bmp
-│   ├── ship.bmp
-│   ├── sky.bmp
-│   ├── smoke.bmp
-│   ├── squares.bmp
-│   ├── stars.bmp
-│   ├── ussr_flag.bmp
-│   ├── water.bmp
-│   └── wood.bmp
-└── vehicles.o
 
 
 
