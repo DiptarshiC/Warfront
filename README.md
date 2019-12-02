@@ -1,12 +1,12 @@
 # Warfront: My final project for CSCI 5229 Computer Graphics course
 
 
-## Introduction
+## Objective
 
-I am trying to create a scene, where a bunch of tanks, a bunch of planes, a bunch of soldiers, are trying
-to protect a building and they have to destroy it. It is difficult, especially the textures, the realism,
-but hey, atleast I am trying. Wish me luck throughout the project. I need tremendous motivation as I suffer
-from anxiety disorder. Wish me luck friends 
+I am creating a scene in which you can switch between a Airplane and a Tank. Your objective is to destroy
+the Nazi Building. You can fire missiles while you are riding the tank and fire missiles as your are flying
+the plane. If you are flying the plane and hit the building, you lose the game. While flying the plane, try 
+firing directly at the building. Avoid head on collision as it will kill the player.
 
 
 
@@ -24,6 +24,71 @@ from anxiety disorder. Wish me luck friends
 5. To make it bright and colorful and to add to make the user feel
 
 ## Stretch Goals
+
+
+
+## Directory Structure
+
+Here is the directory structure of my project folder
+
+Warfront/
+.
+├── 3D.c
+├── CSCIx229.a
+├── CSCIx229.h
+├── Makefile
+├── README.md
+├── War
+├── War.o
+├── basic_shapes.o
+├── buildings.o
+├── errcheck.c
+├── errcheck.o
+├── fatal.c
+├── fatal.o
+├── headers
+│   ├── README.md
+│   ├── basic_shapes.h
+│   ├── buildings.h
+│   └── vehicles.h
+├── loadtexbmp.c
+├── loadtexbmp.o
+├── main.c
+├── object.c
+├── object.o
+├── objects
+│   ├── Blank image.jpg
+│   ├── Blank.mtl
+│   └── Soldier.obj
+├── print.c
+├── print.o
+├── src
+│   ├── README.md
+│   ├── basic_shapes.c
+│   ├── buildings.c
+│   └── vehicles.c
+├── textures
+│   ├── BrokenGlass.bmp
+│   ├── brick.bmp
+│   ├── building_bitmap_image.bmp
+│   ├── copper.bmp
+│   ├── galvanized.bmp
+│   ├── grassy_tile.bmp
+│   ├── nazi_flag.bmp
+│   ├── pattern.bmp
+│   ├── plane.bmp
+│   ├── plane_small.bmp
+│   ├── rusted.bmp
+│   ├── ship.bmp
+│   ├── sky.bmp
+│   ├── smoke.bmp
+│   ├── squares.bmp
+│   ├── stars.bmp
+│   ├── ussr_flag.bmp
+│   ├── water.bmp
+│   └── wood.bmp
+└── vehicles.o
+
 
 
 
