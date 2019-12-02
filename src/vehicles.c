@@ -9,7 +9,7 @@
 
 
 
-/**
+/***************************************************drawTank()*************************************************************
 *@func: drawTank
 *
 *@description: Helps me a draw a tank. The trank looks like a Soviet Army tank from the 
@@ -26,7 +26,7 @@
 *
 *
 *@todo:         All the features are yet to be added. Just started working on the project
-*/
+********************************************************************************************************************************/
 
 
 #define         	PI              3.1415926
@@ -342,6 +342,28 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
         glPopMatrix();
 }
+
+
+
+/***************************************************drawTank()*************************************************************
+*@func: drawPlane
+*
+*@description: Helps me a draw a plane.
+*
+*
+*
+*
+*@params:       double x: Indicates the forward/backward translation units of the vehcile
+*               double y: Indicates the left/right translation unit of the vehicle
+*               double z: Indicates the up/ down translation unit of the vehicle
+*               double th: Indicates the amount by which you want the vehicle to turn
+*
+*@return:       int for now, later might change it to void
+*
+*
+*@todo:         All the features are yet to be added. Just started working on the project
+********************************************************************************************************************************/
+
 
 void Plane(double x, double y, double z, double delta_x, double delta_y, double delta_z, double yaw, double roll, double pitch, double blast_rad, int textures[])
 {

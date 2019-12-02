@@ -480,16 +480,16 @@ void drawCone(double radius,double height,double x1, double y1, double z1,double
         glPopMatrix();
 }
 
-/**
+/********************************************************drawCannon()*******************************************
 *@func:		drawCannon
 *
+*@description:	
 *
+*@params:	double x, double y, double z, double delta_x, double delta_y, double delta_z
 *
+*@return:	void
 *
-*
-*
-*
-*/
+****************************************************************************************************************/
 
 void drawCannon(double x, double y, double z, double delta_x, double delta_y, double delta_z)
 {
@@ -498,17 +498,16 @@ void drawCannon(double x, double y, double z, double delta_x, double delta_y, do
 
 }
 
-/**
+/********************************************drawTurret()********************************************************
+*@func:		drawTurret
 *
+*@description:	
 *
+*@param:	double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha,double FireBallRad
 *
+*@return:	void
 *
-*
-*
-*
-*
-*
-*/
+*********************************************************************************************************************/
 
 void drawTurret(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha,double FireBallRad)
 {
@@ -525,17 +524,16 @@ void drawTurret(double radius, double height,double x1, double y1, double z1,dou
 
 }
 
-/**
+/***************************************************************drawCycloid()************************************************
+*@func:			drawCycloid()
 *
+*@description:		
 *
+*@param:		double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha
 *
+*@return:		void
 *
-*
-*
-*
-*
-*
-*/
+***************************************************************************************************************************/
 
 void drawCycloid(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha)
 {
