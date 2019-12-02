@@ -50,6 +50,8 @@ Press 'L' on the keyboard and start. The default mode is the plane.
 | &darr; | Move in backwardin tank mode. Alternatively, move backward in first person mode |
 | &larr; | Turn in left in tank/first person mode |
 | &rarr; | Turn in right in tank/first person mode  |
+| + | To increase altitude in first-person mode |
+| - | To decrease altitude in first-person mode  |
 | 8 | To increase roll in flight mode |
 | 2 | To decrease roll in flight mode |
 | 4 | To turn left in flight mode  |
