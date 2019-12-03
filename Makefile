@@ -53,7 +53,7 @@ CSCIx229.a:fatal.o loadtexbmp.o print.o errcheck.o object.o
 # Link
 
 War:War.o CSCIx229.a basic_shapes.o vehicles.o buildings.o 
-	gcc -O3 -o $@ $^   $(LIBS)
+	gcc -O3 -o $@ $^   $(LIBS) `pkg-config --cflags --libs glib-2.0`
 
 #  Clean
 clean:

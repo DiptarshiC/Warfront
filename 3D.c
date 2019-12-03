@@ -207,6 +207,10 @@ double Cy;
 
 
 
+GArray *garray;
+int dipto = 10;
+
+
 #define LEN 8192  //  Maximum length of text string
 
 /**
@@ -1298,6 +1302,9 @@ void display()
 	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();
+
+	g_array_append_vals(garray, &(dipto),1);
+	printf(" Value of dipto is %d\n",dipto);
 }
 
 
@@ -1343,6 +1350,8 @@ void reshape(int width,int height)
 int main(int argc, char *argv[])
 {
 
+
+	garray = g_array_new (FALSE, FALSE, sizeof (int));
 
         /*Initialize using command line arguments*/
         glutInit(&argc, argv);
