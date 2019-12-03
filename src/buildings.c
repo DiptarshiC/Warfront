@@ -212,10 +212,10 @@ void drawNewWall(int texture[])
 	/* Drawing the left inner wall */
 	glBegin(GL_QUADS);
 	glNormal3f(1, 0, 0);
-	glTexCoord2f(0,40);glVertex3f(-1000,-1000,40);
+	glTexCoord2f(0,2000);glVertex3f(-1000,-1000,40);
         glTexCoord2f(0,0);glVertex3f(-1000,-1000,0);
         glTexCoord2f(2000,0);glVertex3f(-1000,1000,0);
-	glTexCoord2f(2000,40); glVertex3f(-1000,1000,40);
+	glTexCoord2f(2000,2000); glVertex3f(-1000,1000,40);
 	glEnd();
 
 	/* Drawing the right inner wall */
