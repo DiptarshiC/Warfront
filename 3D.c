@@ -62,8 +62,8 @@
 #define			COS(X)				cos((PI/180)*(X))
 #define			UPPER_ALTITUDE_LIMIT		335
 #define			LOWER_ALTITUDE_LIMIT		157
-
-
+#define                 LOWER_ALTITUDE_LIMIT_LEFT	-174
+#define                 LOWER_ALTITUDE_LIMIT_RIGHT      -174
 
 
 
@@ -87,7 +87,7 @@ double tankCoordinateX = 0;
 double tankCoordinateY = -450;
 int tankRotationAngle  =0;
 
-double planeCoordinateX = 0;
+double planeCoordinateX = -174;
 double planeCoordinateY = -700;
 double planeCoordinateZ = 157;
 
