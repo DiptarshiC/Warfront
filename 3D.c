@@ -63,7 +63,7 @@
 #define			UPPER_ALTITUDE_LIMIT		335
 #define			LOWER_ALTITUDE_LIMIT		157
 #define                 LOWER_ALTITUDE_LIMIT_LEFT	-174
-#define                 LOWER_ALTITUDE_LIMIT_RIGHT      -174
+#define                 LOWER_ALTITUDE_LIMIT_RIGHT      174
 
 
 
@@ -292,11 +292,18 @@ void idle()
 	planeCoordinateZ  += 0.8*sin((PI/180)*(roll));
 	planeCoordinateY  += 0.8*cos((PI/180)*(pitch));
 	planeCoordinateX  -= 0.8*sin((PI/180)*(pitch));
-	if( (planeCoordinateZ < LOWER_ALTITUDE_LIMIT) && (planeCoordinateX > -150 && planeCoordinateX < 150) && (planeCoordinateY > -200 && planeCoordinateX < 200))
+	if( (planeCoordinateZ < LOWER_ALTITUDE_LIMIT) && (planeCoordinateX > -150 && planeCoordinateX < 150) && (planeCoordinateY > -200 && planeCoordinateY < 200))
 	{
 		printf( "Plane crashed. Exit \n ");
 		exit(0);
 	}
+
+	if(( 150  <  planeCoordinateZ &&  planeCoordinateZ  < 335) && (( -174  <  planeCoordinateX  && planeCoordinateX  < 174  ) && ( -174  <  planeCoordinateY &&  planeCoordinateY  < 174)))
+        {
+                printf( "Plane crashed. Exit \n ");
+                exit(0);
+        }
+
 
 	angleSun += 1;
 	angleSun = angleSun % 360;
