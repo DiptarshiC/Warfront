@@ -34,7 +34,7 @@ buildings.o: src/buildings.c headers/buildings.h src/basic_shapes.c headers/basi
 	gcc -o buildings.o -c src/buildings.c  $(LIBS)
 
 War.o: 3D.c CSCIx229.h
-	gcc -o War.o -c 3D.c
+	gcc -o War.o -c  `pkg-config --cflags --libs glib-2.0`   3D.c
 fatal.o: fatal.c CSCIx229.h
 loadtexbmp.o: loadtexbmp.c CSCIx229.h
 print.o: print.c CSCIx229.h
