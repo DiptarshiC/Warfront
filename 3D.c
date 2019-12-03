@@ -58,8 +58,14 @@
 #define GL_NORMALNXY(x1,y1,z1,x2,y2,z2,x3,y3,z3)   glNormal3d( -(((y2-y1)*(z3-z2))-((z2-z1)*(y3-y2))), -(((z2-z1)*(x3-x2))-((x2-x1)*(z3-z2))),((x2-x1)*(y3-y2))-((y2-y1)*(x3-x2)))
 
 
-#define			SIN(X)		sin((PI/180)*(X))
-#define			COS(X)		cos((PI/180)*(X))
+#define			SIN(X)				sin((PI/180)*(X))
+#define			COS(X)				cos((PI/180)*(X))
+#define			UPPER_ALTITUDE_LIMIT		335
+#define			LOWER_ALTITUDE_LIMIT		157
+
+
+
+
 
 /* These are for orthogonal mode of projection*/
 
@@ -83,7 +89,7 @@ int tankRotationAngle  =0;
 
 double planeCoordinateX = 0;
 double planeCoordinateY = -700;
-double planeCoordinateZ = 335;
+double planeCoordinateZ = 157;
 
 double yaw = 0;
 double roll = 0;
