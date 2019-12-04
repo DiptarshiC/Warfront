@@ -295,6 +295,7 @@ void idle()
 	{
 		blast_rad = 0;
 	}
+	ambient_intensity = 25;
 	planeCoordinateZ  += 0.8*sin((PI/180)*(roll));
 	planeCoordinateY  += 0.8*cos((PI/180)*(pitch));
 	planeCoordinateX  -= 0.8*sin((PI/180)*(pitch));
@@ -313,7 +314,6 @@ void idle()
 
 	angleSun += 1;
 	angleSun = angleSun % 360;
-	printf("Altitude of the plane %f\n ",planeCoordinateZ);
 //	fogAngle += 1;
 
 
@@ -370,16 +370,19 @@ void mouse_button_detect(int button, int state, int x, int y)
 		case GLUT_LEFT_BUTTON:
 		switch(state)
 		{
+
 			case GLUT_DOWN:
 			if(tank_mode)
 			{
 			//	printf("Left mouse button clicked \n");
 				cannonFire();
+				ambient_intensity = 55;
 			//glutDisplayFunc(displayCrack);
 			}
 			if(flight_mode)
 			{
 				missileFire();
+				ambient_intensity = 55;
 			}
 			break;
 		}
@@ -1298,13 +1301,14 @@ void display()
 //	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawCrack( -100, -200,40,20,20,20,0,texture);
+//	drawClouds(0, 0, 400, 10, 10, 10);
 	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
 	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();
 
-	g_array_append_vals(garray, &(dipto),1);
-	printf(" Value of dipto is %d\n",dipto);
+//	g_array_append_vals(garray, &(dipto),1);
+//	printf(" Value of dipto is %d\n",dipto);
 }
 
 

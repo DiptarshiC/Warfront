@@ -574,3 +574,60 @@ void drawCycloid(double radius, double height,double x1, double y1, double z1,do
         glPopMatrix();
 }
 
+
+/***************************************************************drawCloud()************************************************
+*@func:                 drawCloud()
+*
+*@description:          
+*
+*@param:                
+*
+*@return:               void
+*
+***************************************************************************************************************************/
+
+void drawClouds(double x, double y, double z, double delta_x, double delta_y, double delta_z)
+{
+
+	glPushMatrix();
+        glTranslated(x,y,z);
+	glScaled(delta_x,delta_y,delta_z);
+	glColor3ub(200,200,200);
+	drawSphere(0, 0, 0, 2, 2, 2);
+	drawSphere(0, 0, 0.5, 1, 1, 1);
+	drawSphere(0, 0, 1.0, 2, 2, 2);
+	drawSphere(0, 0, 1.5, 1, 1, 1);
+	drawSphere(0.5, 0, 0, 2, 2, 2);
+        drawSphere(0.5, 0, 0, 1, 1, 1);
+        drawSphere(0.5, 0, 0, 2, 2, 2);
+        drawSphere(0.5, 0, 0, 1, 1, 1);
+	drawSphere(0, 0.5, 0, 2, 2, 2);
+        drawSphere(0, 0.5, 0, 1, 1, 1);
+        drawSphere(0, 0.5, 0, 2, 2, 2);
+        drawSphere(0, 0.5, 0, 1, 1, 1);
+
+	drawSphere(0, 0, 0, 2, 2, 2);
+        drawSphere(0, 0, -0.5, 1, 1, 1);
+        drawSphere(0, 0, -1.0, 2, 2, 2);
+        drawSphere(0, 0, -1.5, 1, 1, 1);
+        drawSphere(-0.5, 0, 0, 2, 2, 2);
+        drawSphere(-0.5, 0, 0, 1, 1, 1);
+        drawSphere(-0.5, 0, 0, 2, 2, 2);
+        drawSphere(-0.5, 0, 0, 1, 1, 1);
+        drawSphere(0, -0.5, 0, 2, 2, 2);
+        drawSphere(0, -0.5, 0, 1, 1, 1);
+        drawSphere(0, -0.5, 0, 2, 2, 2);
+        drawSphere(0, -0.5, 0, 1, 1, 1);
+
+	drawSphere(-1.5, 0, 0, 2, 2, 2);
+        drawSphere(-1.5, 0, 0, 1, 1, 1);
+        drawSphere(-1.5, 0, 0, 2, 2, 2);
+        drawSphere(-1.5, 0, 0, 1, 1, 1);
+
+	drawSphere(1.5, 0, 0, 2, 2, 2);
+        drawSphere(1.5, 0, 0, 1, 1, 1);
+        drawSphere(1.5, 0, 0, 2, 2, 2);
+        drawSphere(1.5, 0, 0, 1, 1, 1);
+	glPopMatrix();
+
+}
