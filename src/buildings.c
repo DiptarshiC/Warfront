@@ -412,3 +412,49 @@ void drawFlag(double x, double y, double z, double delta_x, double delta_y, doub
 	glPopMatrix();
 
 }
+
+
+/**********************************************drawSnowfall***************************************************
+*@func:         drawSnowfall
+*
+*@description:  A function that draws the flag. Can be used for the Nazi flag as well as the USSR one
+*
+*@prams:        double delta_x, double delta_y, double delta_z, int textures[]
+*
+*@return:       void
+*************************************************************************************************************/
+
+void drawSnowfall()
+{
+
+	int i;
+	glDisable(GL_LIGHTING);
+
+	glTranslatef(0,0,500);
+
+		glColor3f(1,1,1);
+		glBegin(GL_POINTS);
+		for(i=0;i<1000;i++)
+		{
+
+			glVertex3f(rand()%600,rand()%600,rand()%600);
+			glVertex3f(-rand()%600,rand()%600,rand()%600);
+			glVertex3f(-rand()%600,-rand()%600,rand()%600);
+			glVertex3f(rand()%600,-rand()%600,rand()%600);
+			glVertex3f(rand()%600,rand()%600,-rand()%600);
+			glVertex3f(-rand()%600,rand()%600,-rand()%600);
+			glVertex3f(-rand()%600,-rand()%600,-rand()%600);
+			glVertex3f(rand()%600,-rand()%600,-rand()%600);
+
+
+
+		}
+		glEnd();
+
+
+	glEnable(GL_LIGHTING);
+
+
+
+}
+

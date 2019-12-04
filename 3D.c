@@ -43,6 +43,7 @@
 
 
 
+int ast_pos[50][3];
 #define		PI		3.1415926
 #define		increment	10
 
@@ -205,11 +206,9 @@ double Cy;
   EZ = EZ + AZ * 0.1;
 */
 
-
-
 GArray *garray;
 int dipto = 10;
-
+void (*fptr)(double x, double y, double z, double delta_x, double delta_y, double delta_z);
 
 #define LEN 8192  //  Maximum length of text string
 
@@ -287,6 +286,10 @@ void idle()
    //  Elapsed time in seconds
    	double t = glutGet(GLUT_ELAPSED_TIME)/1000.0;
    	azhimuth = fmod(90*t,360.0);
+	for(int i=0;i<50;i++)
+	{
+		ast_pos[i][2] -= 1;
+	}
 	if(tank_mode)
 	{
 		FireBallRad = 0;
@@ -1094,7 +1097,8 @@ void drawSurface(double x, double y, double z, double delta_x, double delta_y, d
         glScaled(delta_x, delta_y, delta_z);
 	glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
-	glColor3ub(0,0,0);
+//	glColor3ub(0,0,0);
+	glColor4f(0.75294117647058823529411764705882,0.75294117647058823529411764705882,0.75294117647058823529411764705882,1.0);//silver
 	glNormal3f(0, 0, 1);
 	glVertex3f(1,1, 0);
 	glVertex3f(-1,1, 0);
@@ -1302,6 +1306,8 @@ void display()
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawCrack( -100, -200,40,20,20,20,0,texture);
 //	drawClouds(0, 0, 400, 10, 10, 10);
+	drawSnowfall();
+	drawASteroid(ast_pos);
 	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
 	ErrCheck("Display");
 	glFlush();
@@ -1356,6 +1362,7 @@ int main(int argc, char *argv[])
 
 
 	garray = g_array_new (FALSE, FALSE, sizeof (int));
+	initializAsteroids(ast_pos);
 
         /*Initialize using command line arguments*/
         glutInit(&argc, argv);

@@ -17,4 +17,6 @@ void drawCrack(double x, double y, double z,double delta_x, double delta_y, doub
 
 void drawFlag( double x, double y, double z,  double delta_x, double delta_y, double delta_z,int th, int textures[]);
 
+void drawSnowfall();
+
 #endif /*__BUILDINGS__H*/
