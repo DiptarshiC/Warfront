@@ -288,8 +288,11 @@ void idle()
    	azhimuth = fmod(90*t,360.0);
 	for(int i=0;i<50;i++)
 	{
+
 		ast_pos[i][2] -= 1;
+
 	}
+
 	if(tank_mode)
 	{
 		FireBallRad = 0;
@@ -299,9 +302,9 @@ void idle()
 		blast_rad = 0;
 	}
 	ambient_intensity = 25;
-	planeCoordinateZ  += 0.8*sin((PI/180)*(roll));
-	planeCoordinateY  += 0.8*cos((PI/180)*(pitch));
-	planeCoordinateX  -= 0.8*sin((PI/180)*(pitch));
+	planeCoordinateZ  += 2*sin((PI/180)*(roll));
+	planeCoordinateY  += 2*cos((PI/180)*(pitch));
+	planeCoordinateX  -= 2*sin((PI/180)*(pitch));
 	if( (planeCoordinateZ < LOWER_ALTITUDE_LIMIT) && (planeCoordinateX > -150 && planeCoordinateX < 150) && (planeCoordinateY > -200 && planeCoordinateY < 200))
 	{
 		printf( "Plane crashed. Exit \n ");
@@ -1308,6 +1311,7 @@ void display()
 //	drawClouds(0, 0, 400, 10, 10, 10);
 	drawSnowfall();
 	drawASteroid(ast_pos);
+
 	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
 	ErrCheck("Display");
 	glFlush();
