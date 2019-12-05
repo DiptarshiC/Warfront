@@ -127,7 +127,7 @@ int unit_step = 1;		/* One unit of increment or deceremnet*/
 int move = 1;       		/*  Move light */
 int event_flag = 0;
 
-unsigned int texture[18];
+unsigned int texture[19];
 int obj;			/* Variable to point to an object file*/
 
 /* These are for perspective mode of projection*/
@@ -310,17 +310,17 @@ void idle()
 		blast_rad = 0;
 	}
 	ambient_intensity = 25;
-	planeCoordinateZ  += 2*sin((PI/180)*(roll));
-	planeCoordinateY  += 2*cos((PI/180)*(pitch));
-	planeCoordinateX  -= 2*sin((PI/180)*(pitch));
+	planeCoordinateZ  += 3*sin((PI/180)*(roll));
+	planeCoordinateY  += 3*cos((PI/180)*(pitch));
+	planeCoordinateX  -= 3*sin((PI/180)*(pitch));
 
-	airplanes.z  += 2*sin((PI/180)*( airplanes.vertical_tilt  ));
-        airplanes.y  += 2*cos((PI/180)*( airplanes.lateral ));
-        airplanes.x  -= 2*sin((PI/180)*( airplanes.lateral ));
+	airplanes.z  += 3*sin((PI/180)*( airplanes.vertical_tilt  ));
+        airplanes.y  += 3*cos((PI/180)*( airplanes.lateral ));
+        airplanes.x  -= 3*sin((PI/180)*( airplanes.lateral ));
 
-	airplanes1.z  += 2*sin((PI/180)*( airplanes1.vertical_tilt  ));
-        airplanes1.y  += 2*cos((PI/180)*( airplanes1.lateral ));
-        airplanes1.x  -= 2*sin((PI/180)*( airplanes1.lateral ));
+	airplanes1.z  += 3*sin((PI/180)*( airplanes1.vertical_tilt  ));
+        airplanes1.y  += 3*cos((PI/180)*( airplanes1.lateral ));
+        airplanes1.x  -= 3*sin((PI/180)*( airplanes1.lateral ));
 
 //	airplanes.lateral = rand();
 	if( (planeCoordinateZ < LOWER_ALTITUDE_LIMIT) && (planeCoordinateX > -150 && planeCoordinateX < 150) && (planeCoordinateY > -200 && planeCoordinateY < 200))
@@ -1122,15 +1122,18 @@ void drawSurface(double x, double y, double z, double delta_x, double delta_y, d
 	glPushMatrix();
 	glTranslated(x, y, z);
         glScaled(delta_x, delta_y, delta_z);
-	glDisable(GL_TEXTURE_2D);
+//	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_TEXTURE_2D);
+        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
+	glBindTexture(GL_TEXTURE_2D,texture[18]);
 	glBegin(GL_QUADS);
 //	glColor3ub(0,0,0);
 	glColor4f(0.75294117647058823529411764705882,0.75294117647058823529411764705882,0.75294117647058823529411764705882,1.0);//silver
 	glNormal3f(0, 0, 1);
-	glVertex3f(1,1, 0);
-	glVertex3f(-1,1, 0);
-	glVertex3f(-1,-1, 0);
-        glVertex3f(1,-1, 0);
+	glTexCoord2f(2000.0, 2000.0);glVertex3f(1,1, 0);
+	glTexCoord2f(0, 2000.0);glVertex3f(-1,1, 0);
+	glTexCoord2f(0, 0);glVertex3f(-1,-1, 0);
+	glTexCoord2f(2000.0, 0.0);glVertex3f(1,-1, 0);
 	glEnd();
 	glPopMatrix();
 }
@@ -1321,11 +1324,10 @@ void display()
 	}
 
 
-//	drawWall(0, 0,0,1, 1, 1, 0);
+
 	drawNewWall(texture);
 
 	drawSurface(0,0, 0, 50000, 50000, 50000);
-//	drawBuilding(0,0,0,8,8,8);
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 	Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad,texture );
@@ -1336,10 +1338,11 @@ Plane(airplanes1.x, airplanes1.y,  airplanes1.z, airplanes1.delta_x, airplanes1.
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawCrack( -100, -200,40,20,20,20,0,texture);
 //	drawClouds(0, 0, 400, 10, 10, 10);
+	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
 	drawSnowfall();
 	drawASteroid(ast_pos);
 
-	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
+//	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
 	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();
@@ -1484,7 +1487,7 @@ int main(int argc, char *argv[])
 	texture[15]=LoadTexBMP("textures/BrokenGlass.bmp");
 	texture[16]=LoadTexBMP("textures/ussr_flag.bmp");
 	texture[17]=LoadTexBMP("textures/nazi_flag.bmp");
-
+	texture[18]=LoadTexBMP("textures/grassy_tile.bmp");
         /*glutMainLoop enters the GLUT event processing loop*/
         glutMainLoop();
 

@@ -19,4 +19,6 @@ void drawFlag( double x, double y, double z,  double delta_x, double delta_y, do
 
 void drawSnowfall();
 
+void drawHelipad();
+
 #endif /*__BUILDINGS__H*/
