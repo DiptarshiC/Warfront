@@ -23,7 +23,7 @@ typedef struct AIRPLANE_T
 	double vertical_tilt;
 	double lateral;
 	double blast_rad;
-	int textures[];
+	int textures[50];
 
 }AIRPLANE;
 
@@ -40,7 +40,7 @@ typedef struct TANK_T
         double vertical_tilt;
         double lateral;
         double blast_rad;
-        int textures[];
+        int textures[50];
 
 }TANK;
 

@@ -67,7 +67,7 @@ int ast_pos[50][3];
 #define			LOWER_ALTITUDE_LIMIT		157
 #define                 LOWER_ALTITUDE_LIMIT_LEFT	-174
 #define                 LOWER_ALTITUDE_LIMIT_RIGHT      174
-
+#define			NUMBER_OF_PLANES		2
 
 
 /* These are for orthogonal mode of projection*/
@@ -105,6 +105,11 @@ double dimension = 20.0;   //  Size of world
 
 int angleSun = 0;
 double fogAngle = 0;
+
+
+
+//AIRPLANE airplanes[NUMBER_OF_PLANES];
+//	AIRPLANE airplanes;
 
 int smoothness  =	1;  	/* Smooth/Flat shading*/
 int locality	=	0; 	/*Locality*/
@@ -210,6 +215,9 @@ GArray *garray;
 int dipto = 10;
 void (*fptr)(double x, double y, double z, double delta_x, double delta_y, double delta_z);
 
+ AIRPLANE airplanes;
+ AIRPLANE airplanes1;
+
 #define LEN 8192  //  Maximum length of text string
 
 /**
@@ -305,6 +313,16 @@ void idle()
 	planeCoordinateZ  += 2*sin((PI/180)*(roll));
 	planeCoordinateY  += 2*cos((PI/180)*(pitch));
 	planeCoordinateX  -= 2*sin((PI/180)*(pitch));
+
+	airplanes.z  += 2*sin((PI/180)*( airplanes.vertical_tilt  ));
+        airplanes.y  += 2*cos((PI/180)*( airplanes.lateral ));
+        airplanes.x  -= 2*sin((PI/180)*( airplanes.lateral ));
+
+	airplanes1.z  += 2*sin((PI/180)*( airplanes1.vertical_tilt  ));
+        airplanes1.y  += 2*cos((PI/180)*( airplanes1.lateral ));
+        airplanes1.x  -= 2*sin((PI/180)*( airplanes1.lateral ));
+
+//	airplanes.lateral = rand();
 	if( (planeCoordinateZ < LOWER_ALTITUDE_LIMIT) && (planeCoordinateX > -150 && planeCoordinateX < 150) && (planeCoordinateY > -200 && planeCoordinateY < 200))
 	{
 		printf( "Plane crashed. Exit \n ");
@@ -318,6 +336,9 @@ void idle()
         }
 
 
+        airplanes.z  += 2*sin((PI/180)*( airplanes.vertical_tilt  ));
+        airplanes.y  += 2*cos((PI/180)*( airplanes.lateral ));
+        airplanes.x  -= 2*sin((PI/180)*( airplanes.lateral ));
 	angleSun += 1;
 	angleSun = angleSun % 360;
 //	fogAngle += 1;
@@ -389,6 +410,9 @@ void mouse_button_detect(int button, int state, int x, int y)
 			{
 				missileFire();
 				ambient_intensity = 55;
+				airplanes.lateral = rand();
+				airplanes1.lateral = rand();
+
 			}
 			break;
 		}
@@ -1305,6 +1329,9 @@ void display()
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
 	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 	Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad,texture );
+Plane(airplanes.x, airplanes.y,  airplanes.z, airplanes.delta_x, airplanes.delta_y, airplanes.delta_z, airplanes.horizontal_tilt, airplanes.vertical_tilt,airplanes.lateral, airplanes.blast_rad, texture);
+Plane(airplanes1.x, airplanes1.y,  airplanes1.z, airplanes1.delta_x, airplanes1.delta_y, airplanes1.delta_z, airplanes1.horizontal_tilt, airplanes1.vertical_tilt,airplanes1.lateral, airplanes1.blast_rad, texture);
+
 //	drawCycloid(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawBarbedwire(4, 100,0,-450, 60,1,1,1,-90,150, 150,150,0);
 //	drawCrack( -100, -200,40,20,20,20,0,texture);
@@ -1365,8 +1392,44 @@ int main(int argc, char *argv[])
 {
 
 
-	garray = g_array_new (FALSE, FALSE, sizeof (int));
+//	garray = g_array_new (FALSE, FALSE, sizeof (int));
 	initializAsteroids(ast_pos);
+
+	/*
+
+	Now, I shall us the concept of designated initialization
+
+	to initialize the structures that contains planes. I shall
+
+	later do it for tanks. That way we shall have multiplayer games
+
+	*/
+
+
+	       airplanes.x			=	planeCoordinateX;
+               airplanes.y			=	700;
+               airplanes.z			=	157;
+               airplanes.delta_x		=	10;
+               airplanes.delta_y		=	10;
+               airplanes.delta_z		=	10;
+               airplanes.horizontal_tilt	=	 0;
+               airplanes.vertical_tilt		=	 0;
+               airplanes.lateral		=      -180;
+               airplanes.blast_rad		=	0;
+
+
+
+               airplanes1.x                     =       174;
+               airplanes1.y                      =       700;
+               airplanes1.z                      =       157;
+               airplanes1.delta_x                =       10;
+               airplanes1.delta_y                =       10;
+               airplanes1.delta_z                =       10;
+               airplanes1.horizontal_tilt        =        0;
+               airplanes1.vertical_tilt          =        0;
+               airplanes1.lateral                =      -180;
+               airplanes1.blast_rad              =       0;
+
 
         /*Initialize using command line arguments*/
         glutInit(&argc, argv);
