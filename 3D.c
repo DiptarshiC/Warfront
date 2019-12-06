@@ -319,7 +319,7 @@ void idle()
 
 	if(     (planeCoordinateZ <= airplanes.z - 10 && planeCoordinateZ >= airplanes.z + 10) &&
                 (planeCoordinateY <= airplanes.y - 10 && planeCoordinateY >= airplanes.y + 10) &&
-                (planeCoordinateX <= airplanes.x - 5 && planeCoordinateX >= airplanes.x + 5) 
+                (planeCoordinateX <= airplanes.x - 10 && planeCoordinateX >= airplanes.x + 10) 
           )
         {
                 printf( "Plane crashed. Exit \n ");
@@ -328,7 +328,7 @@ void idle()
 
         if(     (planeCoordinateZ <= airplanes1.z - 10 && planeCoordinateZ >= airplanes1.z + 10) &&
                 (planeCoordinateY <= airplanes1.y - 10 && planeCoordinateY >= airplanes1.y + 10) &&
-                (planeCoordinateX <= airplanes1.x - 5 && planeCoordinateX >= airplanes1.x + 5) 
+                (planeCoordinateX <= airplanes1.x - 10 && planeCoordinateX >= airplanes1.x + 10) 
           )
         {
                 printf( "Plane crashed. Exit \n ");
