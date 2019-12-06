@@ -317,35 +317,23 @@ void idle()
 	planeCoordinateY  += 4*cos((PI/180)*(pitch));
 	planeCoordinateX  -= 4*sin((PI/180)*(pitch));
 
-	if(     (planeCoordinateZ <= airplanes.z - 10 && planeCoordinateZ >= airplanes.z + 10) &&
-                (planeCoordinateY <= airplanes.y - 10 && planeCoordinateY >= airplanes.y + 10) &&
-                (planeCoordinateX <= airplanes.x - 10 && planeCoordinateX >= airplanes.x + 10) 
+	if(     (planeCoordinateZ > airplanes.z - 24 && planeCoordinateZ < airplanes.z + 24) &&
+                (planeCoordinateY > airplanes.y - 24 && planeCoordinateY < airplanes.y + 24) &&
+                (planeCoordinateX > airplanes.x - 24 && planeCoordinateX < airplanes.x + 24) 
           )
         {
                 printf( "Plane crashed. Exit \n ");
                 exit(0);
         }
 
-        if(     (planeCoordinateZ <= airplanes1.z - 10 && planeCoordinateZ >= airplanes1.z + 10) &&
-                (planeCoordinateY <= airplanes1.y - 10 && planeCoordinateY >= airplanes1.y + 10) &&
-                (planeCoordinateX <= airplanes1.x - 10 && planeCoordinateX >= airplanes1.x + 10) 
+        if(     (planeCoordinateZ > airplanes1.z - 24 && planeCoordinateZ < airplanes1.z + 24) &&
+                (planeCoordinateY > airplanes1.y - 24 && planeCoordinateY < airplanes1.y + 24) &&
+                (planeCoordinateX > airplanes1.x - 24 && planeCoordinateX < airplanes1.x + 24) 
           )
         {
                 printf( "Plane crashed. Exit \n ");
                 exit(0);
         }
-
-
-
-/*	if(     (planeCoordinateZ <= airplanes.z - 10 && planeCoordinateZ >= airplanes.z + 10) &&
-		(planeCoordinateY <= airplanes.y - 10 && planeCoordinateY >= airplanes.y + 10) &&
-		(planeCoordinateX <= airplanes.x - 5 && planeCoordinateX >= airplanes.x + 5) 
-	  )
-	{
-		printf( "Plane crashed. Exit \n ");
-                exit(0);
-	}
-*/
 	airplanes.z  += 4*sin((PI/180)*( airplanes.vertical_tilt  ));
         airplanes.y  += 4*cos((PI/180)*( airplanes.lateral ));
         airplanes.x  -= 4*sin((PI/180)*( airplanes.lateral ));
@@ -354,27 +342,6 @@ void idle()
 	airplanes1.z  += 4*sin((PI/180)*( airplanes1.vertical_tilt  ));
         airplanes1.y  += 4*cos((PI/180)*( airplanes1.lateral ));
         airplanes1.x  -= 4*sin((PI/180)*( airplanes1.lateral ));
-
-	if(     (planeCoordinateZ <= airplanes.z - 10 && planeCoordinateZ >= airplanes.z + 10) &&
-                (planeCoordinateY <= airplanes.y - 10 && planeCoordinateY >= airplanes.y + 10) &&
-                (planeCoordinateX <= airplanes.x - 5 && planeCoordinateX >= airplanes.x + 5) 
-          )
-        {
-                printf( "Plane crashed. Exit \n ");
-                exit(0);
-        }
-
-	if(     (planeCoordinateZ <= airplanes1.z - 10 && planeCoordinateZ >= airplanes1.z + 10) &&
-                (planeCoordinateY <= airplanes1.y - 10 && planeCoordinateY >= airplanes1.y + 10) &&
-                (planeCoordinateX <= airplanes1.x - 5 && planeCoordinateX >= airplanes1.x + 5) 
-          )
-        {
-                printf( "Plane crashed. Exit \n ");
-                exit(0);
-        }
-
-
-
 	tank1.tankCoordinateY  += 0.8*cos((PI/180)*(tank1.turnAngle));
         tank1.tankCoordinateX  -= 0.8*sin((PI/180)*(tank1.turnAngle));
 
