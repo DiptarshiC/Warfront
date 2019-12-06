@@ -30,16 +30,16 @@ typedef struct AIRPLANE_T
 typedef struct TANK_T
 {
 
-        double x;
-        double y;
-        double z;
+        double tankCoordinateX;
+        double tankCoordinateY;
+        double tankCoordinateZ;
         double delta_x;
         double delta_y;
         double delta_z;
-        double horizontal_tilt;
-        double vertical_tilt;
-        double lateral;
-        double blast_rad;
+        double turret_Front_Elevation;
+        double turret_Side_Elevation;
+        double FireBallRad;
+        double turnAngle;
         int textures[50];
 
 }TANK;

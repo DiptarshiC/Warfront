@@ -197,15 +197,21 @@ void drawNewWall(int texture[])
 {
 	glPushMatrix();
 
-	glEnable(GL_TEXTURE_2D);
+/*	glEnable(GL_TEXTURE_2D);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+*/
+	glEnable(GL_TEXTURE_2D);
+        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-//	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glBindTexture(GL_TEXTURE_2D,texture[0]);
         glColor3ub(255,165,0);
 
@@ -214,8 +220,8 @@ void drawNewWall(int texture[])
 	glNormal3f(1, 0, 0);
 	glTexCoord2f(0,2000);glVertex3f(-1000,-1000,40);
         glTexCoord2f(0,0);glVertex3f(-1000,-1000,0);
-        glTexCoord2f(2000,0);glVertex3f(-1000,1000,0);
-	glTexCoord2f(2000,2000); glVertex3f(-1000,1000,40);
+        glTexCoord2f(40,0);glVertex3f(-1000,1000,0);
+	glTexCoord2f(40,2000); glVertex3f(-1000,1000,40);
 	glEnd();
 
 	/* Drawing the right inner wall */
@@ -425,14 +431,14 @@ void drawFlag(double x, double y, double z, double delta_x, double delta_y, doub
 *@return:       void
 *************************************************************************************************************/
 
-void drawSnowfall()
+void drawSnowfall(double x, double y, double z)
 {
-
+	glPushMatrix();
 	int i;
 	glDisable(GL_LIGHTING);
 
 	glTranslatef(0,0,500);
-
+//	glTranslatef(x,y,z);
 		glColor3f(1,1,1);
 		glBegin(GL_POINTS);
 		for(i=0;i<1000;i++)
@@ -453,6 +459,7 @@ void drawSnowfall()
 		glEnd();
 
 
+	glPopMatrix();
 	glEnable(GL_LIGHTING);
 
 
@@ -470,16 +477,17 @@ void drawSnowfall()
 *@return:       void
 *************************************************************************************************************/
 
-void drawHelipad()
+void drawHelipad(double x, double y, double z, double delta_x, double delta_y, double delta_z , double th )
 {
 	glPushMatrix();
 	glDisable(GL_LIGHTING);
 	glColor3f(0.125,0.125,0.125);
-	glTranslatef(0.0,-9.0,-1.0);
-	glRotatef(-90.0,1.0,0.0,0.0);
-	glScalef(1.0,1.0,0.1);
-	glutSolidTorus(13.0,13.0,100,100);
-	glScalef(1.0,1.0,1.0);
+	glTranslated(x,y,z);
+	glScaled(delta_x , delta_y, delta_z);
+	glRotated(th , 1 , 0 , 0);
+
+//	glutSolidTorus(13.0,13.0,100,100);
+//	glScalef(1.0,1.0,1.0);
 	glLineWidth(25.0);
 	glColor3f(1.0,1.0,1.0);
 	glBegin(GL_QUADS);

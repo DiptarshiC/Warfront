@@ -138,7 +138,6 @@ double EYE_z = 0;
 
 /* These are for first person mode of projection*/
 /*double Focus_x = 0;
-
 double Focus_y = -25;
 double Focus_z = 10;
 
@@ -218,6 +217,8 @@ void (*fptr)(double x, double y, double z, double delta_x, double delta_y, doubl
 
  AIRPLANE airplanes;
  AIRPLANE airplanes1;
+
+
  TANK tank1;
  TANK tank2;
 
@@ -317,70 +318,13 @@ void idle()
 	planeCoordinateY  += 4*cos((PI/180)*(pitch));
 	planeCoordinateX  -= 4*sin((PI/180)*(pitch));
 
-	if(     (planeCoordinateZ <= airplanes.z - 10 && planeCoordinateZ >= airplanes.z + 10) &&
-                (planeCoordinateY <= airplanes.y - 10 && planeCoordinateY >= airplanes.y + 10) &&
-                (planeCoordinateX <= airplanes.x - 5 && planeCoordinateX >= airplanes.x + 5) 
-          )
-        {
-                printf( "Plane crashed. Exit \n ");
-                exit(0);
-        }
-
-        if(     (planeCoordinateZ <= airplanes1.z - 10 && planeCoordinateZ >= airplanes1.z + 10) &&
-                (planeCoordinateY <= airplanes1.y - 10 && planeCoordinateY >= airplanes1.y + 10) &&
-                (planeCoordinateX <= airplanes1.x - 5 && planeCoordinateX >= airplanes1.x + 5) 
-          )
-        {
-                printf( "Plane crashed. Exit \n ");
-                exit(0);
-        }
-
-
-
-/*	if(     (planeCoordinateZ <= airplanes.z - 10 && planeCoordinateZ >= airplanes.z + 10) &&
-		(planeCoordinateY <= airplanes.y - 10 && planeCoordinateY >= airplanes.y + 10) &&
-		(planeCoordinateX <= airplanes.x - 5 && planeCoordinateX >= airplanes.x + 5) 
-	  )
-	{
-		printf( "Plane crashed. Exit \n ");
-                exit(0);
-	}
-*/
 	airplanes.z  += 4*sin((PI/180)*( airplanes.vertical_tilt  ));
         airplanes.y  += 4*cos((PI/180)*( airplanes.lateral ));
         airplanes.x  -= 4*sin((PI/180)*( airplanes.lateral ));
 
-
 	airplanes1.z  += 4*sin((PI/180)*( airplanes1.vertical_tilt  ));
         airplanes1.y  += 4*cos((PI/180)*( airplanes1.lateral ));
         airplanes1.x  -= 4*sin((PI/180)*( airplanes1.lateral ));
-
-	if(     (planeCoordinateZ <= airplanes.z - 10 && planeCoordinateZ >= airplanes.z + 10) &&
-                (planeCoordinateY <= airplanes.y - 10 && planeCoordinateY >= airplanes.y + 10) &&
-                (planeCoordinateX <= airplanes.x - 5 && planeCoordinateX >= airplanes.x + 5) 
-          )
-        {
-                printf( "Plane crashed. Exit \n ");
-                exit(0);
-        }
-
-	if(     (planeCoordinateZ <= airplanes1.z - 10 && planeCoordinateZ >= airplanes1.z + 10) &&
-                (planeCoordinateY <= airplanes1.y - 10 && planeCoordinateY >= airplanes1.y + 10) &&
-                (planeCoordinateX <= airplanes1.x - 5 && planeCoordinateX >= airplanes1.x + 5) 
-          )
-        {
-                printf( "Plane crashed. Exit \n ");
-                exit(0);
-        }
-
-
-
-	tank1.tankCoordinateY  += 0.8*cos((PI/180)*(tank1.turnAngle));
-        tank1.tankCoordinateX  -= 0.8*sin((PI/180)*(tank1.turnAngle));
-
-
-	tank2.tankCoordinateY  += 0.8*cos((PI/180)*(tank2.turnAngle));
-        tank2.tankCoordinateX  -= 0.8*sin((PI/180)*(tank2.turnAngle));
 
 //	airplanes.lateral = rand();
 	if( (planeCoordinateZ < LOWER_ALTITUDE_LIMIT) && (planeCoordinateX > -150 && planeCoordinateX < 150) && (planeCoordinateY > -200 && planeCoordinateY < 200))
@@ -1398,8 +1342,6 @@ Plane(airplanes1.x, airplanes1.y,  airplanes1.z, airplanes1.delta_x, airplanes1.
 
 
 	     drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
-drawTank(tank1.tankCoordinateX,tank1.tankCoordinateY ,0,1,1,1,tank1.turret_Front_Elevation ,tank1.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
-drawTank(tank2.tankCoordinateX,tank2.tankCoordinateY ,0,1,1,1,tank2.turret_Front_Elevation ,tank2.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
         Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad,texture );
 
 
@@ -1476,9 +1418,9 @@ int main(int argc, char *argv[])
                airplanes.delta_x		=	10			;
                airplanes.delta_y		=	10			;
                airplanes.delta_z		=	10			;
-               airplanes.horizontal_tilt	=	 0			;
-               airplanes.vertical_tilt		=	 0			;
-               airplanes.lateral		=      -180			;
+               airplanes.horizontal_tilt	=	0			;
+               airplanes.vertical_tilt		=	0			;
+               airplanes.lateral		=       -180			;
                airplanes.blast_rad		=	0			;
 
 
@@ -1489,39 +1431,27 @@ int main(int argc, char *argv[])
                airplanes1.delta_x                =       10			;
                airplanes1.delta_y                =       10			;
                airplanes1.delta_z                =       10			;
-               airplanes1.horizontal_tilt        =        0			;
-               airplanes1.vertical_tilt          =        0			;
-               airplanes1.lateral                =      -180			;
+               airplanes1.horizontal_tilt        =       0			;
+               airplanes1.vertical_tilt          =       0			;
+               airplanes1.lateral                =       -180			;
                airplanes1.blast_rad              =       0			;
 
-	       tank1.tankCoordinateX             =       planeCoordinateX	;
-               tank1.tankCoordinateY             =       700			;
-               tank1.tankCoordinateZ             =       157			;
-               tank1.delta_x                	 =       1			;
-               tank1.delta_y                	 =       1			;
-               tank1.delta_z                	 =       1			;
-	       tank1.turret_Front_Elevation      =       0			;
-	       tank1.turret_Side_Elevation	 =	 0			;
-               tank1.FireBallRad		 =	 0                      ;
-               tank1.turnAngle			 =      -180                    ;
+
+	       tank.x                      	=       planeCoordinateX	;
+               tank.y                      	=       700			;
+               tank.z                      	=       0			;
+               tank.delta_x                	=       1			;
+               tank.delta_y                	=       1			;
+               tank.delta_z                	=       1			;
 
 
 
-
-
-               tank2.tankCoordinateX             =       174			;
-               tank2.tankCoordinateY             =       700			;
-               tank2.tankCoordinateZ             =       157			;
-               tank2.delta_x              	 =       1			;
-               tank2.delta_y               	 =       1			;
-               tank2.delta_z               	 =       1			;
-	       tank2.turret_Front_Elevation	 =	 0			;
-               tank2.turret_Side_Elevation	 =	 0			;
-               tank2.FireBallRad		 =	 0			;
-               tank2.turnAngle			 =	-180			;
-
-
-
+               tank1.x                     	=       174			;
+               tank1.y                      	=       700			;
+               tank1.z                      	=       0			;
+               tank1.delta_x                	=       1			;
+               tank1.delta_y                	=       1			;
+               tank1.delta_z                	=       1			;
 
 
 //	initializAsteroids(ast_pos);

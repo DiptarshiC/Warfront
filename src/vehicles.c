@@ -459,29 +459,24 @@ void initializAsteroids( int  ast_pos[][3]  )
 	for(i=0;i<50;i++)
 	{
 		if(i%2==0)
-		{
-			ast_pos[i][0]=rand()%300;
-		}
+		ast_pos[i][0]=rand()%300;
 		else
-		{
-			ast_pos[i][0]=-rand()%300;
-		}
-		if(i%3==0)
-		{
-			ast_pos[i][1]=rand()%300;
-		}
+		ast_pos[i][0]=-rand()%300;
 
+		if(i%3==0)
+		ast_pos[i][1]=rand()%300;
 		else
-		{
-			ast_pos[i][1]=-rand()%300;
-		}
+		ast_pos[i][1]=-rand()%300;
+	
+
 
 		ast_pos[i][2]=-500+(rand()%500);
 	}
 
+
 }
 
-/**
+/****************************************drawAsteroid**************************************************
 *@func:			drawASteroid
 *
 *@description:
@@ -489,22 +484,22 @@ void initializAsteroids( int  ast_pos[][3]  )
 *@params:		int ast_pos[][3]
 *
 *@return:		void
-*/
+************************************************************************************************/
 
 void drawASteroid(int ast_pos[][3])
 {
 
 	int i;
 
+
 	for(i=0;i<50;i++)
 	{
 		glPushMatrix();
-		glTranslatef(ast_pos[i][0], ast_pos[i][1], ast_pos[i][2]);
+		glTranslated(ast_pos[i][0], ast_pos[i][1], ast_pos[i][2]);
 		glutSolidSphere(8, 5,5);
 		glPopMatrix();
+		//printf(" Hey I am working !");
 
 	}
-
-
 
 }
