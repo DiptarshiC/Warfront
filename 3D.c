@@ -63,6 +63,9 @@ int ast_pos[50][3];
 
 #define			SIN(X)				sin((PI/180)*(X))
 #define			COS(X)				cos((PI/180)*(X))
+#define			TAN(X)				tan((PI/180)*(X))
+
+#define			SLOPE(X)			(COS(X)/SIN(X))
 #define			UPPER_ALTITUDE_LIMIT		335
 #define			LOWER_ALTITUDE_LIMIT		157
 #define                 LOWER_ALTITUDE_LIMIT_LEFT	-174
@@ -86,7 +89,7 @@ double XatTopOfTurret = 0;
 double YatTopOfTurret = 0;
 double ZatTopOfTurret = 0;
 
-double tankCoordinateX = 0;
+double tankCoordinateX = -174;
 double tankCoordinateY = -450;
 int tankRotationAngle  =0;
 
@@ -229,6 +232,39 @@ void (*fptr)(double x, double y, double z, double delta_x, double delta_y, doubl
 int tank2_flag = 1;/* This is the flag variables for tank1 */
 
 #define LEN 8192  //  Maximum length of text string
+
+
+void checkTankDamage( );
+
+
+/*****************************checkTankDamage()******************************
+*@func:		checkTankDamage
+*
+*@description:
+*
+*@params:	void
+*
+*@void:		void
+****************************************************************************/
+
+void checkTankDamage( )
+{
+
+if(  (tank1.tankCoordinateY - SLOPE(  tankRotationAngle   )*tank1.tankCoordinateX ) == ( tankCoordinateY - SLOPE(     tankRotationAngle   )* tankCoordinateX ))
+{
+
+	tank1_flag =  0  ;
+
+}
+
+if(  (tank2.tankCoordinateY - SLOPE( tankRotationAngle  )*tank2.tankCoordinateX ) == ( tankCoordinateY - SLOPE(  tankRotationAngle  )* tankCoordinateX ))
+{
+
+        tank2_flag = 0  ;
+
+}
+}
+
 
 /**
 *@func:		displayCrack()
@@ -440,7 +476,9 @@ void mouse_button_detect(int button, int state, int x, int y)
 			{
 			//	printf("Left mouse button clicked \n");
 				cannonFire();
+				checkTankDamage( );
 				ambient_intensity = 55;
+			//	checkTankDamage( );
 			//glutDisplayFunc(displayCrack);
 			}
 			if(flight_mode)
@@ -1373,12 +1411,12 @@ void display()
 
 	     drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 
-if( tank1_flag  )
+if( tank1_flag == 1 )
 {
 drawTank(tank1.tankCoordinateX,tank1.tankCoordinateY ,0,1,1,1,tank1.turret_Front_Elevation ,tank1.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
 }
 
-if ( tank2_flag  )
+if ( tank2_flag  == 1 )
 {
 drawTank(tank2.tankCoordinateX,tank2.tankCoordinateY ,0,1,1,1,tank2.turret_Front_Elevation ,tank2.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
 }
