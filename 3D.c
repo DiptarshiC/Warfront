@@ -127,7 +127,7 @@ int unit_step = 1;		/* One unit of increment or deceremnet*/
 int move = 1;       		/*  Move light */
 int event_flag = 0;
 
-unsigned int texture[19];
+unsigned int texture[20];
 int obj;			/* Variable to point to an object file*/
 
 /* These are for perspective mode of projection*/
@@ -217,9 +217,16 @@ int dipto = 10;
 void (*fptr)(double x, double y, double z, double delta_x, double delta_y, double delta_z);
 
  AIRPLANE airplanes;
+ int airplanes_flag = 1;/* This is the flag variables for airplanes */
+
  AIRPLANE airplanes1;
+ int airplanes1_flag = 1;/* This is the flag variables for the airplanes1 */
+
  TANK tank1;
+ int tank1_flag = 1;/* This is the flag variables for tank1 */
+
  TANK tank2;
+int tank2_flag = 1;/* This is the flag variables for tank1 */
 
 #define LEN 8192  //  Maximum length of text string
 
@@ -1365,14 +1372,27 @@ void display()
 
 
 	     drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
+
+if( tank1_flag  )
+{
 drawTank(tank1.tankCoordinateX,tank1.tankCoordinateY ,0,1,1,1,tank1.turret_Front_Elevation ,tank1.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
+}
+
+if ( tank2_flag  )
+{
 drawTank(tank2.tankCoordinateX,tank2.tankCoordinateY ,0,1,1,1,tank2.turret_Front_Elevation ,tank2.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
+}
         Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad,texture );
 
-
+if(airplanes_flag)
+{
 Plane(airplanes.x, airplanes.y,  airplanes.z, airplanes.delta_x, airplanes.delta_y, airplanes.delta_z, airplanes.horizontal_tilt, airplanes.vertical_tilt,airplanes.lateral, airplanes.blast_rad, texture);
-Plane(airplanes1.x, airplanes1.y,  airplanes1.z, airplanes1.delta_x, airplanes1.delta_y, airplanes1.delta_z, airplanes1.horizontal_tilt, airplanes1.vertical_tilt,airplanes1.lateral, airplanes1.blast_rad, texture);
+}
 
+if(airplanes1_flag)
+{
+Plane(airplanes1.x, airplanes1.y,  airplanes1.z, airplanes1.delta_x, airplanes1.delta_y, airplanes1.delta_z, airplanes1.horizontal_tilt, airplanes1.vertical_tilt,airplanes1.lateral, airplanes1.blast_rad, texture);
+}
 
 	ErrCheck("Display");
 	glFlush();
@@ -1548,6 +1568,7 @@ int main(int argc, char *argv[])
 	texture[16]=LoadTexBMP("textures/ussr_flag.bmp");
 	texture[17]=LoadTexBMP("textures/nazi_flag.bmp");
 	texture[18]=LoadTexBMP("textures/grassy_tile.bmp");
+	texture[19]=LoadTexBMP("textures/dome.bmp");
         /*glutMainLoop enters the GLUT event processing loop*/
         glutMainLoop();
 

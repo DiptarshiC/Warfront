@@ -112,7 +112,9 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
         glPushMatrix();
 	glEnable(GL_TEXTURE_2D);
         glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
-	glBindTexture(GL_TEXTURE_2D,texture[2]);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
+	glBindTexture(GL_TEXTURE_2D,texture[19]);
 //	glEnable(GL_BLEND);
 //	glBlendFunc(GL_SRC_ALPHA,GL_ONE);
         //  Offset and scale
