@@ -250,14 +250,14 @@ void checkTankDamage( );
 void checkTankDamage( )
 {
 
-if(  (tank1.tankCoordinateY - SLOPE(  tankRotationAngle   )*tank1.tankCoordinateX ) == ( tankCoordinateY - SLOPE(     tankRotationAngle   )* tankCoordinateX ))
+if((tank1.tankCoordinateY-SLOPE(tankRotationAngle+turret_elevation_lateral)*tank1.tankCoordinateX )==( tankCoordinateY -SLOPE(tankRotationAngle+turret_elevation_lateral)*tankCoordinateX))
 {
 
 	tank1_flag =  0  ;
 
 }
 
-if(  (tank2.tankCoordinateY - SLOPE( tankRotationAngle  )*tank2.tankCoordinateX ) == ( tankCoordinateY - SLOPE(  tankRotationAngle  )* tankCoordinateX ))
+if((tank2.tankCoordinateY - SLOPE(tankRotationAngle+turret_elevation_lateral)*tank2.tankCoordinateX )==(tankCoordinateY-SLOPE(tankRotationAngle+turret_elevation_lateral)*tankCoordinateX))
 {
 
         tank2_flag = 0  ;
@@ -266,7 +266,7 @@ if(  (tank2.tankCoordinateY - SLOPE( tankRotationAngle  )*tank2.tankCoordinateX 
 }
 
 
-/**
+/*************************displayCrack()*******************************************************
 *@func:		displayCrack()
 *
 *@description:
@@ -276,7 +276,7 @@ if(  (tank2.tankCoordinateY - SLOPE( tankRotationAngle  )*tank2.tankCoordinateX 
 *@return:	void
 *
 *
-*/
+*************************************************************************************************/
 
 void displayCrack()
 {
@@ -285,7 +285,7 @@ void displayCrack()
 
 void display();
 
-/**
+/****************************************cannonFire()*************************************
 *@func:         cannonFire
 *
 *@description: 
@@ -295,7 +295,7 @@ void display();
 *@return:       void
 *
 *
-*/
+******************************************************************************************/
 
 void cannonFire()
 {
@@ -306,7 +306,7 @@ void cannonFire()
 
 }
 
-/**
+/***********************************missileFire()***************************************
 *@func:		missileFire
 *
 *@description:	
@@ -315,7 +315,7 @@ void cannonFire()
 *
 *@return:	void
 *
-*/
+****************************************************************************************/
 
 void missileFire()
 {
@@ -324,7 +324,7 @@ void missileFire()
 
 }
 
-/**
+/****************************idle******************************************************
 *@func:         idle
 *
 *@description:  GLUT calls this routine when the window is resized
@@ -333,7 +333,7 @@ void missileFire()
 *
 *@return:       void
 *
-*/
+**************************************************************************************/
 
 void idle()
 {
