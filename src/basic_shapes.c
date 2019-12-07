@@ -102,7 +102,7 @@ void drawCylinder(double radius,double height,double x1, double y1, double z1,do
 *
 */
 
-void drawDome(double x, double y, double z, double delta_x, double delta_y, double delta_z,double th)
+void drawDome(double x, double y, double z, double delta_x, double delta_y, double delta_z,double th, int texture[])
 {
         const int d = 5;
         int theta, alpha;
@@ -110,6 +110,9 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
         //  Save transformation
 
         glPushMatrix();
+	glEnable(GL_TEXTURE_2D);
+        glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
+	glBindTexture(GL_TEXTURE_2D,texture[2]);
 //	glEnable(GL_BLEND);
 //	glBlendFunc(GL_SRC_ALPHA,GL_ONE);
         //  Offset and scale
@@ -135,8 +138,12 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
 		glColor3ub(158, 158, 158);
                 for (theta = 0; theta <= 360; theta += d)
                 {
+			glTexCoord2d( (theta/360.0) , alpha/180.0 );
                         Vertex(theta, alpha);
+		//	glTexCoord2d( theta/360 , alpha/90);
+			glTexCoord2d( (theta/360.0) , (alpha + d) /180.0);
                         Vertex(theta, alpha + d);
+		//	glTexCoord2d( theta/360 , (alpha + d) /90);
                 }
                 glEnd();
         }
@@ -151,7 +158,7 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
                 Vertex(theta, 90 - d);
         }
         glEnd();
-//	glDisable(GL_BLEND);
+	glDisable(GL_TEXTURE_2D);
 
         //  Undo transformations
         glPopMatrix();

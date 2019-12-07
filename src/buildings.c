@@ -58,7 +58,7 @@ void drawBuilding(double x, double y, double z, double delta_x, double delta_y, 
         glTranslated(x,y,z);
         glScaled(delta_x,delta_y,delta_z);
 	glColor3ub(158, 158, 158);
-        drawDome(0,0,7,4,4,4,90);
+        drawDome(0,0,7,4,4,4,90, textures);
 	drawSwastika(0,0,12.4,0.20,0.20,0.20);
 	drawCube(0,0,0,9,5,7.3,0);
 
@@ -113,7 +113,7 @@ void drawNewBuilding(double x, double y, double z, double delta_x, double delta_
         glTranslated(x,y,z);
         glScaled(delta_x,delta_y,delta_z);
         glColor3ub(158, 158, 158);
-        drawDome(0,0,140,120,120,120,90);
+        drawDome(0,0,140,120,120,120,90, texture);
         drawSwastika(0,0,290,5,5,5);
 
 
