@@ -110,6 +110,8 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
         //  Save transformation
 
         glPushMatrix();
+//	glEnable(GL_BLEND);
+//	glBlendFunc(GL_SRC_ALPHA,GL_ONE);
         //  Offset and scale
         glTranslated(x, y, z);
         glScaled(delta_x, delta_y, delta_z);
@@ -149,6 +151,7 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
                 Vertex(theta, 90 - d);
         }
         glEnd();
+//	glDisable(GL_BLEND);
 
         //  Undo transformations
         glPopMatrix();
