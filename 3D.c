@@ -317,6 +317,14 @@ void idle()
 	planeCoordinateY  += 4*cos((PI/180)*(pitch));
 	planeCoordinateX  -= 4*sin((PI/180)*(pitch));
 
+	if (planeCoordinateZ <= 10)
+	{
+
+		printf(" Plane crashed for flying too low to the ground. Crash \n ");
+		exit(0);
+
+	}
+
 	if(     (planeCoordinateZ > airplanes.z - 24 && planeCoordinateZ < airplanes.z + 24) &&
                 (planeCoordinateY > airplanes.y - 24 && planeCoordinateY < airplanes.y + 24) &&
                 (planeCoordinateX > airplanes.x - 24 && planeCoordinateX < airplanes.x + 24) 
@@ -1250,7 +1258,6 @@ void display()
 	drawFog(0,0,0,50000,50000,50000,fogAngle);
 	glPopMatrix();
 	ErrCheck("After Skybox");
-
 	switch (displayMode)
 	{
 		case 0: /* This is for orthogonal mode */
@@ -1316,6 +1323,8 @@ void display()
 		float coordinates[]  = { 5000 * cos((PI/180)*angleSun)  , 0  ,5000 * sin((PI/180)*angleSun)  , 1.0};
         	//  Draw light position as ball (still no lighting here)
         	glColor3f(1,1,1);
+		drawASteroid(ast_pos);
+
         	drawSun(coordinates[0],coordinates[1],coordinates[2] , 0.2);
 //		drawSun(2000 * cos((PI/180)*angleSun),0,2000 * sin((PI/180)*angleSun), 0.2);
 
@@ -1345,21 +1354,12 @@ void display()
      		glDisable(GL_LIGHTING);
 	}
 
-	drawASteroid(ast_pos);
-	drawNewWall(texture);
 //	drawASteroid(ast_pos);
+	drawNewWall(texture);
+
 //	drawHelipad(0,0,0,1,1,1,-90 );
 	drawSurface(0,0, 0, 50000, 50000, 50000);
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
-/*	drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
-	Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad,texture );
-
-
-Plane(airplanes.x, airplanes.y,  airplanes.z, airplanes.delta_x, airplanes.delta_y, airplanes.delta_z, airplanes.horizontal_tilt, airplanes.vertical_tilt,airplanes.lateral, airplanes.blast_rad, texture);
-Plane(airplanes1.x, airplanes1.y,  airplanes1.z, airplanes1.delta_x, airplanes1.delta_y, airplanes1.delta_z, airplanes1.horizontal_tilt, airplanes1.vertical_tilt,airplanes1.lateral, airplanes1.blast_rad, texture);
-*/
-
-
 	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
 	drawSnowfall( 0, 0, 500);
 
