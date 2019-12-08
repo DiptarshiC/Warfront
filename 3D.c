@@ -89,7 +89,7 @@ double XatTopOfTurret = 0;
 double YatTopOfTurret = 0;
 double ZatTopOfTurret = 0;
 
-double tankCoordinateX = -174;
+double tankCoordinateX = 174;
 double tankCoordinateY = -450;
 int tankRotationAngle  =0;
 
@@ -227,15 +227,31 @@ void (*fptr)(double x, double y, double z, double delta_x, double delta_y, doubl
 
  TANK tank1;
  int tank1_flag = 1;/* This is the flag variables for tank1 */
+ double tank1Explosionradius =0;
 
  TANK tank2;
-int tank2_flag = 1;/* This is the flag variables for tank1 */
+ int tank2_flag = 1;/* This is the flag variables for tank1 */
+ double tank2Explosionradius =0;
 
 #define LEN 8192  //  Maximum length of text string
 
-
+void Explosion();
 void checkTankDamage( );
 
+/*****************************Explosion()******************************
+*@func:         checkTankDamage
+*
+*@description:
+*
+*@params:       void
+*
+*@void:         void
+****************************************************************************/
+void Explosion(double x, double y, double z, double radius)
+{
+	glColor3ub(180, 180, 0);
+	drawSphere(x, y, z, radius, radius, radius);
+}
 
 /*****************************checkTankDamage()******************************
 *@func:		checkTankDamage
@@ -252,14 +268,14 @@ void checkTankDamage( )
 
 if((tank1.tankCoordinateY-SLOPE(tankRotationAngle+turret_elevation_lateral)*tank1.tankCoordinateX )==( tankCoordinateY -SLOPE(tankRotationAngle+turret_elevation_lateral)*tankCoordinateX))
 {
-
+	tank1Explosionradius = 20;
 	tank1_flag =  0  ;
 
 }
 
 if((tank2.tankCoordinateY - SLOPE(tankRotationAngle+turret_elevation_lateral)*tank2.tankCoordinateX )==(tankCoordinateY-SLOPE(tankRotationAngle+turret_elevation_lateral)*tankCoordinateX))
 {
-
+	tank2Explosionradius = 20;
         tank2_flag = 0  ;
 
 }
@@ -350,6 +366,8 @@ void idle()
 	if(tank_mode)
 	{
 		FireBallRad = 0;
+		tank1Explosionradius =0;
+		tank2Explosionradius =0;
 	}
 	if(flight_mode)
 	{
@@ -1415,12 +1433,26 @@ if( tank1_flag == 1 )
 {
 drawTank(tank1.tankCoordinateX,tank1.tankCoordinateY ,0,1,1,1,tank1.turret_Front_Elevation ,tank1.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
 }
+else if( tank1_flag == 0)
+{
+
+	Explosion( tank1.tankCoordinateX  , tank1.tankCoordinateY , 0 , tank1Explosionradius);
+
+}
 
 if ( tank2_flag  == 1 )
 {
 drawTank(tank2.tankCoordinateX,tank2.tankCoordinateY ,0,1,1,1,tank2.turret_Front_Elevation ,tank2.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
 }
-        Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad,texture );
+else if( tank2_flag == 0)
+{
+
+	Explosion( tank2.tankCoordinateX  , tank2.tankCoordinateY , 0 , tank2Explosionradius);
+
+}
+
+
+Plane(planeCoordinateX,planeCoordinateY,planeCoordinateZ , 10, 10, 10,yaw, roll,pitch, blast_rad,texture );
 
 if(airplanes_flag)
 {
