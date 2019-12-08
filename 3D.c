@@ -221,9 +221,11 @@ void (*fptr)(double x, double y, double z, double delta_x, double delta_y, doubl
 
  AIRPLANE airplanes;
  int airplanes_flag = 1;/* This is the flag variables for airplanes */
+ double airplanesExplosionradius = 0;
 
  AIRPLANE airplanes1;
  int airplanes1_flag = 1;/* This is the flag variables for the airplanes1 */
+ double airplanes1Explosionradius = 0;
 
  TANK tank1;
  int tank1_flag = 1;/* This is the flag variables for tank1 */
@@ -237,6 +239,7 @@ void (*fptr)(double x, double y, double z, double delta_x, double delta_y, doubl
 
 void Explosion();
 void checkTankDamage( );
+void checkPlaneDamage();
 
 /*****************************Explosion()******************************
 *@func:         checkTankDamage
@@ -280,6 +283,36 @@ if((tank2.tankCoordinateY - SLOPE(tankRotationAngle+turret_elevation_lateral)*ta
 
 }
 }
+
+/*****************************checkPlaneDamage()******************************
+*@func:         checkTankDamage
+*
+*@description:
+*
+*@params:       void
+*
+*@void:         void
+****************************************************************************/
+
+void checkPlaneDamage( )
+{
+
+if((airplanes.y-SLOPE(pitch)*airplanes.x )==( planeCoordinateY -SLOPE(pitch)*planeCoordinateX))
+{
+        airplanesExplosionradius = 20;
+	airplanes_flag = 0;
+
+}
+
+if((airplanes1.y - SLOPE(pitch)*airplanes1.x )==( planeCoordinateY-SLOPE(pitch)*planeCoordinateX))
+{
+        airplanes1Explosionradius = 0;
+	airplanes1_flag = 0;
+
+}
+}
+
+
 
 
 /*************************displayCrack()*******************************************************
@@ -372,6 +405,8 @@ void idle()
 	if(flight_mode)
 	{
 		blast_rad = 0;
+		airplanesExplosionradius = 0;
+		airplanes1Explosionradius = 0;
 	}
 	ambient_intensity = 25;
 	planeCoordinateZ  += 4*sin((PI/180)*(roll));
@@ -502,6 +537,7 @@ void mouse_button_detect(int button, int state, int x, int y)
 			if(flight_mode)
 			{
 				missileFire();
+				checkPlaneDamage( );
 				ambient_intensity = 55;
 				airplanes.lateral = rand();
 				airplanes1.lateral = rand();
@@ -1459,9 +1495,23 @@ if(airplanes_flag)
 Plane(airplanes.x, airplanes.y,  airplanes.z, airplanes.delta_x, airplanes.delta_y, airplanes.delta_z, airplanes.horizontal_tilt, airplanes.vertical_tilt,airplanes.lateral, airplanes.blast_rad, texture);
 }
 
+else if(airplanes_flag == 0)
+{
+
+	Explosion( airplanes.x  , airplanes.y , airplanes.z , airplanesExplosionradius );
+
+}
+
 if(airplanes1_flag)
 {
 Plane(airplanes1.x, airplanes1.y,  airplanes1.z, airplanes1.delta_x, airplanes1.delta_y, airplanes1.delta_z, airplanes1.horizontal_tilt, airplanes1.vertical_tilt,airplanes1.lateral, airplanes1.blast_rad, texture);
+}
+
+else if(airplanes1_flag == 0)
+{
+
+	Explosion( airplanes1.x  , airplanes1.y , airplanes1.z , airplanes1Explosionradius );
+
 }
 
 	ErrCheck("Display");
