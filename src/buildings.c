@@ -197,14 +197,6 @@ void drawNewWall(int texture[])
 {
 	glPushMatrix();
 
-/*	glEnable(GL_TEXTURE_2D);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-*/
 	glEnable(GL_TEXTURE_2D);
         glTexEnvi(GL_TEXTURE_ENV , GL_TEXTURE_ENV_MODE , GL_MODULATE);
 	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_REPEAT);
@@ -223,6 +215,12 @@ void drawNewWall(int texture[])
         glTexCoord2f(2000,0);glVertex3f(-1000,1000,0);
 	glTexCoord2f(2000,1000); glVertex3f(-1000,1000,40);
 	glEnd();
+	/*
+	Now drawing the barbed wire on the left inner Wall
+	*/
+
+//        drawBarbedwire(5, 2000, -1015, -1000 ,45, 1, 1, 1, -90, 200, 200 ,200, 1 );
+
 	/* Drawing the right inner wall */
 	glBegin(GL_QUADS);
 	glNormal3f(-1, 0, 0);
@@ -257,10 +255,10 @@ void drawNewWall(int texture[])
 	/* Drawing the left outer wall */
 	glBegin(GL_QUADS);
 	glNormal3f(-1, 0, 0);
-        glVertex3f(-1010,1010,40);
-	glVertex3f(-1010,1010,0);
-	glVertex3f(-1010,-1010,0);
-	glVertex3f(-1010,-1010,40);
+	glTexCoord2f(0,1000);glVertex3f(-1010,1010,40);
+	glTexCoord2f(0,0);glVertex3f(-1010,1010,0);
+	glTexCoord2f(2000,0);glVertex3f(-1010,-1010,0);
+	glTexCoord2f(2000,1000);glVertex3f(-1010,-1010,40);
 	glEnd();
 
 
@@ -268,10 +266,10 @@ void drawNewWall(int texture[])
         /* Drawing the right outer wall */
 	glBegin(GL_QUADS);
 	glNormal3f(1, 0, 0);
-        glVertex3f(1010,-1010,40);
-	glVertex3f(1010,-1010,0);
-	glVertex3f(1010,1010,0);
-	glVertex3f(1010,1010,40);
+	glTexCoord2f(0,1000);glVertex3f(1010,-1010,40);
+        glTexCoord2f(0,0);glVertex3f(1010,-1010,0);
+        glTexCoord2f(2000,0);glVertex3f(1010,1010,0);
+	glTexCoord2f(2000,1000);glVertex3f(1010,1010,40);
 	glEnd();
 
         /* Drawing the front outer wall */
@@ -333,6 +331,11 @@ void drawNewWall(int texture[])
         glVertex3f(1000,-1000,40);
         glEnd();
 
+
+	drawBarbedwire(5, 2000, -1005, -1000 ,45, 1, 1, 1, -90, 200, 200 ,200, 0 );
+	drawBarbedwire(5, 2000, 1005, -1000 ,45, 1, 1, 1, -90, 200, 200 ,200, 0 );
+	drawBarbedwire(5, 2000, -1005, -1000 ,45, 1, 1, 1, 0, 200, 200 ,200, 90 );
+	drawBarbedwire(5, 2000, -1005, 1000 ,45, 1, 1, 1, 0, 200, 200 ,200, 90 );
 	glPopMatrix();
 
 	glDisable(GL_TEXTURE_2D);
