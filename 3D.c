@@ -1,4 +1,4 @@
-/**
+/*********************************************************************************************
 *@file: 	3D.c
 *
 *@description:	A scene describing two planes and a warship that are travelling in the ocean
@@ -9,7 +9,7 @@
 *
 *@date:		3rd October 2019
 *
-*/
+**********************************************************************************************/
 
 
 
@@ -18,8 +18,8 @@
 
 
 #include <stdio.h>
-#include <glib.h>
-
+//#include <glib.h>
+#include <math.h>
 /*
 #include <stdlib.h>
 #include <stdarg.h>
@@ -65,7 +65,7 @@ int ast_pos[50][3];
 #define			COS(X)				cos((PI/180)*(X))
 #define			TAN(X)				tan((PI/180)*(X))
 
-#define			SLOPE(X)			(COS(X)/SIN(X))
+#define			SLOPE(X)			((TAN(X+90)))
 #define			UPPER_ALTITUDE_LIMIT		335
 #define			LOWER_ALTITUDE_LIMIT		157
 #define                 LOWER_ALTITUDE_LIMIT_LEFT	-174
@@ -88,10 +88,18 @@ int theta=0;
 double XatTopOfTurret = 0;
 double YatTopOfTurret = 0;
 double ZatTopOfTurret = 0;
-
+/*
 double tankCoordinateX = 174;
 double tankCoordinateY = -450;
 int tankRotationAngle  =0;
+*/
+
+
+double tankCoordinateX = -144;
+double tankCoordinateY = 670;
+int tankRotationAngle  =45;
+
+
 
 double planeCoordinateX = -174;
 double planeCoordinateY = -700;
@@ -215,7 +223,7 @@ double Cy;
   EZ = EZ + AZ * 0.1;
 */
 
-GArray *garray;
+
 int dipto = 10;
 void (*fptr)(double x, double y, double z, double delta_x, double delta_y, double delta_z);
 
@@ -240,6 +248,34 @@ void (*fptr)(double x, double y, double z, double delta_x, double delta_y, doubl
 void Explosion();
 void checkTankDamage( );
 void checkPlaneDamage();
+
+/*******************************projectShadow******************************
+*@func:		projectShadow()
+*
+*@description:	A function that projects shadows
+*
+*@params:	double L[4], double E[4], double N[4]
+*
+*@return:	void
+*
+****************************************************************************/
+void projectShadow(double L[4], double E[4], double N[4])
+{
+
+   float mat[16];
+   float e = E[0]*N[0] + E[1]*N[1] + E[2]*N[2];
+   float l = L[0]*N[0] + L[1]*N[1] + L[2]*N[2];
+   float c = e - l;
+   //  Create the matrix.
+   mat[0] = N[0]*L[0]+c; mat[4] = N[1]*L[0];   mat[8]  = N[2]*L[0];   mat[12] = -e*L[0];
+   mat[1] = N[0]*L[1];   mat[5] = N[1]*L[1]+c; mat[9]  = N[2]*L[1];   mat[13] = -e*L[1];
+   mat[2] = N[0]*L[2];   mat[6] = N[1]*L[2];   mat[10] = N[2]*L[2]+c; mat[14] = -e*L[2];
+   mat[3] = N[0];        mat[7] = N[1];        mat[11] = N[2];        mat[15] = -l;
+   //  Multiply modelview matrix
+   glMultMatrixf(mat);
+
+}
+
 
 /*****************************Explosion()******************************
 *@func:         checkTankDamage
@@ -269,19 +305,33 @@ void Explosion(double x, double y, double z, double radius)
 void checkTankDamage( )
 {
 
-if((tank1.tankCoordinateY-SLOPE(tankRotationAngle+turret_elevation_lateral)*tank1.tankCoordinateX )==( tankCoordinateY -SLOPE(tankRotationAngle+turret_elevation_lateral)*tankCoordinateX))
+
+double m1 = atan2(  (tank1.tankCoordinateY-tankCoordinateY),(tank1.tankCoordinateX-tankCoordinateX) )*((180)/(PI)) - 90   ;
+double m2 = atan2(  (tank2.tankCoordinateY-tankCoordinateY),(tank2.tankCoordinateX-tankCoordinateX) )*((180)/(PI)) - 90   ;
+double sum = (tankRotationAngle+turret_elevation_lateral);
+int m1int=(int)m1;
+int m2int=(int)m2;
+int sumint=(int)sum;
+
+printf(" Angle of first tank :%f \n",m1);
+printf(" Angle of second tank :%f \n",m2);
+printf(" tankRotationAngle+turret_elevation_lateral %f\n " ,tankRotationAngle+turret_elevation_lateral);
+printf(" sum %d\n " ,(int) sum);
+
+//if( ((int)(m1-5.0))  <( (int) sum ) < ((int)(m1+5.0)) )
+if( (m1int-5)  <= sumint  <= (m1int+5) )
 {
 	tank1Explosionradius = 20;
-	tank1_flag =  0  ;
+        tank1_flag =  0  ;
 
 }
-
-if((tank2.tankCoordinateY - SLOPE(tankRotationAngle+turret_elevation_lateral)*tank2.tankCoordinateX )==(tankCoordinateY-SLOPE(tankRotationAngle+turret_elevation_lateral)*tankCoordinateX))
+//if( ((int) (m1-5.0))  <((int) sum ) < ((int) (m1+5.0) ) )
+else if( (m2int-5)  <= sumint  <= (m2int+5) )
 {
-	tank2Explosionradius = 20;
-        tank2_flag = 0  ;
-
+        tank2Explosionradius = 20;
+        tank2_flag =  0  ;
 }
+
 }
 
 /*****************************checkPlaneDamage()******************************
@@ -297,16 +347,18 @@ if((tank2.tankCoordinateY - SLOPE(tankRotationAngle+turret_elevation_lateral)*ta
 void checkPlaneDamage( )
 {
 
-if((airplanes.y-SLOPE(pitch)*airplanes.x )==( planeCoordinateY -SLOPE(pitch)*planeCoordinateX))
+if( SLOPE(pitch  ) <= ((airplanes.y - planeCoordinateY)/( airplanes.x - planeCoordinateX)) <= SLOPE( pitch  ))
 {
         airplanesExplosionradius = 20;
 	airplanes_flag = 0;
 
 }
 
-if((airplanes1.y - SLOPE(pitch)*airplanes1.x )==( planeCoordinateY-SLOPE(pitch)*planeCoordinateX))
+
+if( SLOPE( pitch  ) <= ((airplanes1.y - planeCoordinateY)/(airplanes1.x - planeCoordinateX)) <= SLOPE ( pitch ))
+
 {
-        airplanes1Explosionradius = 0;
+        airplanes1Explosionradius = 20;
 	airplanes1_flag = 0;
 
 }
@@ -450,10 +502,8 @@ void idle()
         tank1.tankCoordinateX  -= 0.8*sin((PI/180)*(tank1.turnAngle));
 
 
-	tank2.tankCoordinateY  += 0.8*cos((PI/180)*(tank2.turnAngle));
+        tank2.tankCoordinateY  += 0.8*cos((PI/180)*(tank2.turnAngle));
         tank2.tankCoordinateX  -= 0.8*sin((PI/180)*(tank2.turnAngle));
-
-//	airplanes.lateral = rand();
 	if( (planeCoordinateZ < LOWER_ALTITUDE_LIMIT) && (planeCoordinateX > -150 && planeCoordinateX < 150) && (planeCoordinateY > -200 && planeCoordinateY < 200))
 	{
 		printf( "Plane crashed. Exit \n ");
@@ -474,7 +524,7 @@ void idle()
    glutPostRedisplay();
 }
 
-/**
+/****************************************changeTurretElevation()************************************
 *@func:		changeTurretElevation
 *
 *@description:
@@ -485,7 +535,7 @@ void idle()
 *
 *@todo:
 *
-*/
+*****************************************************************************************************/
 
 void changeTurretElevation( double mouseXCoordinate, double mouseYCoordinate)
 {
@@ -502,7 +552,7 @@ void changeTurretElevation( double mouseXCoordinate, double mouseYCoordinate)
 
 }
 
-/**
+/********************************************mouse_button_detect()***************************************
 *@func:		mouse_button_detect
 *
 *
@@ -514,7 +564,7 @@ void changeTurretElevation( double mouseXCoordinate, double mouseYCoordinate)
 *
 *@todo:
 *
-*/
+***********************************************************************************************************/
 
 void mouse_button_detect(int button, int state, int x, int y)
 {
@@ -528,6 +578,7 @@ void mouse_button_detect(int button, int state, int x, int y)
 			if(tank_mode)
 			{
 			//	printf("Left mouse button clicked \n");
+				printf(" Tank Rotation Angle :%d\n",tankRotationAngle);
 				cannonFire();
 				checkTankDamage( );
 				ambient_intensity = 55;
@@ -561,7 +612,7 @@ void mouse_button_detect(int button, int state, int x, int y)
 	}
 }
 
-/**
+/*******************************************arrow_keys_move()*************************************
 *@func:         arrow_keys_move
 *
 *@description:  main display function that renders the image called by GLUT
@@ -571,7 +622,7 @@ void mouse_button_detect(int button, int state, int x, int y)
 *@return:       void
 *
 *todo:          add variable angle functionality
-*/
+**************************************************************************************************/
 
 void arrow_keys_move(int key, int x, int y)
 {
@@ -674,7 +725,7 @@ void arrow_keys_move(int key, int x, int y)
 		if(tank_mode)
 		{
 			tankRotationAngle += 1;
-			printf(" Tank Rotation Angle :%d\n",tankRotationAngle);
+
 		}
                 theta %= 360;/*Helps angles be within the margin of 360*/
                 alpha %= 360;/*Helps angles be within the margin of 360*/
@@ -688,7 +739,6 @@ void arrow_keys_move(int key, int x, int y)
 		if(tank_mode)
 		{
            		tankRotationAngle -= 1;
-			printf(" Tank Rotation Angle :%d\n",tankRotationAngle);
 		}
 
                 theta %= 360;/*Helps angles be within the margin of 360*/
@@ -722,8 +772,8 @@ void arrow_keys_move(int key, int x, int y)
         }
 }
 
-/**
-*@func:         myProject
+/***************************************Project**************************************
+*@func:         Project
 *
 *@description:  A program that helps us conmpute the vertices using cosine sine functions that inturn helps us render shapes
 *
@@ -731,7 +781,7 @@ void arrow_keys_move(int key, int x, int y)
 *
 *@return:       void
 * 
-*/
+*************************************************************************************/
 
 void Project()
 {
@@ -1312,7 +1362,7 @@ void drawSun(double x,double y,double z,double r)
 }
 
 
-/**
+/************************************************************************************************************
 *@func:         display
 *
 *@description:  wrapper around mydisplay
@@ -1321,7 +1371,7 @@ void drawSun(double x,double y,double z,double r)
 *
 *@return:       void
 *
-*/
+**************************************************************************************************************/
 
 void display()
 {
@@ -1465,7 +1515,7 @@ void display()
 
 	     drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 
-if( tank1_flag == 1 )
+if( tank1_flag)
 {
 drawTank(tank1.tankCoordinateX,tank1.tankCoordinateY ,0,1,1,1,tank1.turret_Front_Elevation ,tank1.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
 }
@@ -1476,7 +1526,7 @@ else if( tank1_flag == 0)
 
 }
 
-if ( tank2_flag  == 1 )
+if ( tank2_flag)
 {
 drawTank(tank2.tankCoordinateX,tank2.tankCoordinateY ,0,1,1,1,tank2.turret_Front_Elevation ,tank2.turret_Side_Elevation ,tank1.FireBallRad,tank1.turnAngle );
 }
@@ -1513,7 +1563,7 @@ else if(airplanes1_flag == 0)
 	Explosion( airplanes1.x  , airplanes1.y , airplanes1.z , airplanes1Explosionradius );
 
 }
-
+//	drawSurface(0,0, 0, 50000, 50000, 50000);
 	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();
@@ -1521,7 +1571,7 @@ else if(airplanes1_flag == 0)
 
 
 
-/**
+/*************************************reshape*******************************************
 *@func:         reshape
 *
 *@description:  handles the reshaping of the window
@@ -1529,7 +1579,7 @@ else if(airplanes1_flag == 0)
 *@param:        int width, int height
 *
 *@return:       void
-*/
+****************************************************************************************/
 
 void reshape(int width,int height)
 {
@@ -1563,7 +1613,6 @@ int main(int argc, char *argv[])
 {
 
 
-//	garray = g_array_new (FALSE, FALSE, sizeof (int));
 	initializAsteroids(ast_pos);
 
 	/*

@@ -226,30 +226,30 @@ void drawNewWall(int texture[])
 	/* Drawing the right inner wall */
 	glBegin(GL_QUADS);
 	glNormal3f(-1, 0, 0);
-        glVertex3f(1000,1000,40);
-        glVertex3f(1000,1000,0);
-        glVertex3f(1000,-1000,0);
-        glVertex3f(1000,-1000,40);
+        glTexCoord2f(0,1000);glVertex3f(1000,1000,40);
+        glTexCoord2f(0,0);glVertex3f(1000,1000,0);
+        glTexCoord2f(2000,0);glVertex3f(1000,-1000,0);
+        glTexCoord2f(2000,1000);glVertex3f(1000,-1000,40);
 	glEnd();
 
 
 	/* Drawing the front inner wall */
 	glBegin(GL_QUADS);
 	glNormal3f(0, -1, 0);
-        glVertex3f(-1000,1000,40);
-        glVertex3f(-1000,1000,0);
-        glVertex3f(1000,1000,0);
-        glVertex3f(1000,1000,40);
+        glTexCoord2f(0,1000);glVertex3f(-1000,1000,40);
+        glTexCoord2f(0,0);glVertex3f(-1000,1000,0);
+        glTexCoord2f(2000,0);glVertex3f(1000,1000,0);
+        glTexCoord2f(2000,1000);glVertex3f(1000,1000,40);
 	glEnd();
 
 
 	/* Drawing the inner wall at the back */
 	glBegin(GL_QUADS);
 	glNormal3f(0, 1, 0);
-        glVertex3f(1000,-1000,40);
-        glVertex3f(1000,-1000,0);
-        glVertex3f(-1000,-1000,0);
-        glVertex3f(-1000,-1000,40);
+        glTexCoord2f(0,1000);glVertex3f(1000,-1000,40);
+        glTexCoord2f(0,0);glVertex3f(1000,-1000,0);
+        glTexCoord2f(2000,0);glVertex3f(-1000,-1000,0);
+        glTexCoord2f(2000,1000);glVertex3f(-1000,-1000,40);
 	glEnd();
 
 
