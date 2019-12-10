@@ -1475,7 +1475,7 @@ void display()
 		float coordinates[]  = { 5000 * cos((PI/180)*angleSun)  , 0  ,5000 * sin((PI/180)*angleSun)  , 1.0};
         	//  Draw light position as ball (still no lighting here)
         	glColor3f(1,1,1);
-		drawASteroid(ast_pos);
+
 
         	drawSun(coordinates[0],coordinates[1],coordinates[2] , 0.2);
 //		drawSun(2000 * cos((PI/180)*angleSun),0,2000 * sin((PI/180)*angleSun), 0.2);
@@ -1506,10 +1506,10 @@ void display()
      		glDisable(GL_LIGHTING);
 	}
 
-//	drawASteroid(ast_pos);
+
 	drawNewWall(texture);
 
-//	drawHelipad(0,0,0,1,1,1,-90 );
+
 //	drawSurface(0,0, 0, 50000, 50000, 50000);
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
 	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
@@ -1632,7 +1632,7 @@ int main(int argc, char *argv[])
 {
 
 
-	initializAsteroids(ast_pos);
+
 
 	/*
 
@@ -1699,7 +1699,6 @@ int main(int argc, char *argv[])
 
 
 
-//	initializAsteroids(ast_pos);
 
 
         /*Initialize using command line arguments*/
