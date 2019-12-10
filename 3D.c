@@ -1530,7 +1530,10 @@ void display()
                 drawSnowfall(tankCoordinateX , tankCoordinateY , 0 );
         }
 
-
+	if(displayMode == 4)
+        {
+                drawSnowfall( EX  , EY , EZ );
+        }
 
 	     drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
 
