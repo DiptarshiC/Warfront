@@ -102,7 +102,7 @@ int tankRotationAngle  =0;
 
 
 
-double planeCoordinateX = -174;
+double planeCoordinateX = -204;
 double planeCoordinateY = -700;
 double planeCoordinateZ = 157;
 
@@ -1643,7 +1643,7 @@ int main(int argc, char *argv[])
 	*/
 
 
-	       airplanes.x			=	planeCoordinateX	;
+	       airplanes.x			=	planeCoordinateX -30	;
                airplanes.y			=	700			;
                airplanes.z			=	157			;
                airplanes.delta_x		=	10			;
@@ -1667,7 +1667,7 @@ int main(int argc, char *argv[])
                airplanes1.lateral                =      -180			;
                airplanes1.blast_rad              =       0			;
 
-	       tank1.tankCoordinateX             =       planeCoordinateX	;
+	       tank1.tankCoordinateX             =       planeCoordinateX 	;
                tank1.tankCoordinateY             =       700			;
                tank1.tankCoordinateZ             =       157			;
                tank1.delta_x                	 =       1			;
