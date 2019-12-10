@@ -469,46 +469,7 @@ void drawSnowfall(double x, double y, double z)
 }
 
 
-/**********************************************drawHelipad***************************************************
-*@func:         drawHelipad
-*
-*@description:  
-*
-*@prams:        void
-*
-*@return:       void
-*************************************************************************************************************/
-
-void drawHelipad(double x, double y, double z, double delta_x, double delta_y, double delta_z , double th )
-{
-	glPushMatrix();
-	glDisable(GL_LIGHTING);
-	glColor3f(0.125,0.125,0.125);
-	glTranslated(x,y,z);
-	glScaled(delta_x , delta_y, delta_z);
-	glRotated(th , 1 , 0 , 0);
-
-//	glutSolidTorus(13.0,13.0,100,100);
-//	glScalef(1.0,1.0,1.0);
-	glLineWidth(25.0);
-	glColor3f(1.0,1.0,1.0);
-	glBegin(GL_QUADS);
-	//write H
-	glVertex3f(-9.5,-1.5,16);
-	glVertex3f(-9.5,1.5,16);
-	glVertex3f(9.5,1.5,16);
-	glVertex3f(9.5,-1.5,16);
-	glVertex3f(9.5,11.5,16);
-	glVertex3f(9.5,-11.5,16);
-	glVertex3f(11.5,-11.5,16);
-	glVertex3f(11.5,11.5,16);
-	glVertex3f(-9.5,11.5,16);
-	glVertex3f(-9.5,-11.5,16);
-	glVertex3f(-11.5,-11.5,16);
-	glVertex3f(-11.5,11.5,16);
-	glEnd();
-	glEnable(GL_LIGHTING);
-	glPopMatrix();
 
 
-}
+
+
