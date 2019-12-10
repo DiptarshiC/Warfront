@@ -1507,10 +1507,11 @@ void display()
 	drawNewWall(texture);
 
 //	drawHelipad(0,0,0,1,1,1,-90 );
-	drawSurface(0,0, 0, 50000, 50000, 50000);
+//	drawSurface(0,0, 0, 50000, 50000, 50000);
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
 	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
-	drawSnowfall( 0, 0, 500);
+//	drawSnowfall( 0, 0, 500);
+	drawSnowfall(planeCoordinateX , planeCoordinateY  ,planeCoordinateZ  );
 
 
 	     drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
@@ -1563,7 +1564,10 @@ else if(airplanes1_flag == 0)
 	Explosion( airplanes1.x  , airplanes1.y , airplanes1.z , airplanes1Explosionradius );
 
 }
-//	drawSurface(0,0, 0, 50000, 50000, 50000);
+
+
+
+	drawSurface(0,0, 0, 50000, 50000, 50000);
 	ErrCheck("Display");
 	glFlush();
    	glutSwapBuffers();

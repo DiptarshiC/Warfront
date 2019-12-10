@@ -439,8 +439,8 @@ void drawSnowfall(double x, double y, double z)
 	int i;
 	glDisable(GL_LIGHTING);
 
-	glTranslatef(0,0,500);
-//	glTranslatef(x,y,z);
+//	glTranslatef(0,0,500);
+	glTranslated(x,y,z);
 		glColor3f(1,1,1);
 		glBegin(GL_POINTS);
 		for(i=0;i<1000;i++)
