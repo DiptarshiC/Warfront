@@ -88,10 +88,11 @@ int theta=0;
 double XatTopOfTurret = 0;
 double YatTopOfTurret = 0;
 double ZatTopOfTurret = 0;
+
 /*
-double tankCoordinateX = 174;
-double tankCoordinateY = -450;
-int tankRotationAngle  =0;
+double snowX = 174;
+double snowY = -450;
+double snowZ  =0;
 */
 
 
@@ -108,6 +109,14 @@ double planeCoordinateZ = 157;
 double yaw = 0;
 double roll = 0;
 double pitch = 0;
+
+
+double snowX = -174;
+double snowY = -700;
+double snowZ = 157;
+
+
+
 
 int displayMode = 3;
 double widht2height = 1.0;
@@ -1511,7 +1520,16 @@ void display()
 	drawNewBuilding(0, 0, 0, 1, 1, 1,texture);
 	drawFlag(0, -200, 170, 10, 10, 10,0, texture);
 //	drawSnowfall( 0, 0, 500);
-	drawSnowfall(planeCoordinateX , planeCoordinateY  ,planeCoordinateZ  );
+	if(displayMode == 3)
+	{
+		drawSnowfall( planeCoordinateX  , planeCoordinateY , planeCoordinateZ );
+	}
+
+	if(displayMode == 2)
+        {
+                drawSnowfall(tankCoordinateX , tankCoordinateY , 0 );
+        }
+
 
 
 	     drawTank(tankCoordinateX,tankCoordinateY ,0,1,1,1,turret_elevation_vertical,turret_elevation_lateral,FireBallRad,tankRotationAngle);
