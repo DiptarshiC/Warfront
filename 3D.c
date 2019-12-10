@@ -267,6 +267,7 @@ void checkPlaneDamage();
 *
 *@return:	void
 *
+*@reference:	
 ****************************************************************************/
 void projectShadow(double L[4], double E[4], double N[4])
 {
@@ -379,7 +380,7 @@ if( SLOPE( pitch  ) <= ((airplanes1.y - planeCoordinateY)/(airplanes1.x - planeC
 /*************************displayCrack()*******************************************************
 *@func:		displayCrack()
 *
-*@description:
+*@description: Displays a crack on the platform which has been hit
 *
 *@param:	void
 *
@@ -398,7 +399,7 @@ void display();
 /****************************************cannonFire()*************************************
 *@func:         cannonFire
 *
-*@description: 
+*@description: creates a blast wave for fire
 *
 *@params:       void
 *
@@ -419,7 +420,7 @@ void cannonFire()
 /***********************************missileFire()***************************************
 *@func:		missileFire
 *
-*@description:	
+*@description:	Creates a blast wave of fire
 *
 *@params:	void
 *
@@ -570,9 +571,6 @@ void changeTurretElevation( double mouseXCoordinate, double mouseYCoordinate)
 *@params:
 *
 *@return: void
-*
-*@todo:
-*
 ***********************************************************************************************************/
 
 void mouse_button_detect(int button, int state, int x, int y)
@@ -629,8 +627,6 @@ void mouse_button_detect(int button, int state, int x, int y)
 *@param:        void
 *
 *@return:       void
-*
-*todo:          add variable angle functionality
 **************************************************************************************************/
 
 void arrow_keys_move(int key, int x, int y)
@@ -789,7 +785,6 @@ void arrow_keys_move(int key, int x, int y)
 *@param:        double theta,double alpha
 *
 *@return:       void
-* 
 *************************************************************************************/
 
 void Project()
@@ -818,7 +813,7 @@ void Project()
 }
 
 
-/**
+/*************************************char_input()**************************************
 *@func:		char_input
 *
 *@description:	handles the event of key presses
@@ -826,7 +821,7 @@ void Project()
 *@param:	char key, int x, int y
 *
 *@return:	void
-*/
+****************************************************************************************/
 
 void char_input(unsigned char key,int x, int y)
 {
@@ -1029,7 +1024,7 @@ void char_input(unsigned char key,int x, int y)
    	glutPostRedisplay();
 }
 
-/**
+/*******************************drawWall()***********************************************************
 *@func:         drawWall
 *
 *@description:  
@@ -1037,7 +1032,7 @@ void char_input(unsigned char key,int x, int y)
 *@param:        void
 *
 *@return:       void
-*/
+*****************************************************************************************************/
 
 void drawWall(double x, double y, double z,double delta_x, double delta_y, double delta_z, double th)
 {
@@ -1081,7 +1076,6 @@ void drawWall(double x, double y, double z,double delta_x, double delta_y, doubl
 *@params:	double x,double y,double z,double delta_x,double delta_y,double delta_z, double fogAngle
 *
 *@return:	void
-*
 ******************************************************************************************************/
 
 void drawFog(double x,double y,double z,double delta_x,double delta_y,double delta_z, double fogAngle)
@@ -1199,7 +1193,6 @@ void drawFog(double x,double y,double z,double delta_x,double delta_y,double del
 *@param:        double theta,double alpha
 *
 *@return:       void
-*
 *******************************************************************************************************************************/
 
 void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
@@ -1302,7 +1295,6 @@ void drawSkybox(double x,double y,double z,double delta_x,double delta_y,double 
 *@params:	double x. double y, double Z, double delta_x, double delta_y, double delta_z)
 *
 *@return:	void
-*
 ******************************************************************************************************/
 
 void drawSurface(double x, double y, double z, double delta_x, double delta_y, double delta_z)
@@ -1621,7 +1613,7 @@ void reshape(int width,int height)
 }
 
 
-/**
+/**********************************************************main*******************************************
 *@func:         main
 *
 *@description:  main function that is the entry point of the program
@@ -1632,7 +1624,7 @@ void reshape(int width,int height)
 *@return:       int
 *
 *@todo:         add interaction API calls
-*/
+***********************************************************************************************************/
 
 int main(int argc, char *argv[])
 {
