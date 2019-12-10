@@ -9,6 +9,9 @@
 
 
 
+
+#define GL_NORMAL(x1,y1,z1,x2,y2,z2,x3,y3,z3)   glNormal3d(((y2-y1)*(z3-z2))-((z2-z1)*(y3-y2)), ((z2-z1)*(x3-x2))-((x2-x1)*(z3-z2)),((x2-x1)*(y3-y2))-((y2-y1)*(x3-x2)))
+
 /***************************************************drawTank()*************************************************************
 *@func: drawTank
 *
@@ -60,8 +63,10 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	/*This is for the top surface*/
 
+
 	//top
         glBegin(GL_POLYGON);
+	glNormal3f(0, 0, +1);
         glVertex3f(+1,+2,10);
         glVertex3f(+2,+1,10);
         glVertex3f(+2,-1,10);
@@ -93,6 +98,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 	//Sealing the surfaces : Front
 
 	glBegin(GL_QUADS);
+	glNormal3f(0, +1, 0);
 	glVertex3f(+1,+2,11);
  	glVertex3f(+1,+2,10);
 	glVertex3f(-1,+2,10);
@@ -103,6 +109,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 	//Sealing the surfaces : Back
 
         glBegin(GL_QUADS);
+	glNormal3f(0, -1, 0);
         glVertex3f(+1,-2,11);
         glVertex3f(+1,-2,10);
         glVertex3f(-1,-2,10);
@@ -113,6 +120,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 	 //Sealing the surfaces : right
 
         glBegin(GL_QUADS);
+	glNormal3f(+1, 0, 0);
         glVertex3f(+2,+1,11);
         glVertex3f(+2,+1,10);
         glVertex3f(+2,-1,10);
@@ -123,6 +131,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 	//Sealing the surfaces : left
 
         glBegin(GL_QUADS);
+	glNormal3f(-1, 0, 0);
         glVertex3f(-2,+1,11);
         glVertex3f(-2,-1,11);
         glVertex3f(-2,-1,10);
@@ -136,6 +145,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 	 //Sealing the surfaces : right top diagonal
 
         glBegin(GL_QUADS);
+	glNormal3f(+1, +1, 0);
         glVertex3f(+2,+1,10);
         glVertex3f(+2,+1,11);
         glVertex3f(+1,+2,11);
@@ -145,6 +155,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	//sealing the surfaces: right bottom diagonal
 	glBegin(GL_QUADS);
+	glNormal3f(+1, -1, 0);
         glVertex3f(+2,-1,11);
         glVertex3f(+2,-1,10);
         glVertex3f(+1,-2,10);
@@ -153,6 +164,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	//sealing the surfaces: left top diagonal
         glBegin(GL_QUADS);
+	glNormal3f(-1, +1, 0);
         glVertex3f(-2,+1,11);
         glVertex3f(-1,+2,11);
         glVertex3f(-1,+2,10);
@@ -161,6 +173,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	//sealing the surfaces: left bottom diagonal
         glBegin(GL_QUADS);
+	glNormal3f(-1, -1, 0);
         glVertex3f(-2,-1,11);
         glVertex3f(-2,-1,10);
         glVertex3f(-1,-2,10);
@@ -174,6 +187,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 	 glColor3ub(0, 175, 255);
         //top
         glBegin(GL_POLYGON);
+	glNormal3f(0, 0, +1);
         glVertex3f(+1,+5,10);
         glVertex3f(+5,+1,10);
         glVertex3f(+5,-1,10);
@@ -188,7 +202,6 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
         //Bottom
         glBegin(GL_POLYGON);
-
         glVertex3f(+1,+5,7);
         glVertex3f(+5,+1,7);
         glVertex3f(+5,-1,7);
@@ -206,6 +219,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
         //Sealing the surfaces : Front
 
         glBegin(GL_QUADS);
+	GL_NORMAL(+1,+5,10,+1,+5,7,-1,+5,7);
         glVertex3f(+1,+5,7);
         glVertex3f(+1,+5,10);
         glVertex3f(-1,+5,10);
@@ -216,6 +230,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
         //Sealing the surfaces : Back
 
         glBegin(GL_QUADS);
+	GL_NORMAL(-1,-5,10,-1,-5,7,+1,-5,7);
         glVertex3f(+1,-5,7);
         glVertex3f(+1,-5,10);
         glVertex3f(-1,-5,10);
@@ -226,6 +241,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
          //Sealing the surfaces : right
 
         glBegin(GL_QUADS);
+	GL_NORMAL(+5,-1,10,+5,-1,7,+5,+1,7);
         glVertex3f(+5,+1,7);
         glVertex3f(+5,+1,10);
         glVertex3f(+5,-1,10);
@@ -236,6 +252,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
         //Sealing the surfaces : left
 
         glBegin(GL_QUADS);
+	GL_NORMAL(-5,+1,10,-5,+1,7,-5,-1,7);
         glVertex3f(-5,+1,7);
         glVertex3f(-5,-1,7);
         glVertex3f(-5,-1,10);
@@ -246,6 +263,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 	    //Sealing the surfaces : right top diagonal
 
         glBegin(GL_QUADS);
+	GL_NORMAL(+5,+1,10,+5,+1,7,+1,+5,7);
         glVertex3f(+5,+1,10);
         glVertex3f(+5,+1,7);
         glVertex3f(+1,+5,7);
@@ -255,6 +273,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
         //sealing the surfaces: right bottom diagonal
         glBegin(GL_QUADS);
+	GL_NORMAL(+1,-5,10,+1,-5,7,+5,-1,7);
         glVertex3f(+5,-1,7);
         glVertex3f(+5,-1,10);
         glVertex3f(+1,-5,10);
@@ -263,14 +282,16 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
         //sealing the surfaces: left top diagonal
         glBegin(GL_QUADS);
+	GL_NORMAL(-1,+5,10,-1,+5,7,-5,+1,7);
         glVertex3f(-5,+1,7);
         glVertex3f(-1,+5,7);
         glVertex3f(-1,+5,10);
         glVertex3f(-5,+1,10);
-        glEnd(); 
+        glEnd();
 
         //sealing the surfaces: left bottom diagonal
         glBegin(GL_QUADS);
+	GL_NORMAL(-5,-1,10,-5,-1,7,-1,-5,7);
         glVertex3f(-5,-1,7);
         glVertex3f(-5,-1,10);
         glVertex3f(-1,-5,10);
@@ -284,7 +305,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	/* Top */
 	glColor3ub(200, 100, 175);
-
+	glNormal3f(0, 0, +1);
         glBegin(GL_QUADS);
         glVertex3f(+8,+8,7);
         glVertex3f(-8,+8,7);
@@ -306,6 +327,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	/* Front */
 	glColor3ub(40, 70, 40);
+	GL_NORMAL(8,8,7,10,15,0,-10,15,0);
 	glBegin(GL_QUADS);
         glVertex3f(+8,+8,7);
         glVertex3f(+10,+15,0);
@@ -316,6 +338,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	/* Back */
         glBegin(GL_QUADS);
+	GL_NORMAL(-8,-8,7,-10,-15,0,+10,-15,0);
         glVertex3f(-8,-8,7);
         glVertex3f(-10,-15,0);
         glVertex3f(+10,-15,0);
@@ -324,6 +347,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	/* Right */
 	glBegin(GL_QUADS);
+	GL_NORMAL(+8,-8,7,+10,-15,0,+10,+15,0);
         glVertex3f(+8,+8,7);
         glVertex3f(+8,-8,7);
         glVertex3f(+10,-15,0);
@@ -334,6 +358,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	/* Left */
         glBegin(GL_QUADS);
+	GL_NORMAL(+8,+8,7,-10,+15,0,-10,-15,0);
         glVertex3f(-8,+8,7);
         glVertex3f(-10,+15,0);
         glVertex3f(-10,-15,0);
@@ -345,7 +370,7 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 
 
-/***************************************************drawTank()*************************************************************
+/***************************************************drawPlane()*************************************************************
 *@func: drawPlane
 *
 *@description: Helps me a draw a plane.
@@ -467,7 +492,7 @@ void initializAsteroids( int  ast_pos[][3]  )
 		ast_pos[i][1]=rand()%300;
 		else
 		ast_pos[i][1]=-rand()%300;
-	
+
 
 
 		ast_pos[i][2]=-500+(rand()%500);
