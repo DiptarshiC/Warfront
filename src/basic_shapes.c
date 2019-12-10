@@ -11,7 +11,7 @@
 #define		PI	3.14
 
 
-/**
+/*********************************Vertex****************************************************************************************************
 *@func:         Vertex
 *
 *@description:  A program that helps us conmpute the vertices using cosine sine functions that inturn helps us render shapes
@@ -20,7 +20,8 @@
 *
 *@return:       void
 *
-*/
+*@refernce:	 https://www.prinmath.com/csci5229/
+**********************************************************************************************************************************************/
 
 void Vertex(double theta,double alpha)
 {
@@ -31,7 +32,7 @@ void Vertex(double theta,double alpha)
 
 
 
-/************************** draw_cylinder() **************************
+/************************** draw_cylinder() **********************************************************************************************************************************
  * This function will draw the cylinder
  *
  *   @parameter1: radius = The radius of cylinder
@@ -41,7 +42,7 @@ void Vertex(double theta,double alpha)
  *   @parameter5: B = Blue value of the cylinder's color
  *
  *   @return: Nothing
- */
+ *****************************************************************************************************************************************************************************/
 
 void drawCylinder(double radius,double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R,GLubyte G,GLubyte B,double alpha)
 {
@@ -90,17 +91,15 @@ void drawCylinder(double radius,double height,double x1, double y1, double z1,do
 }
 
 
-/******************************drawCone()********************************
-*@func: drawDome
+/******************************drawDome***************************************************************************
+*@func: 		drawDome
 *
-*@description:
+*@description:		Draws the dome
 *
-*@param: 
+*@param: 		double x, double y, double z, double delta_x, double delta_y, double delta_z,double th, int texture[]
 *
-*@return: 
-*
-*
-*/
+*@return: 		void
+*******************************************************************************************************************/
 
 void drawDome(double x, double y, double z, double delta_x, double delta_y, double delta_z,double th, int texture[])
 {
@@ -166,17 +165,17 @@ void drawDome(double x, double y, double z, double delta_x, double delta_y, doub
         glPopMatrix();
 }
 
-/**
+/**************************************drawSphere*********************************************
+*@func:		drawSphere
 *
+*@description:	draws a sphere
 *
+*@params:	double x, double y, double z, double delta_x, double delta_y, double delta_z
 *
+*@return:	void
 *
-*
-*
-*
-*
-*
-*/
+*@reference:	https://www.prinmath.com/csci5229/
+*********************************************************************************************/
 
 void drawSphere(double x, double y, double z, double delta_x, double delta_y, double delta_z)
 {
@@ -225,7 +224,7 @@ void drawSphere(double x, double y, double z, double delta_x, double delta_y, do
         glPopMatrix();
 }
 
-/**
+/************************************drawCube***************************************************
 *@func:		drawCube
 *
 *@description:
@@ -235,7 +234,7 @@ void drawSphere(double x, double y, double z, double delta_x, double delta_y, do
 *@return:       void
 *
 *@reference:    http://www.prinmath.com/csci5229/F18/programs/ex9.zip
-*/
+************************************************************************************************/
 
 void drawCube(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
@@ -329,7 +328,7 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
 }
 
 
-/**
+/*********************************************drawCubeWithoutTexture******************************************
 *@func:         drawCube
 *
 *@description:
@@ -339,7 +338,7 @@ void drawCube(double x,double y,double z,double delta_x,double delta_y,double de
 *@return:       void
 *
 *@reference:    http://www.prinmath.com/csci5229/F18/programs/ex9.zip
-*/
+**************************************************************************************************************/
 
 void drawCubewithoutTexture(double x,double y,double z,double delta_x,double delta_y,double delta_z, double th)
 {
@@ -434,7 +433,7 @@ void drawCubewithoutTexture(double x,double y,double z,double delta_x,double del
 }
 
 
-/**
+/***************************************drawCone*************************************************************************************************************************
 *@func:		drawCone
 *
 *@description:	helps draw a cone
@@ -443,7 +442,8 @@ void drawCubewithoutTexture(double x,double y,double z,double delta_x,double del
 *
 *@return:	void
 *
-*/
+*@refernce:	https://www.prinmath.com/csci5229/
+***************************************************************************************************************************************************************************/
 
 void drawCone(double radius,double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R,GLubyte G,GLubyte B,double alpha)
 {
@@ -536,16 +536,15 @@ void drawTurret(double radius, double height,double x1, double y1, double z1,dou
 
 }
 
-/***************************************************************drawCycloid()************************************************
+/***************************************************************drawCycloid()*************************************************************************************************
 *@func:			drawCycloid()
 *
-*@description:		
+*@description:		Draws a cycloid for a given length
 *
 *@param:		double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha
 *
 *@return:		void
-*
-***************************************************************************************************************************/
+********************************************************************************************************************************************************************************/
 
 void drawCycloid(double radius, double height,double x1, double y1, double z1,double delta_x,double delta_y,double delta_z,double th,GLubyte R, GLubyte G,GLubyte B,double alpha)
 {
@@ -587,16 +586,15 @@ void drawCycloid(double radius, double height,double x1, double y1, double z1,do
 }
 
 
-/***************************************************************drawCloud()************************************************
+/***************************************************************drawCloud()******************
 *@func:                 drawCloud()
 *
-*@description:          
+*@description:         Draws a cloud
 *
-*@param:                
+*@param:		double x, double y, double z, double delta_x, double delta_y, double delta_z
 *
 *@return:               void
-*
-***************************************************************************************************************************/
+*********************************************************************************************/
 
 void drawClouds(double x, double y, double z, double delta_x, double delta_y, double delta_z)
 {
