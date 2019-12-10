@@ -96,9 +96,9 @@ double snowZ  =0;
 */
 
 
-double tankCoordinateX = -144;
-double tankCoordinateY = 670;
-int tankRotationAngle  =45;
+double tankCoordinateX = -174;
+double tankCoordinateY = -700;
+int tankRotationAngle  =0;
 
 
 
