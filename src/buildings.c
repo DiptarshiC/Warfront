@@ -8,7 +8,7 @@
 #include "../headers/basic_shapes.h"
 #include "../headers/buildings.h"
 
-/**************************drawSwastika()****************************************************
+/**************************drawSwastika()*******************************************************
 *@func:		drawSwastika
 *
 *@description:	
@@ -39,18 +39,15 @@ void drawSwastika(double x, double y, double z, double delta_x, double delta_y, 
 
 }
 
-/*****************************drawBuilding()********************************
-*@func: drawBuilding()
+/*****************************drawBuilding()************************************************************************
+*@func: 		drawBuilding()
 *
-*@description:
+*@description:		A function that draws the building
 *
-*@param:
+*@param:		double x, double y, double z, double delta_x, double delta_y, double delta_z, int textures[]
 *
-*@return:
-*
-*
-*/
-/************************************************************************************************************/
+*@return:		void
+/******************************************************************************************************************/
 void drawBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z, int textures[])
 {
 	glPushMatrix();
@@ -71,7 +68,7 @@ void drawBuilding(double x, double y, double z, double delta_x, double delta_y, 
 
 }
 
-/***********************************drawBarbedwire()************************************
+/***********************************drawBarbedwire()**************************************************************************************************************************************
 *@func:		drawBarbedwire
 *
 *@description:	Draws a barbded wire on the wall
@@ -80,7 +77,7 @@ void drawBuilding(double x, double y, double z, double delta_x, double delta_y, 
 *
 *return:	void
 *
-***************************************************************************************/
+*******************************************************************************************************************************************************************************************/
 
 void drawBarbedwire(double radius, double height, double x1, double y1 ,double z1, double delta_x, double delta_y, double delta_z, double th, GLubyte R, GLubyte G,GLubyte B, double alpha )
 {
@@ -93,7 +90,7 @@ void drawBarbedwire(double radius, double height, double x1, double y1 ,double z
 
 }
 
-/**
+/**************************************************drawNewBuilding**********************************************
 *@func:		drawNewBuilding
 *
 *@definition:	draws a building in the centre of the scene. The building has a Swastika on top
@@ -101,9 +98,7 @@ void drawBarbedwire(double radius, double height, double x1, double y1 ,double z
 *@params:	double x, double y, double z, double delta_x, double delta_y, double delta_z
 *
 *@return:	void
-*
-*
-*/
+****************************************************************************************************************/
 
 void drawNewBuilding(double x, double y, double z, double delta_x, double delta_y, double delta_z, int texture[])
 {
@@ -183,7 +178,7 @@ void drawNewBuilding(double x, double y, double z, double delta_x, double delta_
         glPopMatrix();
 }
 
-/**************************************drawNewWall()***********************************************
+/**************************************drawNewWall()**************************************************
 *@func:		drawNewWall
 *
 *@description:	Draws a wall around the periphery of the building
@@ -342,7 +337,7 @@ void drawNewWall(int texture[])
 
 }
 
-/******************************************drawCrack()************************************************
+/******************************************drawCrack()**********************************************************
 *@func: 	drawCrack
 *
 *@description:	The function draws the crack in the building
@@ -351,7 +346,7 @@ void drawNewWall(int texture[])
 *
 *@return:	void
 *
-******************************************************************************************************/
+****************************************************************************************************************/
 
 void drawCrack(double x, double y, double z,double delta_x, double delta_y, double delta_z,int th, int texture[])
 {
@@ -383,7 +378,7 @@ void drawCrack(double x, double y, double z,double delta_x, double delta_y, doub
 }
 
 
-/**********************************************drawFlag()***************************************************
+/**********************************************drawFlag()*******************************************************
 *@func:		drawFlag
 *
 *@description:	A function that draws the flag. Can be used for the Nazi flag as well as the USSR one
@@ -391,7 +386,7 @@ void drawCrack(double x, double y, double z,double delta_x, double delta_y, doub
 *@prams:	double delta_x, double delta_y, double delta_z, int textures[]
 *
 *@return:	void
-*************************************************************************************************************/
+****************************************************************************************************************/
 
 
 void drawFlag(double x, double y, double z, double delta_x, double delta_y, double delta_z,int th, int textures[])
@@ -431,6 +426,8 @@ void drawFlag(double x, double y, double z, double delta_x, double delta_y, doub
 *@prams:        double delta_x, double delta_y, double delta_z, int textures[]
 *
 *@return:       void
+*
+*@reference:	https://github.com/akarthik10/opengl-samples/blob/master/examples/asteroids/asteroids.cpp
 *************************************************************************************************************/
 
 void drawSnowfall(double x, double y, double z)

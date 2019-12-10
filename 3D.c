@@ -267,7 +267,7 @@ void checkPlaneDamage();
 *
 *@return:	void
 *
-*@reference:	
+*@reference:	https://www.prinmath.com/csci5229/
 ****************************************************************************/
 void projectShadow(double L[4], double E[4], double N[4])
 {
@@ -589,6 +589,8 @@ void mouse_button_detect(int button, int state, int x, int y)
 				cannonFire();
 				checkTankDamage( );
 				ambient_intensity = 55;
+				tank1.turnAngle = rand();
+                                tank2.turnAngle = rand();
 			//	checkTankDamage( );
 			//glutDisplayFunc(displayCrack);
 			}

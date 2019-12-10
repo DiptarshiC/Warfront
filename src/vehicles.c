@@ -398,13 +398,13 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 void Plane(double x, double y, double z, double delta_x, double delta_y, double delta_z, double yaw, double roll, double pitch, double blast_rad, int textures[])
 {
-//	glShadeModel(GL_SMOOTH);
+	glShadeModel(GL_SMOOTH);
 	glPushMatrix();
 	glTranslated(x,y,z);
-/*      glRotated(roll,1,0,0);
-	glRotated(yaw,0,1,0);
-	glRotated(pitch,0,0,1);
-*/
+
+
+
+
 
 	glRotated(roll,COS(pitch) ,SIN(pitch),0);
 //        glRotated(yaw,SIN(pitch),COS(pitch),0);
