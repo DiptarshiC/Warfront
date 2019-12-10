@@ -54,8 +54,8 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
         glScaled(delta_x,delta_y,delta_z);
 	glRotated(turnAngle,0,0,1);
 
-	glColor3ub(255, 0, 0);
-
+//	glColor3ub(255, 0, 0);
+	glColor4f(1.0,0.0,0.0,1.0);
 
 	/* Gun mouth*/
 //	drawCylinder(0.5, 12, 0, 2, 10.5,1, 1,1,turret_Front_Elevation,0, 200, 0,turret_Side_Elevation );
@@ -140,7 +140,8 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 
 
-	 glColor3ub(0, 100, 255);
+	glColor3ub(0, 100, 255);
+	glColor4f(0.0 , 0.392156862745098  , 1.0  ,1.0);
 
 	 //Sealing the surfaces : right top diagonal
 
@@ -184,7 +185,8 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 	/*This is for the second  layer*/
 
-	 glColor3ub(0, 175, 255);
+//	 glColor3ub(0, 175, 255);
+	glColor4f(0.0 , 0.6862745098039216  , 1.0  ,1.0);
         //top
         glBegin(GL_POLYGON);
 	glNormal3f(0, 0, +1);
@@ -215,7 +217,8 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 
 
-	glColor3ub(0, 255, 175);
+//	glColor3ub(0, 255, 175);
+	glColor4f(0.0 , 1.0 , 0.6862745098039216  ,1.0);
         //Sealing the surfaces : Front
 
         glBegin(GL_QUADS);
@@ -304,7 +307,8 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 
 	/* Top */
-	glColor3ub(200, 100, 175);
+//	glColor3ub(200, 100, 175);
+	glColor4f( 0.7843137254901961  , 0.392156862745098  , 0.6862745098039216  ,1.0);
 	glNormal3f(0, 0, +1);
         glBegin(GL_QUADS);
         glVertex3f(+8,+8,7);
@@ -314,7 +318,8 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
         glEnd();
 
 	/* Bottom */
-	glColor3ub(40, 40, 40);
+//	glColor3ub(40, 40, 40);
+	glColor4f( 0.1568627450980392  , 0.1568627450980392  , 0.1568627450980392  ,1.0);
 
 	glBegin(GL_QUADS);
         glVertex3f(+10,+15,0);
@@ -326,7 +331,8 @@ void drawTank(double x,double y,double z,double delta_x,double delta_y,double de
 
 
 	/* Front */
-	glColor3ub(40, 70, 40);
+//	glColor3ub(40, 70, 40);
+	glColor4f( 0.1568627450980392  , 0.2745098039215686  , 0.1568627450980392  ,1.0);
 	GL_NORMAL(8,8,7,10,15,0,-10,15,0);
 	glBegin(GL_QUADS);
         glVertex3f(+8,+8,7);

@@ -205,8 +205,8 @@ void drawNewWall(int texture[])
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         glBindTexture(GL_TEXTURE_2D,texture[0]);
-        glColor3ub(255,165,0);
-
+//        glColor3ub(255,165,0);
+	glColor4f(1,0.6470588235294118 ,0,1.0);//silver
 	/* Drawing the left inner wall */
 	glBegin(GL_QUADS);
 	glNormal3f(1, 0, 0);
