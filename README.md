@@ -38,8 +38,8 @@ Press 'L' on the keyboard and start. The default mode is the plane.
 | Barbedwire | Compeleted  |
 | Firing | Completed |
 | Lighting | Completed |
-| Textures | Remaining to be done on the building top surface, tank and Walls  |
-| Collision Detection | Done betweeen the tank and the building. Remaining between the flight and the buildings and the walls |
+| Textures | Completed  |
+| Collision Detection | Completed |
 | Damage effect on the building | Remaining |
 
 ## Key Bindings
