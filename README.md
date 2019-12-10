@@ -40,7 +40,8 @@ Press 'L' on the keyboard and start. The default mode is the plane.
 | Lighting | Completed |
 | Textures | Completed  |
 | Collision Detection | Completed |
-| Damage effect on the building | Remaining |
+| Tank and Plane destruction | Completed |
+| Blizzard Effect | Completed |
 
 ## Key Bindings
 

@@ -1704,7 +1704,7 @@ int main(int argc, char *argv[])
         glutInit(&argc, argv);
 
         /*Initializing display modes*/
-        glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH |  GLUT_DOUBLE);
+        glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH |  GLUT_DOUBLE | GLUT_STENCIL);
 
         /*Initializing window position*/
         glutInitWindowPosition(0,0);
